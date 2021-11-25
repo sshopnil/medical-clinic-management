@@ -7,6 +7,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class logInOption
     {
 
@@ -33,13 +35,13 @@ public class logInOption
                 try
                     {
                         Stage patientLog = (Stage) patient_login.getScene().getWindow();
-                        Parent root = FXMLLoader.load(getClass().getResource("/patient/patient_page.fxml"));
+                        Parent root = FXMLLoader.load(getClass().getResource("patient/patient_page.fxml"));
                         
                         patientLog.setScene(new Scene(root));
                         patientLog.setTitle("Patient Dashboard");
                         patientLog.show();
                     }
-                    catch (Exception e)
+                    catch (IOException e)
                         {
                             System.out.println("Error in patient method");
                         }
