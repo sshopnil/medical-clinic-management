@@ -12,8 +12,8 @@ public class Main extends Application
         @Override
         public void start(Stage primaryStage) throws Exception
             {
-                Parent root = FXMLLoader.load(getClass().getResource("patient/patient_page.fxml"));
-                primaryStage.setTitle("Hello World");
+                Parent root = FXMLLoader.load(getClass().getResource("loginOption_page.fxml"));
+                primaryStage.setTitle("Clinic Management");
                 primaryStage.setScene(new Scene(root));
                 primaryStage.show();
             }
