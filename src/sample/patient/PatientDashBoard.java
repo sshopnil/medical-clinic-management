@@ -1,6 +1,6 @@
 package sample.patient;
 
-public class Patient
+public class PatientDashBoard
     {
 
     }
