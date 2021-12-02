@@ -8,12 +8,13 @@ import javafx.stage.Stage;
 
 public class Main extends Application
     {
-
+        public static Stage primaryStage;
         @Override
-        public void start(Stage primaryStage) throws Exception
+        public void start(Stage stage) throws Exception
             {
+                primaryStage = stage;
                 Parent root = FXMLLoader.load(getClass().getResource("loginOption_page.fxml"));
-                primaryStage.setTitle("Clinic Management");
+                primaryStage.setTitle("Appointment Management");
                 primaryStage.setScene(new Scene(root));
                 primaryStage.show();
             }
