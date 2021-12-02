@@ -1,0 +1,2 @@
+text color code: #5b919e
+font: century gothic
