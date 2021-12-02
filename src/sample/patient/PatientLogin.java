@@ -14,7 +14,12 @@ public class PatientLogin
         void gotoDashBoard()
             {
                 Parent root = null;
+                FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/patientDashBoard.fxml");
 
+                root = sceneChanger.root;
+
+                Scene scene = new Scene(root);
+                Main.primaryStage.setScene(scene);
             }
         public void patientEnterActionKeyBoard(KeyEvent keyEvent)
             {
@@ -39,7 +44,6 @@ public class PatientLogin
                 FXMLSceneChanger changer = FXMLSceneChanger.load("logInOption_page.fxml");
 
                 root = changer.root;
-                logInOption LogInOption = (logInOption) changer.controller;
 
                 Scene scene = new Scene(root);
                 Main.primaryStage.setScene(scene);
