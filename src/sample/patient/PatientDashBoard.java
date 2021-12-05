@@ -58,12 +58,26 @@ public class PatientDashBoard
                         btn.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
                         myInfo.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
                         currentStatus.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
+
+                        Parent root;
+
+                        FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/appointmentScene.fxml");
+
+                        root = sceneChanger.root;
+                        patientSubScene.setRoot(root);
                     }
                 else if (btn.equals(currentStatus))
                     {
                         btn.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
                         appointment.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
                         myInfo.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
+
+                        Parent root;
+
+                        FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/CurrentStatus.fxml");
+
+                        root = sceneChanger.root;
+                        patientSubScene.setRoot(root);
                     }
             }
 
