@@ -1,10 +1,15 @@
 package sample.patient;
 
+import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import javafx.scene.text.Text;
 import sample.FXMLSceneChanger;
 import sample.Main;
 
@@ -16,6 +21,22 @@ public class PatientDashBoard
         public Button currentStatus;
         public Button myInfo;
         public Button appointment;
+        public AnchorPane patientDashBoardPane;
+        public SubScene patientSubScene;
+        public Text Pserial;
+        public Text pID;
+        public Text Pname;
+
+        void deafultActiveBtn()
+            {
+                myInfo.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
+                Parent root;
+
+                FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/infoScene.fxml");
+
+                root = sceneChanger.root;
+                patientSubScene.setRoot(root);
+            }
 
         void changeColor(Button btn)
             {
@@ -24,6 +45,13 @@ public class PatientDashBoard
                         btn.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
                         appointment.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
                         currentStatus.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
+
+                        Parent root;
+
+                        FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/infoScene.fxml");
+
+                        root = sceneChanger.root;
+                        patientSubScene.setRoot(root);
                     }
                 else if (btn.equals(appointment))
                     {
