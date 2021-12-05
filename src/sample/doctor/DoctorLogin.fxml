@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.doctor.DoctorLogin">
+   <children>
+      <Button fx:id="backToHome" layoutX="26.0" layoutY="31.0" mnemonicParsing="false" onMouseClicked="#backToHomeAction" prefHeight="24.0" prefWidth="62.0" style="-fx-background-color: #12284a;" text="&lt;Home" textFill="WHITE">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
+      <Text fill="#5b919e" layoutX="250.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Text>
+      <TextField fx:id="doctorID" layoutX="169.0" layoutY="149.0" prefHeight="0.0" prefWidth="262.0" promptText="Enter ID">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Button fx:id="doctorEnter" layoutX="270.0" layoutY="234.0" mnemonicParsing="false" onKeyPressed="#doctorEnterActionKeyBoard" onMouseClicked="#doctorEnterAction" style="-fx-background-color: #5b919e;" text="Enter" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Text fx:id="newReg" fill="#5b919e" layoutX="169.0" layoutY="300.0" onMouseClicked="#newRegAction" strokeType="OUTSIDE" strokeWidth="0.0" text="New here? click me....">
+         <font>
+            <Font name="Century Gothic Bold" size="13.0" />
+         </font>
+      </Text>
+      <PasswordField fx:id="doctorPassword" layoutX="169.0" layoutY="186.0" prefHeight="28.0" prefWidth="262.0" promptText="Enter Password" />
+   </children>
+</AnchorPane>

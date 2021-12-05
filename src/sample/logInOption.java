@@ -21,7 +21,7 @@ public class logInOption
                 try
                     {
                         Stage recLogin = (Stage) receiptionist_login.getScene().getWindow();
-                        Parent root = FXMLLoader.load(getClass().getResource("receiptionist_page"));
+                        Parent root = FXMLLoader.load(getClass().getResource("receiption/adminLogin.fxml"));
 
                         recLogin.setScene(new Scene(root));
                     }
@@ -45,5 +45,10 @@ public class logInOption
 
         public void doctor_clicked(MouseEvent mouseEvent)
             {
+                FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("doctor/DoctorLogin.fxml");
+                Parent root = sceneChanger.root;
+
+                Scene scene = new Scene(root);
+                Main.primaryStage.setScene(scene);
             }
     }

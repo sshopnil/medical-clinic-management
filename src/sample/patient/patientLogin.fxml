@@ -14,7 +14,7 @@
          </font>
       </Text>
       <TextField fx:id="patientName" layoutX="169.0" layoutY="149.0" prefHeight="28.0" prefWidth="262.0" promptText="Enter your name...." style="-fx-border-style: none; -fx-border-color: transparent;" />
-      <TextField fx:id="patientID" layoutX="169.0" layoutY="185.0" prefHeight="28.0" prefWidth="262.0" promptText="Serial number (min 4 digit)" style="-fx-border-style: none; -fx-border-color: transparent;" />
+      <TextField fx:id="patientID" layoutX="169.0" layoutY="185.0" prefHeight="28.0" prefWidth="262.0" promptText="Enter your ID (min 4 digit)" style="-fx-border-style: none; -fx-border-color: transparent;" />
       <Button fx:id="patientEnter" layoutX="270.0" layoutY="234.0" mnemonicParsing="false" onKeyPressed="#patientEnterActionKeyBoard" onMouseClicked="#patientEnterAction" style="-fx-background-color: #5b919e;" text="Enter" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="16.0" />
