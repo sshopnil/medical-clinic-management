@@ -6,29 +6,39 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.patient.PatientLogin">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #f5f0e1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.patient.PatientLogin">
    <children>
-      <Text fill="#5eb9ff" layoutX="250.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
+      <Text layoutX="283.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Login">
          <font>
-            <Font name="Century Gothic Bold" size="35.0" />
+            <Font name="Fira Mono" size="30.0" />
          </font>
       </Text>
-      <TextField fx:id="patientName" layoutX="169.0" layoutY="149.0" prefHeight="28.0" prefWidth="262.0" promptText="Enter your name...." style="-fx-border-style: none; -fx-border-color: transparent;" />
-      <TextField fx:id="patientID" layoutX="169.0" layoutY="185.0" prefHeight="28.0" prefWidth="262.0" promptText="Enter your ID (min 4 digit)" style="-fx-border-style: none; -fx-border-color: transparent;" />
-      <Button fx:id="patientEnter" layoutX="270.0" layoutY="234.0" mnemonicParsing="false" onKeyPressed="#patientEnterActionKeyBoard" onMouseClicked="#patientEnterAction" style="-fx-background-color: #5b919e;" text="Enter" textFill="WHITE">
+      <TextField fx:id="patientName" layoutX="136.0" layoutY="182.0" prefHeight="35.0" prefWidth="411.0" promptText="Enter your name...." style="-fx-border-style: none; -fx-border-color: transparent;" />
+      <TextField fx:id="patientID" layoutX="136.0" layoutY="267.0" prefHeight="35.0" prefWidth="411.0" promptText="Enter your ID (min 4 digit)" style="-fx-border-style: none; -fx-border-color: transparent;" />
+      <Button fx:id="patientEnter" layoutX="137.0" layoutY="334.0" mnemonicParsing="false" onKeyPressed="#patientEnterActionKeyBoard" onMouseClicked="#patientEnterAction" prefHeight="28.0" prefWidth="104.0" style="-fx-background-color: #1e3d59;" text="Login" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="16.0" />
          </font>
       </Button>
-      <Text fx:id="newReg" fill="#5b919e" layoutX="169.0" layoutY="299.0" onMouseClicked="#newRegAction" strokeType="OUTSIDE" strokeWidth="0.0" text="New here? click me....">
+      <Button fx:id="backToHome" layoutY="468.0" mnemonicParsing="false" onMouseClicked="#backToHomeAction" prefHeight="35.0" prefWidth="800.0" style="-fx-background-color: #333D79FF;" text="Back" textFill="WHITE">
          <font>
-            <Font name="Century Gothic Bold" size="13.0" />
-         </font>
-      </Text>
-      <Button fx:id="backToHome" layoutX="26.0" layoutY="31.0" mnemonicParsing="false" onMouseClicked="#backToHomeAction" style="-fx-background-color: #12284a;" text="&lt;&lt; Home" textFill="WHITE">
-         <font>
-            <Font name="Century Gothic Bold" size="11.0" />
+            <Font size="14.0" />
          </font>
       </Button>
+      <Button fx:id="newReg" layoutX="257.0" layoutY="334.0" mnemonicParsing="false" onMouseClicked="#newRegAction" prefHeight="28.0" prefWidth="104.0" style="-fx-background-color: #1e3d59;" text="Sign up" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Text fill="#145e67f7" layoutX="136.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#145e67f7" layoutX="136.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

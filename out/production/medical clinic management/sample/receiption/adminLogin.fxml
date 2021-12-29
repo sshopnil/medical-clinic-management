@@ -3,29 +3,42 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.receiption.AdminLogin">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #f5f0e1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.receiption.AdminLogin">
     <children>
-        <Text fill="#5b919e" layoutX="205.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Panel" textAlignment="CENTER" wrappingWidth="190.13671875">
+        <Text layoutX="254.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Login" textAlignment="CENTER" wrappingWidth="291.8916015625">
             <font>
-                <Font name="Century Gothic Bold" size="30.0" />
+                <Font name="Fira Mono" size="30.0" />
             </font>
         </Text>
-        <TextField fx:id="tf_email" layoutX="150.0" layoutY="116.0" prefHeight="28.0" prefWidth="300.0" promptText="Email address or phone number" />
-        <TextField fx:id="tf_pass" layoutX="150.0" layoutY="162.0" prefHeight="28.0" prefWidth="300.0" promptText="Password" />
-        <Button fx:id="btn_login" layoutX="244.0" layoutY="211.0" mnemonicParsing="false" onKeyPressed="#adminEnterActionKeyBoard" onMouseClicked="#adminEnterAction" prefHeight="46.0" prefWidth="113.0" text="Login" textAlignment="CENTER" textFill="#5b919e" wrapText="true">
+        <TextField fx:id="tf_email" layoutX="163.0" layoutY="170.0" prefHeight="35.0" prefWidth="411.0" promptText="Email address or phone number" />
+        <TextField id="textField" fx:id="tf_pass" accessibleRole="PASSWORD_FIELD" layoutX="163.0" layoutY="261.0" prefHeight="35.0" prefWidth="411.0" promptText="Password" stylesheets="@recieptionStyle.css" />
+        <Button fx:id="btn_login" layoutX="163.0" layoutY="317.0" mnemonicParsing="false" onKeyPressed="#adminEnterActionKeyBoard" onMouseClicked="#adminEnterAction" prefHeight="28.0" prefWidth="103.0" style="-fx-background-color: #1e3d59;" text="Login" textAlignment="CENTER" textFill="WHITE" wrapText="true">
             <font>
                 <Font name="System Bold" size="13.0" />
             </font>
         </Button>
-        <Line endX="394.0" layoutX="164.0" layoutY="324.0" startX="-120.5" />
-        <Button fx:id="backToHome" layoutX="20.0" layoutY="31.0" mnemonicParsing="false" onMouseClicked="#backToHomeAction" style="-fx-background-color: #12284a;" text="&lt;&lt; Home" textFill="WHITE">
+        <Button fx:id="backToHome" layoutY="464.0" mnemonicParsing="false" onMouseClicked="#backToHomeAction" prefHeight="35.0" prefWidth="800.0" style="-fx-background-color: #333D79FF;" text="Back" textFill="WHITE">
             <font>
-                <Font name="Century Gothic Bold" size="11.0" />
+                <Font name="System Bold Italic" size="14.0" />
             </font>
         </Button>
+      <Text fill="#145e67f7" layoutX="163.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail/Phone">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#145e67f7" layoutX="163.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="btn_login1" layoutX="281.0" layoutY="317.0" mnemonicParsing="false" onKeyPressed="#adminEnterActionKeyBoard" onMouseClicked="#adminEnterAction" prefHeight="28.0" prefWidth="104.0" style="-fx-background-color: #1e3d59;" text="Sign up" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

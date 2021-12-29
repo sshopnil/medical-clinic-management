@@ -43,8 +43,8 @@ public class PatientDashBoard
                 if (btn.equals(myInfo))
                     {
                         btn.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
-                        appointment.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
-                        currentStatus.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
+                        appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+                        currentStatus.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
 
                         Parent root;
 
@@ -56,8 +56,8 @@ public class PatientDashBoard
                 else if (btn.equals(appointment))
                     {
                         btn.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
-                        myInfo.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
-                        currentStatus.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
+                        myInfo.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+                        currentStatus.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
 
                         Parent root;
 
@@ -69,8 +69,8 @@ public class PatientDashBoard
                 else if (btn.equals(currentStatus))
                     {
                         btn.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
-                        appointment.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
-                        myInfo.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
+                        appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+                        myInfo.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
 
                         Parent root;
 
