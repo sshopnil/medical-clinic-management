@@ -74,7 +74,7 @@ public class PatientDashBoard
 
                         Parent root;
 
-                        FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/CurrentStatus.fxml");
+                        FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/currentStatus.fxml");
 
                         root = sceneChanger.root;
                         patientSubScene.setRoot(root);
