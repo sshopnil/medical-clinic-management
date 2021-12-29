@@ -44,7 +44,7 @@ public class DoctorLogin {
     @FXML
     void backToHomeAction(MouseEvent event) {
         Parent root = null;
-        FXMLSceneChanger changer = FXMLSceneChanger.load("loginOption_page.fxml");
+        FXMLSceneChanger changer = FXMLSceneChanger.load("logInOption_page.fxml");
 
         root = changer.root;
         logInOption controller = (logInOption) changer.controller;

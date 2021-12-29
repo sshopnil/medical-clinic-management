@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.patient.regController">
+   <children>
+      <TextField layoutX="36.0" layoutY="154.0" prefHeight="28.0" prefWidth="227.0" />
+      <Text layoutX="40.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name: ">
+         <font>
+            <Font name="Century Gothic" size="11.741006851196289" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth:">
+         <font>
+            <Font name="Century Gothic" size="11.741006851196289" />
+         </font>
+      </Text>
+      <Text layoutX="337.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name: ">
+         <font>
+            <Font name="Century Gothic" size="11.741006851196289" />
+         </font>
+      </Text>
+      <TextField layoutX="337.0" layoutY="153.0" prefHeight="28.0" prefWidth="227.0" />
+      <Text layoutX="338.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:">
+         <font>
+            <Font name="Century Gothic" size="11.741006851196289" />
+         </font>
+      </Text>
+      <RadioButton layoutX="338.0" layoutY="249.0" mnemonicParsing="false" text="Male" />
+      <RadioButton layoutX="422.0" layoutY="249.0" mnemonicParsing="false" text="Female" />
+      <DatePicker layoutX="33.0" layoutY="245.0" />
+      <Button fx:id="backBtn" layoutX="36.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#backBtnAction" style="-fx-background-color: #5b919e;" text="&lt; Back" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold" size="12.0" />
+         </font>
+      </Button>
+      <Text fill="#5b919e" layoutX="190.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Registration">
+         <font>
+            <Font name="Century Gothic Bold" size="24.0" />
+         </font>
+      </Text>
+      <Button fx:id="submitBtn1" layoutX="36.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#submitBtnClicked" style="-fx-background-color: #ff8969;" text="Submit" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold Italic" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
