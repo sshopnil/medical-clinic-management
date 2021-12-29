@@ -9,35 +9,35 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.patient.PatientDashBoard">
+<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.patient.PatientDashBoard">
   <items>
-    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="175.0" style="-fx-background-color: #e0e0e0;" SplitPane.resizableWithParent="false">
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="498.0" prefWidth="175.0" style="-fx-background-color: #f5f0e1;" SplitPane.resizableWithParent="false">
          <children>
-            <VBox layoutX="2.0" layoutY="60.0" prefHeight="204.0" prefWidth="176.0">
+            <VBox layoutX="-1.0" layoutY="139.0" prefHeight="204.0" prefWidth="176.0" style="-fx-background-color: #f5f0e1;">
                <children>
-                  <Button fx:id="myInfo" mnemonicParsing="false" onMouseClicked="#myInfoAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #5b919e;" text="My Info" textFill="WHITE">
+                  <Button fx:id="myInfo" mnemonicParsing="false" onMouseClicked="#myInfoAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59;" text="My Info" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic Bold" size="11.741006851196289" />
                      </font>
                   </Button>
-                  <Button fx:id="appointment" mnemonicParsing="false" onMouseClicked="#appointmentAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #5b919e;" text="Appointment" textFill="WHITE">
+                  <Button fx:id="appointment" mnemonicParsing="false" onMouseClicked="#appointmentAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59;" text="Appointment" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic Bold" size="11.741006851196289" />
                      </font>
                   </Button>
-                  <Button fx:id="currentStatus" mnemonicParsing="false" onMouseClicked="#currentStatusAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #5b919e;" text="Current Status" textFill="WHITE">
+                  <Button fx:id="currentStatus" mnemonicParsing="false" onMouseClicked="#currentStatusAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59;" text="Current Status" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic Bold" size="11.741006851196289" />
                      </font>
                   </Button>
                </children>
             </VBox>
-            <Text fill="#5b919e" fontSmoothingType="LCD" layoutX="23.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Dashboard" textAlignment="CENTER">
+            <Text fill="#1e3d59" fontSmoothingType="LCD" layoutX="-1.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Dashboard" textAlignment="CENTER" wrappingWidth="176.31667667925177">
                <font>
-                  <Font name="Century Gothic Bold Italic" size="15.0" />
+                  <Font size="22.0" />
                </font>
             </Text>
-            <Button fx:id="returnHome" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#returnHomeAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #878787;" text="Return to home" textFill="WHITE">
+            <Button fx:id="returnHome" layoutY="449.0" mnemonicParsing="false" onMouseClicked="#returnHomeAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #333D79FF;" text="Return to home" textFill="WHITE">
                <font>
                   <Font name="Century Gothic Bold" size="11.741006851196289" />
                </font>
@@ -45,7 +45,7 @@
          </children></AnchorPane>
     <AnchorPane id="patientDashBoardPane" fx:id="patientDashBoardPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
-            <SubScene fx:id="patientSubScene" height="399.0" layoutY="-2.0" width="418.0">
+            <SubScene fx:id="patientSubScene" height="498.0" layoutY="-2.0" width="617.0">
               <root>
                 <Region />
               </root>
