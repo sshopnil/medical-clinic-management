@@ -18,31 +18,31 @@ public class ReceptionistDashBoard
     {
         if (btn.equals(info))
         {
-            btn.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
-            appointment.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
-            doctors.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
-            livecount.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
+            btn.setStyle("-fx-background-color: #FCF6F5FF; -fx-text-fill: #000000");
+            appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            doctors.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            livecount.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
         }
         else if (btn.equals(appointment))
         {
-            btn.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
-            info.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
-            doctors.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
-            livecount.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
+            btn.setStyle("-fx-background-color: #FCF6F5FF; -fx-text-fill: #000000");
+            info.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            doctors.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            livecount.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
         }
         else if (btn.equals(doctors))
         {
-            btn.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
-            appointment.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
-            info.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
-            livecount.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
+            btn.setStyle("-fx-background-color: #FCF6F5FF; -fx-text-fill: #000000");
+            appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            info.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            livecount.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
         }
         else if (btn.equals(livecount))
         {
-            btn.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
-            appointment.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
-            info.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
-            doctors.setStyle("-fx-background-color: #5b919e; -fx-text-fill: #ffffff");
+            btn.setStyle("-fx-background-color: #FCF6F5FF; -fx-text-fill: #000000");
+            appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            info.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            doctors.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
         }
     }
 
