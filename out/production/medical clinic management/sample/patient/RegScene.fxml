@@ -8,44 +8,44 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.patient.regController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #f5f0e1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.patient.regController">
    <children>
-      <TextField layoutX="36.0" layoutY="154.0" prefHeight="28.0" prefWidth="227.0" />
-      <Text layoutX="40.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name: ">
+      <TextField fx:id="fName" layoutX="130.0" layoutY="165.0" prefHeight="28.0" prefWidth="227.0" />
+      <Text layoutX="134.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name: ">
          <font>
             <Font name="Century Gothic" size="11.741006851196289" />
          </font>
       </Text>
-      <Text layoutX="35.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth:">
+      <Text layoutX="131.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth:">
          <font>
             <Font name="Century Gothic" size="11.741006851196289" />
          </font>
       </Text>
-      <Text layoutX="337.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name: ">
+      <Text layoutX="474.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name: ">
          <font>
             <Font name="Century Gothic" size="11.741006851196289" />
          </font>
       </Text>
-      <TextField layoutX="337.0" layoutY="153.0" prefHeight="28.0" prefWidth="227.0" />
-      <Text layoutX="338.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:">
+      <TextField fx:id="lName" layoutX="474.0" layoutY="161.0" prefHeight="28.0" prefWidth="227.0" />
+      <Text layoutX="474.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:">
          <font>
             <Font name="Century Gothic" size="11.741006851196289" />
          </font>
       </Text>
-      <RadioButton layoutX="338.0" layoutY="249.0" mnemonicParsing="false" text="Male" />
-      <RadioButton layoutX="422.0" layoutY="249.0" mnemonicParsing="false" text="Female" />
-      <DatePicker layoutX="33.0" layoutY="245.0" />
-      <Button fx:id="backBtn" layoutX="36.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#backBtnAction" style="-fx-background-color: #5b919e;" text="&lt; Back" textFill="WHITE">
+      <RadioButton fx:id="maleSelected" layoutX="474.0" layoutY="254.0" mnemonicParsing="false" text="Male" />
+      <RadioButton fx:id="femaleSelected" layoutX="558.0" layoutY="254.0" mnemonicParsing="false" text="Female" />
+      <DatePicker fx:id="DOB" layoutX="129.0" layoutY="254.0" />
+      <Button fx:id="backBtn" layoutY="463.0" mnemonicParsing="false" onMouseClicked="#backBtnAction" prefHeight="36.0" prefWidth="800.0" style="-fx-background-color: #333D79FF;" text="&lt; Back" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="12.0" />
          </font>
       </Button>
-      <Text fill="#5b919e" layoutX="190.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Registration">
+      <Text fill="#1e3d59" layoutX="228.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Registration">
          <font>
-            <Font name="Century Gothic Bold" size="24.0" />
+            <Font name="Fira Mono" size="30.0" />
          </font>
       </Text>
-      <Button fx:id="submitBtn1" layoutX="36.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#submitBtnClicked" style="-fx-background-color: #ff8969;" text="Submit" textFill="WHITE">
+      <Button fx:id="submitBtn1" layoutX="131.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#submitBtnClicked" prefHeight="28.0" prefWidth="78.0" style="-fx-background-color: #ff8969;" text="Submit" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold Italic" size="12.0" />
          </font>

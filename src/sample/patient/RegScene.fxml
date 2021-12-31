@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #f5f0e1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.patient.regController">
    <children>
-      <TextField layoutX="130.0" layoutY="165.0" prefHeight="28.0" prefWidth="227.0" />
+      <TextField fx:id="fName" layoutX="130.0" layoutY="165.0" prefHeight="28.0" prefWidth="227.0" />
       <Text layoutX="134.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name: ">
          <font>
             <Font name="Century Gothic" size="11.741006851196289" />
@@ -26,15 +26,15 @@
             <Font name="Century Gothic" size="11.741006851196289" />
          </font>
       </Text>
-      <TextField layoutX="474.0" layoutY="161.0" prefHeight="28.0" prefWidth="227.0" />
+      <TextField fx:id="lName" layoutX="474.0" layoutY="161.0" prefHeight="28.0" prefWidth="227.0" />
       <Text layoutX="474.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:">
          <font>
             <Font name="Century Gothic" size="11.741006851196289" />
          </font>
       </Text>
-      <RadioButton layoutX="474.0" layoutY="254.0" mnemonicParsing="false" text="Male" />
-      <RadioButton layoutX="558.0" layoutY="254.0" mnemonicParsing="false" text="Female" />
-      <DatePicker layoutX="129.0" layoutY="254.0" />
+      <RadioButton fx:id="maleSelected" layoutX="474.0" layoutY="254.0" mnemonicParsing="false" text="Male" />
+      <RadioButton fx:id="femaleSelected" layoutX="558.0" layoutY="254.0" mnemonicParsing="false" text="Female" />
+      <DatePicker fx:id="DOB" layoutX="129.0" layoutY="254.0" />
       <Button fx:id="backBtn" layoutY="463.0" mnemonicParsing="false" onMouseClicked="#backBtnAction" prefHeight="36.0" prefWidth="800.0" style="-fx-background-color: #333D79FF;" text="&lt; Back" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="12.0" />
