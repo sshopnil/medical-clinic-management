@@ -13,19 +13,19 @@
   <items>
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="498.0" prefWidth="175.0" style="-fx-background-color: #f5f0e1;" SplitPane.resizableWithParent="false">
          <children>
-            <VBox layoutX="-1.0" layoutY="139.0" prefHeight="204.0" prefWidth="176.0" style="-fx-background-color: #f5f0e1;">
+            <VBox layoutX="-1.0" layoutY="139.0" prefHeight="310.0" prefWidth="176.0" style="-fx-background-color: #1e3d59; -fx-background-radius: 0 30 0 0;">
                <children>
-                  <Button fx:id="myInfo" mnemonicParsing="false" onMouseClicked="#myInfoAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59;" text="My Info" textFill="WHITE">
+                  <Button fx:id="myInfo" mnemonicParsing="false" onMouseClicked="#myInfoAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59; -fx-background-radius: 0 50 0 0;" styleClass="sideBtn" stylesheets="@patientStyle.css" text="My Info" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic Bold" size="11.741006851196289" />
                      </font>
                   </Button>
-                  <Button fx:id="appointment" mnemonicParsing="false" onMouseClicked="#appointmentAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59;" text="Appointment" textFill="WHITE">
+                  <Button fx:id="appointment" mnemonicParsing="false" onMouseClicked="#appointmentAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59;" styleClass="sideBtn" stylesheets="@patientStyle.css" text="Appointment" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic Bold" size="11.741006851196289" />
                      </font>
                   </Button>
-                  <Button fx:id="currentStatus" mnemonicParsing="false" onMouseClicked="#currentStatusAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59;" text="Current Status" textFill="WHITE">
+                  <Button fx:id="currentStatus" mnemonicParsing="false" onMouseClicked="#currentStatusAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59;" styleClass="sideBtn" stylesheets="@patientStyle.css" text="Current Status" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic Bold" size="11.741006851196289" />
                      </font>
