@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.receiption.RegController">
+    <children>
+        <Button fx:id="backBtn" layoutX="36.0" layoutY="42.0" mnemonicParsing="false" onAction="#backBtnAction" style="-fx-background-color: #5b919e;" text="&lt; Back" textFill="WHITE">
+            <font>
+                <Font name="Century Gothic Bold" size="12.0" />
+            </font>
+        </Button>
+        <TextField fx:id="rtf_name" layoutX="39.0" layoutY="119.0" prefHeight="28.0" prefWidth="227.0" />
+        <Text layoutX="39.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name: ">
+            <font>
+                <Font name="Century Gothic" size="11.741006851196289" />
+            </font>
+        </Text>
+        <TextField fx:id="rtf_name2" layoutX="337.0" layoutY="119.0" prefHeight="28.0" prefWidth="227.0" />
+        <Text layoutX="337.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name: ">
+            <font>
+                <Font name="Century Gothic" size="11.741006851196289" />
+            </font>
+        </Text>
+        <TextField fx:id="rtf_email" layoutX="38.0" layoutY="183.0" prefHeight="28.0" prefWidth="227.0" />
+        <Text layoutX="38.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail">
+            <font>
+                <Font name="Century Gothic" size="11.741006851196289" />
+            </font>
+        </Text>
+        <Text layoutX="337.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth:">
+            <font>
+                <Font name="Century Gothic" size="11.741006851196289" />
+            </font>
+        </Text>
+        <DatePicker fx:id="rtxt_date" layoutX="337.0" layoutY="185.0" />
+        <TextField fx:id="rtf_pass" layoutX="36.0" layoutY="250.0" prefHeight="28.0" prefWidth="227.0" />
+        <Text layoutX="38.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+            <font>
+                <Font name="Century Gothic" size="11.741006851196289" />
+            </font>
+        </Text>
+        <Text layoutX="341.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:">
+            <font>
+                <Font name="Century Gothic" size="11.741006851196289" />
+            </font>
+        </Text>
+        <RadioButton fx:id="radio_1" layoutX="341.0" layoutY="256.0" mnemonicParsing="false" text="Male">
+         <toggleGroup>
+            <ToggleGroup fx:id="tGender" />
+         </toggleGroup></RadioButton>
+        <RadioButton fx:id="radio_2" layoutX="439.0" layoutY="256.0" mnemonicParsing="false" text="Female" toggleGroup="$tGender" />
+        <Button fx:id="submitBtn1" layoutX="37.0" layoutY="336.0" mnemonicParsing="false" onAction="#submitBtnClicked" style="-fx-background-color: #ff8969;" text="Submit" textFill="WHITE">
+            <font>
+                <Font name="Century Gothic Bold Italic" size="12.0" />
+            </font>
+        </Button>
+        <Text fill="#5b919e" layoutX="190.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Registration">
+            <font>
+                <Font name="Century Gothic Bold" size="24.0" />
+            </font>
+        </Text>
+      <Text fx:id="myDate" layoutX="337.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="174.0" />
+    </children>
+</AnchorPane>
