@@ -2,6 +2,7 @@ package sample.patient;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.Period;
 
 public class ThePatient implements Serializable
 {
@@ -9,6 +10,8 @@ public class ThePatient implements Serializable
     public String gender;
     public String DateOfBirth;
     public int age;
+    public int id;
+    
     ThePatient(String name, String gender, String DateOfBirth)
     {
         this.name = name;
@@ -18,14 +21,11 @@ public class ThePatient implements Serializable
     }
     public void generateAge()
     {
-        String[] bDate = DateOfBirth.split(";;");
+        String[] date = DateOfBirth.split("-");
+        LocalDate today = LocalDate.now();
         
-        int birthYear = Integer.parseInt(bDate[0]);
-        String currentDate = java.time.LocalDate.now().toString();
+        LocalDate birthdate = LocalDate.of(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
         
-        String[] today = currentDate.split("-");
-        int currentYear = Integer.parseInt(today[0]);
-        
-        age = currentYear-birthYear;
+        age = Period.between(birthdate, today).getYears();
     }
 }

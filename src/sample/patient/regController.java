@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import sample.FXMLSceneChanger;
 import sample.Main;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.io.*;
 import java.time.LocalDate;
@@ -47,8 +48,7 @@ public class regController
     
                 try
                 {
-                    Birthdate = DOB.getValue();
-                    bDate = Birthdate.toString();
+                
                 }
                 catch (Exception e)
                 {
@@ -65,13 +65,14 @@ public class regController
                     });
                 }
                 
-                String newPatient = fName.getText().trim() + " " + lName.getText().trim() + ";;" + gender + ";;" + bDate + "\n";
-                
-                
-                if (!(fName.getText().trim().equals("")) && !(lName.getText().trim().equals("")))
+                if (!(fName.getText().trim().equals("")) && (DOB.getValue() != null))
                 {
                     try
                     {
+                        Birthdate = DOB.getValue();
+                        bDate = Birthdate.toString();
+                        String newPatient = fName.getText().trim() + " " + lName.getText().trim() + ";;" + gender + ";;" + bDate + "\n";
+                        
                         FileWriter fw = new FileWriter(file, true);
                         BufferedWriter bw = new BufferedWriter(fw);
                         PrintWriter printWriter = new PrintWriter(bw);
@@ -89,17 +90,9 @@ public class regController
                 }
                 else
                 {
-                    submitBtn1.setOnAction(new EventHandler<javafx.event.ActionEvent>()
-                    {
-                        @Override
-                        public void handle(javafx.event.ActionEvent actionEvent)
-                        {
-                            Alert alert = new Alert(Alert.AlertType.WARNING);
-                            alert.setContentText("Please populate all the fields");
-                            alert.showAndWait();
-                        }
-                    });
+                    JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Missing Information");
                 }
+                gotoLogin();
 //                Parent root;
 //                FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/patientDashBoard.fxml");
 //
@@ -113,6 +106,15 @@ public class regController
                 Parent root;
                 FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/patientLogin.fxml");
 
+                root = sceneChanger.root;
+                Scene scene = new Scene(root);
+                Main.primaryStage.setScene(scene);
+            }
+            private void gotoLogin()
+            {
+                Parent root;
+                FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/patientLogin.fxml");
+    
                 root = sceneChanger.root;
                 Scene scene = new Scene(root);
                 Main.primaryStage.setScene(scene);
