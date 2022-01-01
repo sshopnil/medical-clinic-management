@@ -13,6 +13,13 @@ import sample.FXMLSceneChanger;
 import sample.Main;
 import sample.logInOption;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class PatientLogin
     {
         public Button newReg;
@@ -20,7 +27,9 @@ public class PatientLogin
         private TextField patientName;
         @FXML
         private TextField patientID;
-
+        
+        File file = new File("src/sample/patient/patientData/newUsers.txt");
+    
         void gotoDashBoard()
             {
                 Parent root = null;
@@ -41,10 +50,26 @@ public class PatientLogin
                         gotoDashBoard();
                     }
             }
-
+        private ArrayList<ThePatient> getPatientInfo()
+        {
+            ArrayList<ThePatient> patients;
+            try
+            {
+                Scanner scanner = new Scanner(file);
+                
+                while (scanner.hasNext())
+                {
+                
+                }
+            }
+            catch (FileNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+        }
         public void patientEnterAction(MouseEvent mouseEvent)
             {
-                gotoDashBoard();
+            
             }
 
         @FXML
