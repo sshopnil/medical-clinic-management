@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #f5f0e1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.receiption.AdminLogin">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #f5f0e1;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.receiption.AdminLogin">
     <children>
         <Text layoutX="254.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Login" textAlignment="CENTER" wrappingWidth="291.8916015625">
             <font>
@@ -35,7 +35,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="btn_login1" layoutX="281.0" layoutY="317.0" mnemonicParsing="false" onKeyPressed="#adminEnterActionKeyBoard" onMouseClicked="#adminEnterAction" prefHeight="28.0" prefWidth="104.0" style="-fx-background-color: #1e3d59;" text="Sign up" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Button fx:id="btn_login1" layoutX="281.0" layoutY="317.0" mnemonicParsing="false" onAction="#signup" onKeyPressed="#adminEnterActionKeyBoard" onMouseClicked="#adminEnterAction" prefHeight="28.0" prefWidth="104.0" style="-fx-background-color: #1e3d59;" text="Sign up" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

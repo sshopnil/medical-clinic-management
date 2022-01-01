@@ -1,10 +1,9 @@
 package sample.patient;
 
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import sample.FXMLSceneChanger;
 import sample.Main;
@@ -14,16 +13,17 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class regController implements Serializable
+public class regController
     {
+        public Button submitBtn1;
         private LocalDate Birthdate;
-        public transient TextField fName;
-        public transient TextField lName;
-        public transient RadioButton maleSelected;
-        public transient RadioButton femaleSelected;
-        public transient DatePicker DOB;
-        
-        static ArrayList<Object> users = new ArrayList<Object>();
+        public TextField fName;
+        public TextField lName;
+        public RadioButton maleSelected;
+        public RadioButton femaleSelected;
+        public DatePicker DOB;
+        File file = new File("src/sample/patient/patientData/newUsers.txt");
+        ThePatient user;
         
 //        private void getDate(MouseEvent event)
 //        {
@@ -32,7 +32,6 @@ public class regController implements Serializable
 //        }
         public void submitBtnClicked(MouseEvent mouseEvent)
             {
-                ThePatient user;
                 String gender = "";
                 if (maleSelected.isSelected())
                 {
@@ -42,29 +41,65 @@ public class regController implements Serializable
                 {
                     gender = "Female";
                 }
-                Birthdate = DOB.getValue();
-                String bDate = Birthdate.toString();
                 
-                user = new ThePatient(fName.getText() + " " + lName.getText(), gender, bDate);
-                regController.users.add(user);
+                String bDate = "";
+                //(!bDate.trim().equals("") & bDate.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})"))
+    
                 try
                 {
-                    FileOutputStream fOut = new FileOutputStream(new File("src/sample/patient/patientData/newUsers.txt"), true);
-                    ObjectOutputStream oOut = new ObjectOutputStream(fOut);
-                    oOut.writeObject(users);
-                    
-                    fOut.close();
-                    oOut.close();
+                    Birthdate = DOB.getValue();
+                    bDate = Birthdate.toString();
                 }
-                catch (FileNotFoundException e)
+                catch (Exception e)
                 {
-                    e.printStackTrace();
+                    bDate = "null";
+                    submitBtn1.setOnAction(new EventHandler<javafx.event.ActionEvent>()
+                    {
+                        @Override
+                        public void handle(javafx.event.ActionEvent actionEvent)
+                        {
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setContentText("Please provide birthdate!!");
+                            alert.showAndWait();
+                        }
+                    });
                 }
-                catch (IOException e)
+                
+                String newPatient = fName.getText().trim() + " " + lName.getText().trim() + ";;" + gender + ";;" + bDate + "\n";
+                
+                
+                if (!(fName.getText().trim().equals("")) && !(lName.getText().trim().equals("")))
                 {
-                    e.printStackTrace();
+                    try
+                    {
+                        FileWriter fw = new FileWriter(file, true);
+                        BufferedWriter bw = new BufferedWriter(fw);
+                        PrintWriter printWriter = new PrintWriter(bw);
+                        
+                        printWriter.write(newPatient);
+                        fName.setText("");
+                        lName.setText("");
+                        
+                        printWriter.close();
+                    }
+                    catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
-                getUser();
+                else
+                {
+                    submitBtn1.setOnAction(new EventHandler<javafx.event.ActionEvent>()
+                    {
+                        @Override
+                        public void handle(javafx.event.ActionEvent actionEvent)
+                        {
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setContentText("Please populate all the fields");
+                            alert.showAndWait();
+                        }
+                    });
+                }
 //                Parent root;
 //                FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/patientDashBoard.fxml");
 //
@@ -81,39 +116,5 @@ public class regController implements Serializable
                 root = sceneChanger.root;
                 Scene scene = new Scene(root);
                 Main.primaryStage.setScene(scene);
-            }
-            void getUser()
-            {
-                ArrayList<ThePatient> user;
-                try
-                {
-                    FileInputStream fIn = new FileInputStream(new File("src/sample/patient/patientData/newUsers.txt"));
-                    ObjectInputStream oIn = new ObjectInputStream(fIn);
-                    
-                    
-                    user = (ArrayList<ThePatient>) oIn.readObject();
-                    
-                    for (ThePatient patient: user)
-                    {
-                        System.out.println("Name: " + patient.name);
-                        System.out.println("Gender: " + patient.gender);
-                        System.out.println("DOB: " + patient.DateOfBirth);
-                    }
-                    
-                    fIn.close();
-                    oIn.close();
-                }
-                catch (FileNotFoundException e)
-                {
-                    e.printStackTrace();
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-                catch (ClassNotFoundException e)
-                {
-                    e.printStackTrace();
-                }
             }
     }
