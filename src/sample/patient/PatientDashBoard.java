@@ -26,8 +26,10 @@ public class PatientDashBoard
         public Text Pserial;
         public Text pID;
         public Text Pname;
-
-        void deafultActiveBtn()
+        public Text pGender;
+        public Text pDOB;
+        
+        void defultActiveBtn()
             {
                 myInfo.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
                 Parent root;
@@ -46,12 +48,7 @@ public class PatientDashBoard
                         appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
                         currentStatus.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
 
-                        Parent root;
-
-                        FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/infoScene.fxml");
-
-                        root = sceneChanger.root;
-                        patientSubScene.setRoot(root);
+                        defultActiveBtn();
                     }
                 else if (btn.equals(appointment))
                     {

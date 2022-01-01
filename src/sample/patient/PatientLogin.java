@@ -1,6 +1,7 @@
 package sample.patient;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ import sample.FXMLSceneChanger;
 import sample.Main;
 import sample.logInOption;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,10 +25,17 @@ import java.util.Scanner;
 public class PatientLogin
     {
         public Button newReg;
+        public RadioButton femalebtn;
+        public RadioButton maleBtn;
+        public Button patientEnter;
         @FXML
         private TextField patientName;
         @FXML
         private TextField patientID;
+        public String name;
+        public int age;
+        public String gender;
+        public String dob;
         
         File file = new File("src/sample/patient/patientData/newUsers.txt");
     
@@ -41,7 +50,7 @@ public class PatientLogin
                 Scene scene = new Scene(root);
                 Main.primaryStage.setScene(scene);
 
-                pd.deafultActiveBtn();
+                pd.defultActiveBtn();
             }
         public void patientEnterActionKeyBoard(KeyEvent keyEvent)
             {
@@ -50,26 +59,78 @@ public class PatientLogin
                         gotoDashBoard();
                     }
             }
+            
+            //custom method for reading from patient data
         private ArrayList<ThePatient> getPatientInfo()
         {
-            ArrayList<ThePatient> patients;
+            ArrayList<ThePatient> patients = new ArrayList<ThePatient>();
             try
             {
                 Scanner scanner = new Scanner(file);
-                
+                String patient;
                 while (scanner.hasNext())
                 {
-                
+                    patient = scanner.nextLine();
+                    String[] allInfo = patient.split(";;");
+                    patients.add(new ThePatient(allInfo[0], allInfo[1], allInfo[2]));
                 }
+                scanner.close();
             }
             catch (FileNotFoundException e)
             {
                 e.printStackTrace();
             }
+            return patients;
         }
+        
+        //actions after clicking login button
         public void patientEnterAction(MouseEvent mouseEvent)
             {
-            
+                name = "";
+                age = 0;
+                try
+                {
+                    name = patientName.getText();
+                    age = Integer.parseInt(patientID.getText().trim());
+                }
+                catch (Exception e)
+                {
+                    JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Incorrect Information");
+                }
+                gender = "";
+                if (maleBtn.isSelected())
+                {
+                    gender = "Male";
+                }
+                else
+                {
+                    gender = "Female";
+                }
+                dob = "";
+                ArrayList<ThePatient> patients = getPatientInfo();
+                boolean valid = false;
+                for (ThePatient patient: patients)
+                {
+                    if (patient.name.equals(name) && patient.gender.equals(gender))
+                    {
+                        valid = true;
+                        dob = patient.DateOfBirth;
+                        break;
+                    }
+                }
+                if (valid)
+                {
+                    gotoDashBoard();
+                    PatientDashBoard controller = (PatientDashBoard) FXMLSceneChanger.controller;
+                    controller.Pname.setText(name);
+                    controller.pID.setText(Integer.toString(age));
+                    controller.pGender.setText(gender);
+                    controller.pDOB.setText(dob);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Incorrect Information");
+                }
             }
 
         @FXML

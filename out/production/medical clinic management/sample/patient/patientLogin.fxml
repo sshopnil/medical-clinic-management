@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -13,9 +15,9 @@
             <Font name="Fira Mono" size="30.0" />
          </font>
       </Text>
-      <TextField fx:id="patientName" layoutX="136.0" layoutY="182.0" prefHeight="35.0" prefWidth="411.0" promptText="Enter your name...." style="-fx-border-style: none; -fx-border-color: transparent;" />
-      <TextField fx:id="patientID" layoutX="136.0" layoutY="267.0" prefHeight="35.0" prefWidth="411.0" promptText="Enter your ID (min 4 digit)" style="-fx-border-style: none; -fx-border-color: transparent;" />
-      <Button fx:id="patientEnter" layoutX="137.0" layoutY="334.0" mnemonicParsing="false" onKeyPressed="#patientEnterActionKeyBoard" onMouseClicked="#patientEnterAction" prefHeight="28.0" prefWidth="104.0" style="-fx-background-color: #1e3d59;" text="Login" textFill="WHITE">
+      <TextField fx:id="patientName" layoutX="187.0" layoutY="176.0" prefHeight="35.0" prefWidth="411.0" promptText="Enter patient name...." style="-fx-border-style: none; -fx-border-color: transparent;" />
+      <TextField fx:id="patientID" layoutX="186.0" layoutY="267.0" prefHeight="35.0" prefWidth="411.0" promptText="Enter patient age.." style="-fx-border-style: none; -fx-border-color: transparent;" />
+      <Button fx:id="patientEnter" layoutX="182.0" layoutY="380.0" mnemonicParsing="false" onKeyPressed="#patientEnterActionKeyBoard" onMouseClicked="#patientEnterAction" prefHeight="28.0" prefWidth="104.0" style="-fx-background-color: #1e3d59;" text="Login" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="16.0" />
          </font>
@@ -25,17 +27,28 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="newReg" layoutX="257.0" layoutY="334.0" mnemonicParsing="false" onMouseClicked="#newRegAction" prefHeight="28.0" prefWidth="104.0" style="-fx-background-color: #1e3d59;" text="Sign up" textFill="WHITE">
+      <Button fx:id="newReg" layoutX="489.0" layoutY="381.0" mnemonicParsing="false" onMouseClicked="#newRegAction" prefHeight="28.0" prefWidth="104.0" style="-fx-background-color: #1e3d59;" text="Sign up" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Text fill="#145e67f7" layoutX="136.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+      <Text fill="#145e67f7" layoutX="187.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="#145e67f7" layoutX="136.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
+      <Text fill="#145e67f7" layoutX="186.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <RadioButton fx:id="femalebtn" layoutX="389.0" layoutY="331.0" mnemonicParsing="false" text="Female">
+         <toggleGroup>
+            <ToggleGroup fx:id="lGender" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="maleBtn" layoutX="302.0" layoutY="331.0" mnemonicParsing="false" selected="true" text="Male" toggleGroup="$lGender" />
+      <Text fill="#145e67" layoutX="183.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
          <font>
             <Font size="18.0" />
          </font>

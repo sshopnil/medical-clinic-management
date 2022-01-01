@@ -7,8 +7,8 @@ import java.io.IOException;
 
 public class FXMLSceneChanger
     {
-        public Parent root = null;
-        public Object controller = null;
+        public static Parent root = null;
+        public static Object controller = null;
 
         public static FXMLSceneChanger load (String fxmlPath)
             {
