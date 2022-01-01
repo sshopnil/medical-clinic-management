@@ -77,7 +77,7 @@ public class RegController {
                 FileWriter fw = new FileWriter("src/sample/receiption/adminauth.txt", true);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter out = new PrintWriter(bw);
-                String addNewPerson = rtf_name.getText() + ";;" + rtf_name2.getText() + ";;" + rtf_email.getText() + ";;" + rtf_pass.getText() + ";;" + r;
+                String addNewPerson = rtf_name.getText().trim() + ";;" + rtf_name2.getText().trim() + ";;" + rtf_email.getText().trim() + ";;" + rtf_pass.getText() + ";;" + r;
                 rtf_name.setText("");
                 rtf_name2.setText("");
                 rtf_email.setText("");
