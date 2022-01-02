@@ -2,6 +2,7 @@ package sample.receiption;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import sample.FXMLSceneChanger;
@@ -13,7 +14,19 @@ public class ReceptionistDashBoard
     public Button appointment;
     public Button doctors;
     public Button livecount;
-
+    public Button regPatient;
+    public SubScene adminSubscene;
+    Parent root;
+    
+    void defultActiveBtn()
+    {
+        info.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
+        
+        FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("receiption/Admininfo.fxml");
+        
+        root = sceneChanger.root;
+        adminSubscene.setRoot(root);
+    }
     void changeColor(Button btn)
     {
         if (btn.equals(info))
@@ -22,6 +35,8 @@ public class ReceptionistDashBoard
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             livecount.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            defultActiveBtn();
         }
         else if (btn.equals(appointment))
         {
@@ -29,6 +44,11 @@ public class ReceptionistDashBoard
             info.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             livecount.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+    
+            FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("receiption/appointmentScene.fxml");
+            root = sceneChanger.root;
+            adminSubscene.setRoot(root);
         }
         else if (btn.equals(doctors))
         {
@@ -36,8 +56,17 @@ public class ReceptionistDashBoard
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             info.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             livecount.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
         }
         else if (btn.equals(livecount))
+        {
+            btn.setStyle("-fx-background-color: #FCF6F5FF; -fx-text-fill: #000000");
+            appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            info.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            doctors.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+        }
+        else if (btn.equals(regPatient))
         {
             btn.setStyle("-fx-background-color: #FCF6F5FF; -fx-text-fill: #000000");
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
@@ -64,7 +93,11 @@ public class ReceptionistDashBoard
     {
         changeColor(livecount);
     }
-
+    
+    public void regPatient(MouseEvent mouseEvent)
+    {
+        changeColor(regPatient);
+    }
     public void returnHomeAction(MouseEvent mouseEvent)
     {
         Parent root;
