@@ -1,7 +1,5 @@
 package sample.patient;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,16 +7,12 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import sample.FXMLSceneChanger;
 import sample.Main;
-import sample.logInOption;
 
 import javax.swing.*;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -38,7 +32,8 @@ public class PatientLogin
         public String dob;
         
         File file = new File("src/sample/patient/patientData/newUsers.txt");
-    
+        ThePatient currentPatient;
+        
         void gotoDashBoard()
             {
                 Parent root = null;
@@ -50,7 +45,7 @@ public class PatientLogin
                 Scene scene = new Scene(root);
                 Main.primaryStage.setScene(scene);
 
-                pd.defultActiveBtn();
+                pd.defultActiveBtn(currentPatient);
             }
         public void patientEnterActionKeyBoard(KeyEvent keyEvent)
             {
@@ -90,7 +85,7 @@ public class PatientLogin
                 age = 0;
                 try
                 {
-                    name = patientName.getText();
+                    name = patientName.getText().trim();
                     age = Integer.parseInt(patientID.getText().trim());
                 }
                 catch (Exception e)
@@ -111,7 +106,7 @@ public class PatientLogin
                 boolean valid = false;
                 for (ThePatient patient: patients)
                 {
-                    if (patient.name.equals(name) && patient.gender.equals(gender))
+                    if (patient.name.trim().equals(name) && patient.gender.equals(gender))
                     {
                         valid = true;
                         dob = patient.DateOfBirth;
@@ -120,6 +115,7 @@ public class PatientLogin
                 }
                 if (valid)
                 {
+                    currentPatient = new ThePatient(name, gender, dob);
                     gotoDashBoard();
                     PatientDashBoard controller = (PatientDashBoard) FXMLSceneChanger.controller;
                     controller.Pname.setText(name);
@@ -129,6 +125,7 @@ public class PatientLogin
                 }
                 else
                 {
+                    currentPatient = new ThePatient("null", "null", "null");
                     JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Incorrect Information");
                 }
             }

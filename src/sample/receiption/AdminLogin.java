@@ -41,11 +41,11 @@ public class AdminLogin {
         FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("receiption/receiptionist_page.fxml");
 
         root = sceneChanger.root;
-
-
+        ReceptionistDashBoard db = (ReceptionistDashBoard) FXMLSceneChanger.controller;
         Scene scene = new Scene(root);
         Main.primaryStage.setScene(scene);
-
+        
+        db.defultActiveBtn();
     }
 
     private List<Admin> getLogInfo() {
