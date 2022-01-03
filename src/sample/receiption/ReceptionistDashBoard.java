@@ -4,6 +4,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.input.MouseEvent;
 import sample.FXMLSceneChanger;
 import sample.Main;
@@ -16,6 +17,7 @@ public class ReceptionistDashBoard
     public Button livecount;
     public Button regPatient;
     public SubScene adminSubscene;
+    public TreeTableView patientTable;
     Parent root;
     
     void defultActiveBtn()
@@ -49,6 +51,7 @@ public class ReceptionistDashBoard
             FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("receiption/appointmentScene.fxml");
             root = sceneChanger.root;
             adminSubscene.setRoot(root);
+            
         }
         else if (btn.equals(doctors))
         {

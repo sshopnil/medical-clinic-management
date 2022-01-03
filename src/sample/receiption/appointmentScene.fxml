@@ -13,9 +13,9 @@
       <TreeTableView fx:id="patientTable" layoutX="-3.0" layoutY="193.0" prefHeight="342.0" prefWidth="705.0">
         <columns>
           <TreeTableColumn prefWidth="75.0" text="SL no." />
-          <TreeTableColumn prefWidth="224.56256866455078" text="Name" />
-            <TreeTableColumn prefWidth="75.43896484375" text="Age" />
-            <TreeTableColumn prefWidth="121.05322265625" text="Gender" />
+          <TreeTableColumn fx:id="pname" prefWidth="224.56256866455078" text="Name" />
+            <TreeTableColumn fx:id="page" prefWidth="75.43896484375" text="Age" />
+            <TreeTableColumn fx:id="pgender" prefWidth="121.05322265625" text="Gender" />
             <TreeTableColumn prefWidth="207.0185988068505" text="Appointed DOC" />
         </columns>
       </TreeTableView>
