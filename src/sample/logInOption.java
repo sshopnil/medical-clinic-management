@@ -3,6 +3,7 @@ package sample;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -15,7 +16,7 @@ public class logInOption
 
         public ImageView patient_login;
         public ImageView receiptionist_login;
-
+    
         public void receiptionist_clicked(MouseEvent mouseEvent)
             {
                 try
@@ -34,10 +35,9 @@ public class logInOption
         public void patient_clicked(MouseEvent mouseEvent)
             {
                 Parent root = null;
-                FXMLSceneChanger changer = FXMLSceneChanger.load("patient/patientLogin.fxml");
+                FXMLSceneChanger changer = FXMLSceneChanger.load("patient/newAndOld.fxml");
 
                 root = changer.root;
-                PatientLogin patientLogin = (PatientLogin)changer.controller;
 
                 Scene scene = new Scene(root);
                 Main.primaryStage.setScene(scene);

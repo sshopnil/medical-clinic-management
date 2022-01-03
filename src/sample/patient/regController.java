@@ -104,7 +104,7 @@ public class regController
         public void backBtnAction(MouseEvent mouseEvent)
             {
                 Parent root;
-                FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/patientLogin.fxml");
+                FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/newAndOld.fxml");
 
                 root = sceneChanger.root;
                 Scene scene = new Scene(root);

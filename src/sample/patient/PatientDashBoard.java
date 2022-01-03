@@ -1,6 +1,7 @@
 package sample.patient;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
@@ -14,6 +15,8 @@ import sample.FXMLSceneChanger;
 import sample.Main;
 
 import java.awt.*;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class PatientDashBoard
     {
@@ -28,16 +31,26 @@ public class PatientDashBoard
         public Text Pname;
         public Text pGender;
         public Text pDOB;
+        Parent root;
+        ThePatient patient;
         
-        void defultActiveBtn()
+        void defultActiveBtn(ThePatient thisPatient)
             {
                 myInfo.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
-                Parent root;
+                
 
                 FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/infoScene.fxml");
 
                 root = sceneChanger.root;
                 patientSubScene.setRoot(root);
+                patient = thisPatient;
+                
+                //setting fields with controller
+                PatientDashBoard controller = (PatientDashBoard) FXMLSceneChanger.controller;
+                controller.Pname.setText(patient.name);
+                controller.pID.setText(Integer.toString(patient.age));
+                controller.pGender.setText(patient.gender);
+                controller.pDOB.setText(patient.DateOfBirth);
             }
 
         void changeColor(Button btn)
@@ -48,15 +61,15 @@ public class PatientDashBoard
                         appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
                         currentStatus.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
 
-                        defultActiveBtn();
+                        defultActiveBtn(patient);
+                        
                     }
                 else if (btn.equals(appointment))
                     {
                         btn.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
                         myInfo.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
                         currentStatus.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-
-                        Parent root;
+                        
 
                         FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/appointmentScene.fxml");
 
@@ -68,8 +81,7 @@ public class PatientDashBoard
                         btn.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
                         appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
                         myInfo.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-
-                        Parent root;
+                        
 
                         FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/currentStatus.fxml");
 
@@ -104,4 +116,5 @@ public class PatientDashBoard
 
                 Main.primaryStage.setScene(scene);
             }
+            
     }
