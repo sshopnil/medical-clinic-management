@@ -48,7 +48,7 @@ public class AdminLogin {
         db.defultActiveBtn();
     }
 
-    private List<Admin> getLogInfo() {
+    public List<Admin> getLogInfo() {
         List<Admin> admins = new ArrayList<Admin>();
         {
             try {
@@ -57,8 +57,6 @@ public class AdminLogin {
 
                 for (int i = 0; scanner.hasNext(); i++) {
                     String inline = scanner.next();
-
-                    System.out.println(inline);
 
                     String[] line = inline.split(";;");
 

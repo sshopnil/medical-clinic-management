@@ -56,7 +56,7 @@ public class PatientLogin
             }
             
             //custom method for reading from patient data
-        private ArrayList<ThePatient> getPatientInfo()
+        public ArrayList<ThePatient> getPatientInfo()
         {
             ArrayList<ThePatient> patients = new ArrayList<ThePatient>();
             try
