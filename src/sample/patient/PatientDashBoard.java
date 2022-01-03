@@ -31,6 +31,7 @@ public class PatientDashBoard
         public Text Pname;
         public Text pGender;
         public Text pDOB;
+        public Text pMob;
         Parent root;
         ThePatient patient;
         
@@ -51,6 +52,8 @@ public class PatientDashBoard
                 controller.pID.setText(Integer.toString(patient.age));
                 controller.pGender.setText(patient.gender);
                 controller.pDOB.setText(patient.DateOfBirth);
+                controller.pMob.setText("+88 " + patient.mobile);
+                
             }
 
         void changeColor(Button btn)
