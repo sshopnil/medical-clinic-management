@@ -144,7 +144,7 @@ public class PatientLogin
         public void backToHomeAction(MouseEvent mouseEvent)
             {
                 Parent root = null;
-                FXMLSceneChanger changer = FXMLSceneChanger.load("logInOption_page.fxml");
+                FXMLSceneChanger changer = FXMLSceneChanger.load("patient/newAndOld.fxml");
 
                 root = changer.root;
 
