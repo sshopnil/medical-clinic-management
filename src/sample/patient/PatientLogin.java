@@ -30,7 +30,7 @@ public class PatientLogin
         public int age;
         public String gender;
         public String dob;
-        
+        public String mobileNo;
         File file = new File("src/sample/patient/patientData/newUsers.txt");
         ThePatient currentPatient;
         
@@ -67,7 +67,7 @@ public class PatientLogin
                 {
                     patient = scanner.nextLine();
                     String[] allInfo = patient.split(";;");
-                    patients.add(new ThePatient(allInfo[0], allInfo[1], allInfo[2]));
+                    patients.add(new ThePatient(allInfo[0], allInfo[1], allInfo[2], allInfo[3]));
                 }
                 scanner.close();
             }
@@ -102,6 +102,7 @@ public class PatientLogin
                     gender = "Female";
                 }
                 dob = "";
+                
                 ArrayList<ThePatient> patients = getPatientInfo();
                 boolean valid = false;
                 for (ThePatient patient: patients)
@@ -110,12 +111,13 @@ public class PatientLogin
                     {
                         valid = true;
                         dob = patient.DateOfBirth;
+                        mobileNo = patient.mobile;
                         break;
                     }
                 }
                 if (valid)
                 {
-                    currentPatient = new ThePatient(name, gender, dob);
+                    currentPatient = new ThePatient(name, gender, dob, mobileNo);
                     gotoDashBoard();
                     PatientDashBoard controller = (PatientDashBoard) FXMLSceneChanger.controller;
                     controller.Pname.setText(name);
@@ -125,7 +127,6 @@ public class PatientLogin
                 }
                 else
                 {
-                    currentPatient = new ThePatient("null", "null", "null");
                     JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Incorrect Information");
                 }
             }

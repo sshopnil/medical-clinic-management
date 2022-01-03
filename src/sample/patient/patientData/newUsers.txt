@@ -1,3 +1,1 @@
-Shayanta Shopnil;;Male;;2021-01-01
-niggy ;;Male;;2019-01-04
-tanvir ;;Male;;2012-01-06
+niggy ;;Male;;1999-10-20;; 01591147771
