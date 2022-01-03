@@ -1,10 +1,16 @@
 package sample.patient;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import sample.FXMLSceneChanger;
 import sample.Main;
 
@@ -17,6 +23,7 @@ import java.util.ArrayList;
 public class regController
     {
         public Button submitBtn1;
+        public TextField mobileNo;
         private LocalDate Birthdate;
         public TextField fName;
         public TextField lName;
@@ -48,50 +55,39 @@ public class regController
     
                 try
                 {
-                
+                    if (!(fName.getText().trim().equals("")) && (DOB.getValue() != null) && !(mobileNo.getText().trim().length() > 11))
+                    {
+                        try
+                        {
+                            Birthdate = DOB.getValue();
+                            bDate = Birthdate.toString();
+                            String newPatient = fName.getText().trim() + " " + lName.getText().trim() + ";;" + gender + ";;" + bDate + ";; "+ mobileNo.getText().trim() +"\n";
+            
+                            FileWriter fw = new FileWriter(file, true);
+                            BufferedWriter bw = new BufferedWriter(fw);
+                            PrintWriter printWriter = new PrintWriter(bw);
+            
+                            printWriter.write(newPatient);
+                            fName.setText("");
+                            lName.setText("");
+            
+                            printWriter.close();
+                        }
+                        catch (IOException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Missing Information");
+                    }
                 }
                 catch (Exception e)
                 {
-                    bDate = "null";
-                    submitBtn1.setOnAction(new EventHandler<javafx.event.ActionEvent>()
-                    {
-                        @Override
-                        public void handle(javafx.event.ActionEvent actionEvent)
-                        {
-                            Alert alert = new Alert(Alert.AlertType.WARNING);
-                            alert.setContentText("Please provide birthdate!!");
-                            alert.showAndWait();
-                        }
-                    });
+                    JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Please provide correct info!");
                 }
                 
-                if (!(fName.getText().trim().equals("")) && (DOB.getValue() != null))
-                {
-                    try
-                    {
-                        Birthdate = DOB.getValue();
-                        bDate = Birthdate.toString();
-                        String newPatient = fName.getText().trim() + " " + lName.getText().trim() + ";;" + gender + ";;" + bDate + "\n";
-                        
-                        FileWriter fw = new FileWriter(file, true);
-                        BufferedWriter bw = new BufferedWriter(fw);
-                        PrintWriter printWriter = new PrintWriter(bw);
-                        
-                        printWriter.write(newPatient);
-                        fName.setText("");
-                        lName.setText("");
-                        
-                        printWriter.close();
-                    }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Missing Information");
-                }
                 gotoLogin();
 //                Parent root;
 //                FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/patientDashBoard.fxml");
