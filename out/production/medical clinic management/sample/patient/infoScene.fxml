@@ -6,82 +6,92 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="617.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.patient.PatientDashBoard">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.patient.PatientDashBoard">
    <children>
-      <Text layoutX="68.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name: " wrappingWidth="69.18376922607422">
+      <Text layoutX="59.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name: " wrappingWidth="69.18376922607422">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="68.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Serial no. :" wrappingWidth="106.47872924804688">
+      <Text layoutX="58.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID:" wrappingWidth="106.47872924804688">
          <font>
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
       </Text>
-      <Text layoutX="69.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age: " wrappingWidth="106.47872924804688">
+      <Text layoutX="59.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age: " wrappingWidth="106.47872924804688">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="68.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Next Appointment Date:" wrappingWidth="227.34201049804688">
+      <Text layoutX="58.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Next Appointment Date:" wrappingWidth="227.34201049804688">
          <font>
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
       </Text>
-      <Text fill="#52abc1" layoutX="409.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remaining Seat(s)">
+      <Text fill="#52abc1" layoutX="620.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remaining Seat(s)">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Text>
-      <Text fill="#52abc1" layoutX="434.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="94.19796752929688">
+      <Text fill="#52abc1" layoutX="645.0" layoutY="501.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="94.19796752929688">
          <font>
             <Font size="71.0" />
          </font>
       </Text>
-      <Text fx:id="Pserial" layoutX="172.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="311.0403022766113">
+      <Text fx:id="Pserial" layoutX="162.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="311.0403022766113">
          <font>
             <Font size="15.741006851196289" />
          </font>
       </Text>
-      <Text fx:id="pID" layoutX="227.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="311.0403022766113">
+      <Text fx:id="pID" layoutX="219.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="311.0403022766113">
          <font>
             <Font size="18.74100685119629" />
          </font>
       </Text>
-      <Text fx:id="appDate" layoutX="242.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="209.51509475708008">
+      <Text fx:id="appDate" layoutX="232.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="209.51509475708008">
          <font>
             <Font size="15.741006851196289" />
          </font>
       </Text>
-      <Text fx:id="Pname" layoutX="228.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="311.0403022766113">
+      <Text fx:id="Pname" layoutX="219.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="311.0403022766113">
          <font>
             <Font size="18.74100685119629" />
          </font>
       </Text>
-      <Text layoutX="69.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:">
+      <Text layoutX="58.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="pGender" layoutX="227.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="301.18409729003906">
+      <Text fx:id="pGender" layoutX="219.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="301.18409729003906">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="69.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Birth:">
+      <Text layoutX="58.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Birth:">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="pDOB" layoutX="227.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="301.18409729003906">
+      <Text fx:id="pDOB" layoutX="219.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="301.18409729003906">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <ImageView fitHeight="123.0" fitWidth="136.0" layoutX="426.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="123.0" fitWidth="136.0" layoutX="645.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/patient_icon.png" />
          </image>
       </ImageView>
+      <Text layoutX="59.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile No. :">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="pMob" layoutX="219.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="301.18409729003906">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

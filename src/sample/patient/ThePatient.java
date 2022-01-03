@@ -11,13 +11,16 @@ public class ThePatient implements Serializable
     public String DateOfBirth;
     public int age;
     public int id;
+    public String mobile;
+    public String serialNo;
     
-    ThePatient(String name, String gender, String DateOfBirth)
+    ThePatient(String name, String gender, String DateOfBirth, String mobile)
     {
         this.name = name;
         this.gender = gender;
         this.DateOfBirth = DateOfBirth;
         generateAge();
+        this.mobile = mobile;
     }
     public void generateAge()
     {
