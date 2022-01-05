@@ -13,6 +13,7 @@ import sample.Main;
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,6 +23,7 @@ public class PatientLogin
         public RadioButton femalebtn;
         public RadioButton maleBtn;
         public Button patientEnter;
+        public DatePicker loginDOB;
         @FXML
         private TextField patientName;
         @FXML
@@ -31,6 +33,12 @@ public class PatientLogin
         public String gender;
         public String dob;
         public String mobileNo;
+        public String maritalStatus;
+        public String religion;
+        public String address;
+        public String relWithPatient;
+        private LocalDate birthdate;
+        public String pID;
         File file = new File("src/sample/patient/patientData/newUsers.txt");
         ThePatient currentPatient;
         
@@ -67,7 +75,7 @@ public class PatientLogin
                 {
                     patient = scanner.nextLine();
                     String[] allInfo = patient.split(";;");
-                    patients.add(new ThePatient(allInfo[0], allInfo[1], allInfo[2], allInfo[3]));
+                    patients.add(new ThePatient(allInfo[0], allInfo[1], allInfo[2], allInfo[3], allInfo[4], allInfo[5], allInfo[6], allInfo[7]));
                 }
                 scanner.close();
             }
@@ -86,44 +94,46 @@ public class PatientLogin
                 try
                 {
                     name = patientName.getText().trim();
-                    age = Integer.parseInt(patientID.getText().trim());
+                    birthdate = loginDOB.getValue();
+                    dob = birthdate.toString();
                 }
                 catch (Exception e)
                 {
                     JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Incorrect Information");
                 }
-                gender = "";
-                if (maleBtn.isSelected())
-                {
-                    gender = "Male";
-                }
-                else
-                {
-                    gender = "Female";
-                }
-                dob = "";
                 
                 ArrayList<ThePatient> patients = getPatientInfo();
                 boolean valid = false;
                 for (ThePatient patient: patients)
                 {
-                    if (patient.name.trim().equals(name) && patient.gender.equals(gender))
+                    if ((patient.name.trim().equals(name) || patient.patientID.equals(name)) && patient.DateOfBirth.equals(dob))
                     {
                         valid = true;
-                        dob = patient.DateOfBirth;
+                        name = patient.name;
+                        maritalStatus = patient.maritalStatus;
+                        religion = patient.religion;
+                        address = patient.address;
+                        relWithPatient = patient.relWithPatient;
                         mobileNo = patient.mobile;
+                        pID = patient.patientID;
+                        gender = patient.gender;
+                        age = patient.age;
                         break;
                     }
                 }
                 if (valid)
                 {
-                    currentPatient = new ThePatient(name, gender, dob, mobileNo);
+                    currentPatient = new ThePatient(name, gender, dob, mobileNo, address, relWithPatient, maritalStatus, religion);
                     gotoDashBoard();
                     PatientDashBoard controller = (PatientDashBoard) FXMLSceneChanger.controller;
                     controller.Pname.setText(name);
                     controller.pID.setText(Integer.toString(age));
                     controller.pGender.setText(gender);
                     controller.pDOB.setText(dob);
+                    controller.pMarital.setText(maritalStatus);
+                    controller.pAddress.setText(address);
+                    controller.pReligion.setText(religion);
+                    controller.Pserial.setText(pID);
                 }
                 else
                 {
