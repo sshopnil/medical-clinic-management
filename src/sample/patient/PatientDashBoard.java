@@ -32,6 +32,9 @@ public class PatientDashBoard
         public Text pGender;
         public Text pDOB;
         public Text pMob;
+        public Text pMarital;
+        public Text pReligion;
+        public Text pAddress;
         Parent root;
         ThePatient patient;
         
@@ -53,6 +56,10 @@ public class PatientDashBoard
                 controller.pGender.setText(patient.gender);
                 controller.pDOB.setText(patient.DateOfBirth);
                 controller.pMob.setText("+88 " + patient.mobile);
+                controller.pMarital.setText(patient.maritalStatus);
+                controller.pAddress.setText(patient.address);
+                controller.pReligion.setText(patient.religion);
+                controller.Pserial.setText(patient.patientID);
                 
             }
 
