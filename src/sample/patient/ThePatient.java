@@ -12,7 +12,10 @@ public class ThePatient implements Serializable
     public int age;
     public int id;
     public String mobile;
-    public String serialNo;
+    public String patientID;
+    public String maritalStatus;
+    public String religion;
+    public String address;
     
     ThePatient(String name, String gender, String DateOfBirth, String mobile)
     {
