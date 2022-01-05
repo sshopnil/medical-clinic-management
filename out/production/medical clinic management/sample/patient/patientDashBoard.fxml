@@ -20,12 +20,12 @@
                         <Font name="Century Gothic Bold" size="11.741006851196289" />
                      </font>
                   </Button>
-                  <Button fx:id="appointment" mnemonicParsing="false" onMouseClicked="#appointmentAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59;" styleClass="sideBtn" stylesheets="@patientStyle.css" text="Appointment" textFill="WHITE">
+                  <Button fx:id="appointment" mnemonicParsing="false" onMouseClicked="#appointmentAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59;" styleClass="sideBtn" stylesheets="@patientStyle.css" text="My Appointment" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic Bold" size="11.741006851196289" />
                      </font>
                   </Button>
-                  <Button fx:id="currentStatus" mnemonicParsing="false" onMouseClicked="#currentStatusAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59;" styleClass="sideBtn" stylesheets="@patientStyle.css" text="Current Status" textFill="WHITE">
+                  <Button fx:id="currentStatus" mnemonicParsing="false" onMouseClicked="#currentStatusAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59;" styleClass="sideBtn" stylesheets="@patientStyle.css" text="Print Details" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic Bold" size="11.741006851196289" />
                      </font>
@@ -37,7 +37,7 @@
                   <Font size="22.0" />
                </font>
             </Text>
-            <Button fx:id="returnHome" layoutY="550.0" mnemonicParsing="false" onMouseClicked="#returnHomeAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #333D79FF;" text="Return to home" textFill="WHITE">
+            <Button fx:id="returnHome" layoutY="550.0" mnemonicParsing="false" onMouseClicked="#returnHomeAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #333D79FF;" text="Log out" textFill="WHITE">
                <font>
                   <Font name="Century Gothic Bold" size="11.741006851196289" />
                </font>
