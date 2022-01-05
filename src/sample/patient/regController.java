@@ -1,35 +1,50 @@
 package sample.patient;
 
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import sample.FXMLSceneChanger;
 import sample.Main;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.io.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class regController
     {
         public Button submitBtn1;
         public TextField mobileNo;
+        public MenuItem menuSelf;
+        public MenuItem menuParent;
+        public MenuItem menuSibling;
+        public MenuItem menuHusband;
+        public MenuItem menuWife;
+        public MenuItem menuOther;
+        public MenuButton maritalStatus;
+        public MenuItem mSingle;
+        public MenuItem mMarried;
+        public MenuItem mOther;
+        public MenuButton religion;
+        public MenuItem relIslam;
+        public MenuItem relHindu;
+        public MenuItem relChristian;
+        public MenuItem relBuddha;
+        public MenuItem relAnimist;
+        public MenuItem relOther;
         private LocalDate Birthdate;
         public TextField fName;
-        public TextField lName;
         public RadioButton maleSelected;
         public RadioButton femaleSelected;
         public DatePicker DOB;
+        @FXML
+        private RadioButton otherSelected;
+        @FXML
+        private TextArea pAddress;
+        @FXML
+        private MenuButton patientRelation;
+        
         File file = new File("src/sample/patient/patientData/newUsers.txt");
         ThePatient user;
         
@@ -49,6 +64,10 @@ public class regController
                 {
                     gender = "Female";
                 }
+                else if (otherSelected.isSelected())
+                {
+                    gender = "Other";
+                }
                 
                 String bDate = "";
                 //(!bDate.trim().equals("") & bDate.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})"))
@@ -61,7 +80,7 @@ public class regController
                         {
                             Birthdate = DOB.getValue();
                             bDate = Birthdate.toString();
-                            String newPatient = fName.getText().trim() + " " + lName.getText().trim() + ";;" + gender + ";;" + bDate + ";; "+ mobileNo.getText().trim() +"\n";
+                            String newPatient = fName.getText().trim() + ";;" + gender + ";;" + bDate + ";;"+ mobileNo.getText().trim() + ";;" + pAddress.getText().trim()+";;"+patientRelation.getText()+";;"+maritalStatus.getText()+";;"+religion.getText()+"\n";
             
                             FileWriter fw = new FileWriter(file, true);
                             BufferedWriter bw = new BufferedWriter(fw);
@@ -69,7 +88,6 @@ public class regController
             
                             printWriter.write(newPatient);
                             fName.setText("");
-                            lName.setText("");
             
                             printWriter.close();
                         }
@@ -115,4 +133,77 @@ public class regController
                 Scene scene = new Scene(root);
                 Main.primaryStage.setScene(scene);
             }
+    
+            
+            //relationship with patient action
+        public void relWPatient(MouseEvent mouseEvent)
+        {
+            menuSelf.setOnAction(e ->{
+                patientRelation.setText(menuSelf.getText());
+            });
+            menuParent.setOnAction(e ->{
+                patientRelation.setText(menuParent.getText());
+            });
+            menuSibling.setOnAction(e ->{
+                patientRelation.setText(menuSibling.getText());
+            });
+            menuHusband.setOnAction(e ->{
+                patientRelation.setText(menuHusband.getText());
+            });
+            menuWife.setOnAction(e ->{
+                patientRelation.setText(menuWife.getText());
+            });
+            menuOther.setOnAction(e ->{
+                patientRelation.setText(menuOther.getText());
+            });
+        }
+    
+        //Marital status button action
+        public void marStatusAction(MouseEvent mouseEvent)
+        {
+            mSingle.setOnAction(e ->
+            {
+                maritalStatus.setText(mSingle.getText());
+            });
+            mMarried.setOnAction(e ->
+            {
+                maritalStatus.setText(mMarried.getText());
+            });
+            mOther.setOnAction(e ->
+            {
+                maritalStatus.setText(mOther.getText());
+            });
+            
+            
+        }
+    
+        //religion button action
+        
+        public void relAction(MouseEvent mouseEvent)
+        {
+            relIslam.setOnAction(e ->
+            {
+                religion.setText(relIslam.getText());
+            });
+            relHindu.setOnAction(e ->
+            {
+                religion.setText(relHindu.getText());
+            });
+            relChristian.setOnAction(e ->
+            {
+                religion.setText(relChristian.getText());
+            });
+            relBuddha.setOnAction(e ->
+            {
+                religion.setText(relBuddha.getText());
+            });
+            relAnimist.setOnAction(e ->
+            {
+                religion.setText(relAnimist.getText());
+            });
+            relOther.setOnAction(e ->
+            {
+                religion.setText(relOther.getText());
+            });
+        }
     }

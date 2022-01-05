@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CustomMenuItem?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,50 +16,137 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f5f0e1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.patient.regController">
    <children>
-      <TextField fx:id="fName" layoutX="221.0" layoutY="163.0" prefHeight="28.0" prefWidth="227.0" />
-      <Text layoutX="225.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name: ">
-         <font>
-            <Font name="Century Gothic" size="11.741006851196289" />
-         </font>
-      </Text>
-      <Text layoutX="224.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth:">
-         <font>
-            <Font name="Century Gothic" size="11.741006851196289" />
-         </font>
-      </Text>
-      <Text layoutX="553.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name: ">
-         <font>
-            <Font name="Century Gothic" size="11.741006851196289" />
-         </font>
-      </Text>
-      <TextField fx:id="lName" layoutX="553.0" layoutY="162.0" prefHeight="28.0" prefWidth="227.0" />
-      <Text layoutX="556.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:">
-         <font>
-            <Font name="Century Gothic" size="11.741006851196289" />
-         </font>
-      </Text>
-      <RadioButton fx:id="maleSelected" layoutX="556.0" layoutY="270.0" mnemonicParsing="false" selected="true" text="Male">
-         <toggleGroup>
-            <ToggleGroup fx:id="pGender" />
-         </toggleGroup></RadioButton>
-      <RadioButton fx:id="femaleSelected" layoutX="640.0" layoutY="270.0" mnemonicParsing="false" text="Female" toggleGroup="$pGender" />
-      <DatePicker fx:id="DOB" layoutX="220.0" layoutY="264.0" />
-      <Button fx:id="backBtn" layoutX="48.0" layoutY="47.0" mnemonicParsing="false" onMouseClicked="#backBtnAction" prefHeight="36.0" prefWidth="115.0" style="-fx-background-color: #333D79FF;" text="&lt; Back" textFill="WHITE">
+      <Button fx:id="backBtn" layoutX="65.0" layoutY="16.0" mnemonicParsing="false" onMouseClicked="#backBtnAction" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: #333D79FF; -fx-border-radius: 20;" text="Back to login" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="12.0" />
          </font>
       </Button>
-      <Text fill="#1e3d59" layoutX="326.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Registration">
+      <Text fill="#1e3d59" layoutX="321.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Registration">
          <font>
             <Font name="Fira Mono" size="30.0" />
          </font>
       </Text>
-      <Button fx:id="submitBtn1" layoutX="224.0" layoutY="403.0" mnemonicParsing="false" onMouseClicked="#submitBtnClicked" prefHeight="28.0" prefWidth="78.0" style="-fx-background-color: #ff8969;" text="Submit" textFill="WHITE">
+      <Button fx:id="submitBtn1" layoutX="62.0" layoutY="557.0" mnemonicParsing="false" onMouseClicked="#submitBtnClicked" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: #ff8969;" text="Submit" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold Italic" size="12.0" />
          </font>
       </Button>
-      <TextField fx:id="mobileNo" layoutX="221.0" layoutY="344.0" prefHeight="25.0" prefWidth="221.0" />
-      <Text layoutX="224.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile No." />
+      <SplitPane dividerPositions="0.5" layoutX="2.0" layoutY="65.0" orientation="VERTICAL" prefHeight="488.0" prefWidth="995.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="263.0" prefWidth="994.0">
+               <children>
+                  <TextField fx:id="fName" layoutX="62.0" layoutY="78.0" prefHeight="28.0" prefWidth="227.0" />
+                  <Text layoutX="66.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Name:">
+                     <font>
+                        <Font name="Century Gothic" size="11.741006851196289" />
+                     </font>
+                  </Text>
+                  <Text layoutX="67.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth:">
+                     <font>
+                        <Font name="Century Gothic" size="11.741006851196289" />
+                     </font>
+                  </Text>
+                  <DatePicker fx:id="DOB" layoutX="63.0" layoutY="162.0" prefHeight="24.0" prefWidth="224.0" />
+                  <Text fill="#f74c4c" layoutX="63.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Details">
+                     <font>
+                        <Font name="Fira Sans Book" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="397.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:">
+                     <font>
+                        <Font name="Century Gothic" size="11.741006851196289" />
+                     </font>
+                  </Text>
+                  <RadioButton fx:id="maleSelected" layoutX="460.0" layoutY="165.0" mnemonicParsing="false" selected="true" text="Male">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="pGender" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="femaleSelected" layoutX="544.0" layoutY="165.0" mnemonicParsing="false" text="Female" toggleGroup="$pGender" />
+                  <MenuButton fx:id="patientRelation" layoutX="398.0" layoutY="74.0" mnemonicParsing="false" onMouseClicked="#relWPatient" prefHeight="36.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" text="Choose" textFill="#1e3d59">
+                    <items>
+                      <MenuItem fx:id="menuSelf" mnemonicParsing="false" text="Self" />
+                      <MenuItem fx:id="menuParent" mnemonicParsing="false" text="Parent" />
+                        <MenuItem fx:id="menuSibling" mnemonicParsing="false" text="Sibling" />
+                        <MenuItem fx:id="menuHusband" mnemonicParsing="false" text="Husband" />
+                        <MenuItem fx:id="menuWife" mnemonicParsing="false" text="Wife" />
+                        <MenuItem fx:id="menuOther" mnemonicParsing="false" text="Other" />
+                    </items>
+                  </MenuButton>
+                  <Text layoutX="401.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Releationship with patient:" />
+                  <Text layoutX="701.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marital Status:" />
+                  <MenuButton fx:id="maritalStatus" layoutX="696.0" layoutY="72.0" mnemonicParsing="false" onMouseClicked="#marStatusAction" prefHeight="36.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" text="Choose" textFill="#1e3d59">
+                     <items>
+                        <MenuItem fx:id="mSingle" mnemonicParsing="false" text="Single" />
+                        <MenuItem fx:id="mMarried" mnemonicParsing="false" text="Married" />
+                        <MenuItem fx:id="mOther" mnemonicParsing="false" text="Other" />
+                     </items>
+                  </MenuButton>
+                  <Text layoutX="700.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Religion:" />
+                  <MenuButton fx:id="religion" layoutX="695.0" layoutY="158.0" mnemonicParsing="false" onMouseClicked="#relAction" prefHeight="36.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" text="Choose" textFill="#1e3d59">
+                     <items>
+                        <MenuItem fx:id="relIslam" mnemonicParsing="false" text="Islam" />
+                        <MenuItem fx:id="relHindu" mnemonicParsing="false" text="Hinduism" />
+                        <MenuItem fx:id="relChristian" mnemonicParsing="false" text="Christian" />
+                        <MenuItem fx:id="relBuddha" mnemonicParsing="false" text="Buddhist" />
+                        <MenuItem fx:id="relAnimist" mnemonicParsing="false" text="Animist" />
+                        <MenuItem fx:id="relOther" mnemonicParsing="false" text="Other" />
+                     </items>
+                  </MenuButton>
+                  <RadioButton fx:id="otherSelected" layoutX="460.0" layoutY="197.0" mnemonicParsing="false" text="Other" toggleGroup="$pGender" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <SplitPane dividerPositions="0.3804173354735152" layoutX="-3.0" layoutY="-3.0" prefHeight="248.0" prefWidth="998.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="246.0" prefWidth="358.0">
+                           <children>
+                              <TextField fx:id="mobileNo" layoutX="59.0" layoutY="76.0" prefHeight="25.0" prefWidth="221.0" />
+                              <Text layoutX="62.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile No." />
+                              <Text layoutX="63.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Present Address:" />
+                              <Text fill="#f74c4c" layoutX="63.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Details">
+                                 <font>
+                                    <Font name="Fira Sans Book" size="18.0" />
+                                 </font>
+                              </Text>
+                              <TextArea fx:id="pAddress" layoutX="62.0" layoutY="156.0" prefHeight="82.0" prefWidth="282.0" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <Text fill="#f74c4c" layoutX="29.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointment Details">
+                                 <font>
+                                    <Font name="Fira Sans Book" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="28.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fee Type:" />
+                              <MenuButton layoutX="107.0" layoutY="189.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" text="Choose">
+                                 <items>
+                                    <CustomMenuItem mnemonicParsing="false" text="Unspecified Action" />
+                                 </items>
+                              </MenuButton>
+                              <Text layoutX="27.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Doctor:" />
+                              <MenuButton layoutX="105.0" layoutY="126.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" text="Choose">
+                                 <items>
+                                    <CustomMenuItem mnemonicParsing="false" text="Unspecified Action" />
+                                 </items>
+                              </MenuButton>
+                              <Text layoutX="25.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department:" />
+                              <RadioButton layoutX="111.0" layoutY="64.0" mnemonicParsing="false" text="General">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="pFeeType" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton layoutX="209.0" layoutY="65.0" mnemonicParsing="false" text="Private" toggleGroup="$pFeeType" />
+                              <RadioButton layoutX="299.0" layoutY="66.0" mnemonicParsing="false" text="Home visit" toggleGroup="$pFeeType" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
    </children>
 </AnchorPane>
