@@ -60,7 +60,6 @@ public class PatientDashBoard
                 controller.pAddress.setText(patient.address);
                 controller.pReligion.setText(patient.religion);
                 controller.Pserial.setText(patient.patientID);
-                
             }
 
         void changeColor(Button btn)
