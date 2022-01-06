@@ -30,6 +30,7 @@ public class ReceptionistDashBoard
     public Text timeSlotsCount;
     public Text appointmentsCount;
     public Text departmentCount;
+    public SubScene mainSubScene;
     Parent root;
     private int count = 0;
     
@@ -37,16 +38,14 @@ public class ReceptionistDashBoard
     {
         quickView.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
     
-    
         FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("receiption/quickviewScene.fxml");
         ReceptionistDashBoard controller = (ReceptionistDashBoard) sceneChanger.controller;
+        root = sceneChanger.root;
         controller.timeSlotsCount.setText("00");
         controller.appointmentsCount.setText("00");
         controller.departmentCount.setText("00");
-        
-        SubSceneChanger subSceneChanger = new SubSceneChanger();
-        Pane view = subSceneChanger.getSubScene("receiption/quickviewScene.fxml");
-        adminSubscene.setCenter(view);
+        mainSubScene.setRoot(root);
+        adminSubscene.setCenter(mainSubScene);
     }
     void changeColor(Button btn)
     {
