@@ -46,7 +46,7 @@ public class ThePatient implements Serializable
         String pname[] = name.split(" ");
         if (pname.length < 2)
         {
-            patientID = String.valueOf(pname.toString().charAt(0)+ birthdate.getYear()+ (int)Math.random()*500);
+            patientID = pname[0].toLowerCase()+ birthdate.getYear()+ (int)Math.random()*500;
         }
         else
         {

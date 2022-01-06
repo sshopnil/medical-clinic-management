@@ -1,19 +1,19 @@
 package sample.doctor;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import sample.FXMLSceneChanger;
 import sample.Main;
 import sample.logInOption;
 
 public class DoctorLogin {
+    public Button newReg;
+
     void goto_dashBord()
     {
         Parent root = null;
@@ -21,9 +21,10 @@ public class DoctorLogin {
 
         root = changer.root;
         DoctorDashBoard controller = (DoctorDashBoard) changer.controller;
-
+        controller.defultActiveBtn();
         Scene scene = new Scene(root);
         Main.primaryStage.setScene(scene);
+
     }
 
     @FXML
@@ -37,14 +38,12 @@ public class DoctorLogin {
 
     @FXML
     private TextField doctorPassword;
-
-    @FXML
-    private Text newReg;
+    
 
     @FXML
     void backToHomeAction(MouseEvent event) {
         Parent root = null;
-        FXMLSceneChanger changer = FXMLSceneChanger.load("logInOption_page.fxml");
+        FXMLSceneChanger changer = FXMLSceneChanger.load("loginOption_page.fxml");
 
         root = changer.root;
         logInOption controller = (logInOption) changer.controller;
@@ -55,20 +54,13 @@ public class DoctorLogin {
     }
 
     @FXML
-    void doctorEnterAction(MouseEvent event) {
+    void doctorEnterAction(ActionEvent event) {
         goto_dashBord();
     }
 
-    @FXML
-    void doctorEnterActionKeyBoard(KeyEvent event) {
-        if(event.getCode().equals(KeyCode.ENTER))
-        {
-            goto_dashBord();
-        }
-    }
 
     @FXML
-    void newRegAction(MouseEvent event) {
+    void newRegAction(ActionEvent event) {
         Parent root;
         FXMLSceneChanger changer = FXMLSceneChanger.load("doctor/Register.fxml");
         root = changer.root;
