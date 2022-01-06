@@ -99,7 +99,7 @@ public class PatientLogin
                 }
                 catch (Exception e)
                 {
-                    JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Incorrect Information");
+                    JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Select Correct date with the picker");
                 }
                 
                 ArrayList<ThePatient> patients = getPatientInfo();

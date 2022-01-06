@@ -5,26 +5,34 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.2894385026737967" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.doctor.DoctorDashBoard">
+<SplitPane dividerPositions="0.17347756410256407" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.doctor.DoctorDashBoard">
   <items>
-    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="170.0" SplitPane.resizableWithParent="false">
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="626.0" prefWidth="170.0" style="-fx-background-color: #f5f0e1;" SplitPane.resizableWithParent="false">
          <children>
-            <Text fill="#5b919e" layoutX="4.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor's Dashboard" textAlignment="CENTER" wrappingWidth="162.40000000000003">
+            <Text fill="#5b919e" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor's Dashboard" textAlignment="CENTER" wrappingWidth="141.59995117187503">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-            <Button fx:id="info" layoutY="68.0" mnemonicParsing="false" onAction="#infoAction" prefHeight="47.0" prefWidth="171.0" style="-fx-background-color: #5b919e;" text="Info" textFill="WHITE" />
-            <Button fx:id="appointments" layoutY="115.0" mnemonicParsing="false" onAction="#appointmentsAction" prefHeight="47.0" prefWidth="171.0" style="-fx-background-color: #5b919e;" text="Appointments" textFill="WHITE" />
-            <Button fx:id="finance" layoutY="163.0" mnemonicParsing="false" onAction="#financeAction" prefHeight="47.0" prefWidth="171.0" style="-fx-background-color: #5b919e;" text="Finance" textFill="WHITE" />
-            <Button fx:id="returnHome" layoutY="350.0" mnemonicParsing="false" onAction="#backToHomeAction" prefHeight="47.0" prefWidth="170.0" style="-fx-background-color: #878787;" text="Return Home" textFill="WHITE" />
+            <VBox layoutX="-1.0" layoutY="109.0" prefHeight="432.0" prefWidth="171.0" style="-fx-background-color: #1e3d59;">
+               <children>
+                  <Button fx:id="info" mnemonicParsing="false" onAction="#infoAction" prefHeight="47.0" prefWidth="171.0" style="-fx-background-color: #1e3d59;" text="Info" textFill="WHITE" />
+                  <Button fx:id="appointments" mnemonicParsing="false" onAction="#appointmentsAction" prefHeight="47.0" prefWidth="171.0" style="-fx-background-color: #1e3d59;" text="Appointments" textFill="WHITE" />
+                  <Button fx:id="finance" mnemonicParsing="false" onAction="#financeAction" prefHeight="47.0" prefWidth="171.0" style="-fx-background-color: #1e3d59;" text="Finance" textFill="WHITE" />
+               </children>
+            </VBox>
+            <Button fx:id="returnHome" layoutY="541.0" mnemonicParsing="false" onAction="#backToHomeAction" prefHeight="56.0" prefWidth="170.0" style="-fx-background-color: #333D79FF;" text="Log out" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font></Button>
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="409.0">
          <children>
-            <SubScene fx:id="subscene" height="398.0" width="422.0">
+            <SubScene fx:id="subscene" height="599.0" layoutY="-1.0" width="822.0">
               <root>
                 <Region />
               </root>
