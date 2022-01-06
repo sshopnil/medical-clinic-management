@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="602.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.receiption.ReceptionistDashBoard">
+   <children>
+      <Text fill="#1e3d59" layoutX="42.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quick View" wrappingWidth="279.1295166015625">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Text>
+      <TilePane fx:id="tilePanel" layoutX="52.0" layoutY="198.0" prefHeight="206.0" prefWidth="644.0">
+         <children>
+            <TitledPane animated="false" collapsible="false" style="-fx-background-color: #cdd180;" text="Active Time Slots">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #80b2d1;">
+                     <children>
+                        <Text fx:id="timeSlotsCount" layoutX="18.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="167.1295280456543">
+                           <font>
+                              <Font size="65.0" />
+                           </font>
+                        </Text>
+                        <Button layoutX="-1.0" layoutY="155.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="202.0" style="-fx-background-color: #80b2d1;" text="time slots &gt;&gt;" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" collapsible="false" style="-fx-background-color: #cdd180;" text="Total Appointments">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #cdd180;">
+                     <children>
+                        <Text fx:id="appointmentsCount" layoutX="18.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="167.1295280456543">
+                           <font>
+                              <Font size="65.0" />
+                           </font>
+                        </Text>
+                        <Button layoutX="1.0" layoutY="155.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="202.0" style="-fx-background-color: #cdd180;" text="appointments &gt;&gt;" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane animated="false" collapsible="false" style="-fx-background-color: #cdd180;" text="Total Departments">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #d1a080;">
+                     <children>
+                        <Button layoutY="155.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="202.0" style="-fx-background-color: #d1a080;" text="departments &gt;&gt;" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+         </children>
+      </TilePane>
+      <Text fx:id="departmentCount" layoutX="456.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="167.1295280456543">
+         <font>
+            <Font size="65.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
