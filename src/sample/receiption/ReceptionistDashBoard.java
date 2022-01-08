@@ -1,5 +1,6 @@
 package sample.receiption;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
@@ -14,6 +15,8 @@ import sample.FXMLSceneChanger;
 import sample.Main;
 import sample.SubSceneChanger;
 
+import java.io.IOException;
+
 public class ReceptionistDashBoard
 {
     public Button info;
@@ -27,9 +30,6 @@ public class ReceptionistDashBoard
     public Button report;
     public Button profile;
     public BorderPane adminSubscene;
-    public Text timeSlotsCount;
-    public Text appointmentsCount;
-    public Text departmentCount;
     public SubScene mainSubScene;
     Parent root;
     private int count = 0;
@@ -38,14 +38,25 @@ public class ReceptionistDashBoard
     {
         quickView.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
     
+//        SubSceneChanger subSceneChanger = new SubSceneChanger();
+//        Pane view = subSceneChanger.getSubScene("receiption/quickviewScene.fxml");
+        
+//        FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("receiption/quickviewScene.fxml");
+//        ReceptionistDashBoard controller = (ReceptionistDashBoard) sceneChanger.controller;
+//        root = sceneChanger.root;
+//        controller.timeSlotsCount.setText("00");
+//        controller.appointmentsCount.setText("00");
+//        controller.departmentCount.setText("00");
+//        mainSubScene.setRoot(root);
+//        adminSubscene.setCenter(mainSubScene);
         FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("receiption/quickviewScene.fxml");
-        ReceptionistDashBoard controller = (ReceptionistDashBoard) sceneChanger.controller;
-        root = sceneChanger.root;
-        controller.timeSlotsCount.setText("00");
+        
+        root = FXMLSceneChanger.root;
+        quickViewController controller = (quickViewController) FXMLSceneChanger.controller;
         controller.appointmentsCount.setText("00");
+        controller.timeSlotsCount.setText("00");
         controller.departmentCount.setText("00");
-        mainSubScene.setRoot(root);
-        adminSubscene.setCenter(mainSubScene);
+        adminSubscene.setCenter(root);
     }
     void changeColor(Button btn)
     {
@@ -120,9 +131,13 @@ public class ReceptionistDashBoard
     public void appointmentAction(MouseEvent mouseEvent)
     {
         changeColor(appointment);
-        SubSceneChanger subSceneChanger = new SubSceneChanger();
-        Pane view = subSceneChanger.getSubScene("receiption/appointmentScene.fxml");
-        adminSubscene.setCenter(view);
+        FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("receiption/appointmentScene.fxml");
+        root = FXMLSceneChanger.root;
+//        adminSubscene.setCenter(view);
+//        FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("receiption/appointmentScene.fxml");
+//        root = sceneChanger.root;
+//        mainSubScene.setRoot(view);
+        adminSubscene.setCenter(root);
     }
     
     
