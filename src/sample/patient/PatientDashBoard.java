@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import sample.FXMLSceneChanger;
 import sample.Main;
@@ -35,6 +36,7 @@ public class PatientDashBoard
         public Text pMarital;
         public Text pReligion;
         public Text pAddress;
+        public BorderPane workingSubScene;
         Parent root;
         ThePatient patient;
         
@@ -45,8 +47,8 @@ public class PatientDashBoard
 
                 FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/infoScene.fxml");
 
-                root = sceneChanger.root;
-                patientSubScene.setRoot(root);
+                root = FXMLSceneChanger.root;
+                workingSubScene.setCenter(root);
                 patient = thisPatient;
                 
                 //setting fields with controller
@@ -78,24 +80,12 @@ public class PatientDashBoard
                         btn.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
                         myInfo.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
                         currentStatus.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-                        
-
-                        FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/appointmentScene.fxml");
-
-                        root = sceneChanger.root;
-                        patientSubScene.setRoot(root);
                     }
                 else if (btn.equals(currentStatus))
                     {
                         btn.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
                         appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
                         myInfo.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-                        
-
-                        FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/currentStatus.fxml");
-
-                        root = sceneChanger.root;
-                        patientSubScene.setRoot(root);
                     }
             }
 
@@ -107,11 +97,18 @@ public class PatientDashBoard
         public void appointmentAction(MouseEvent mouseEvent)
             {
                 changeColor(appointment);
+                FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/appointmentScene.fxml");
+                root = FXMLSceneChanger.root;
+                workingSubScene.setCenter(root);
             }
 
         public void currentStatusAction(MouseEvent mouseEvent)
             {
                 changeColor(currentStatus);
+                FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/currentStatus.fxml");
+    
+                root = FXMLSceneChanger.root;
+                workingSubScene.setCenter(root);
             }
 
         public void returnHomeAction(MouseEvent mouseEvent)
@@ -125,5 +122,12 @@ public class PatientDashBoard
 
                 Main.primaryStage.setScene(scene);
             }
+    
+        public void editInfoAction(MouseEvent mouseEvent)
+        {
+            FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/RegScene.fxml");
             
+            root = sceneChanger.root;
+            Main.primaryStage.setScene(new Scene(root));
+        }
     }
