@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -20,12 +21,12 @@
                         <Font name="Century Gothic Bold" size="11.741006851196289" />
                      </font>
                   </Button>
-                  <Button fx:id="appointment" mnemonicParsing="false" onMouseClicked="#appointmentAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59;" styleClass="sideBtn" stylesheets="@patientStyle.css" text="My Appointment" textFill="WHITE">
+                  <Button fx:id="appointment" mnemonicParsing="false" onMouseClicked="#appointmentAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59;" styleClass="sideBtn" stylesheets="@patientStyle.css" text="Appointment" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic Bold" size="11.741006851196289" />
                      </font>
                   </Button>
-                  <Button fx:id="currentStatus" mnemonicParsing="false" onMouseClicked="#currentStatusAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59;" styleClass="sideBtn" stylesheets="@patientStyle.css" text="Print Details" textFill="WHITE">
+                  <Button fx:id="currentStatus" mnemonicParsing="false" onMouseClicked="#currentStatusAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59;" styleClass="sideBtn" stylesheets="@patientStyle.css" text="Print Report" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic Bold" size="11.741006851196289" />
                      </font>
@@ -50,6 +51,7 @@
                 <Region />
               </root>
             </SubScene>
+            <BorderPane fx:id="workingSubScene" layoutX="1.0" layoutY="-2.0" prefHeight="602.0" prefWidth="816.0" />
          </children></AnchorPane>
   </items>
 </SplitPane>

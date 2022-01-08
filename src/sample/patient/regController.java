@@ -33,6 +33,9 @@ public class regController
         public MenuItem relBuddha;
         public MenuItem relAnimist;
         public MenuItem relOther;
+        public RadioButton feeGeneral;
+        public RadioButton feePrivate;
+        public RadioButton feeHomeVisit;
         private LocalDate Birthdate;
         public TextField fName;
         public RadioButton maleSelected;

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,62 +9,52 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.patient.PatientDashBoard">
    <children>
-      <Text layoutX="59.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name: " wrappingWidth="69.18376922607422">
+      <Text layoutX="58.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name: " wrappingWidth="69.18376922607422">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="58.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID:" wrappingWidth="106.47872924804688">
-         <font>
-            <Font name="Century Gothic Bold" size="14.0" />
-         </font>
-      </Text>
-      <Text layoutX="59.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age: " wrappingWidth="106.47872924804688">
+      <Text layoutX="57.0" layoutY="530.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID:" wrappingWidth="106.47872924804688">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="#52abc1" layoutX="620.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remaining Seat(s)">
+      <Text layoutX="58.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age: " wrappingWidth="106.47872924804688">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="#52abc1" layoutX="645.0" layoutY="501.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="94.19796752929688">
-         <font>
-            <Font size="71.0" />
-         </font>
-      </Text>
-      <Text fx:id="Pserial" layoutX="162.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="311.0403022766113">
-         <font>
-            <Font size="15.741006851196289" />
-         </font>
-      </Text>
-      <Text fx:id="pID" layoutX="219.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="311.0403022766113">
+      <Text fx:id="Pserial" layoutX="217.0" layoutY="531.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="311.0403022766113">
          <font>
             <Font size="18.74100685119629" />
          </font>
       </Text>
-      <Text fx:id="Pname" layoutX="219.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="311.0403022766113">
+      <Text fx:id="pID" layoutX="218.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="311.0403022766113">
          <font>
             <Font size="18.74100685119629" />
          </font>
       </Text>
-      <Text layoutX="58.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:">
+      <Text fx:id="Pname" layoutX="218.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="311.0403022766113">
+         <font>
+            <Font size="18.74100685119629" />
+         </font>
+      </Text>
+      <Text layoutX="57.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="pGender" layoutX="219.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="301.18409729003906">
+      <Text fx:id="pGender" layoutX="218.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="301.18409729003906">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="58.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Birth:">
+      <Text layoutX="57.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Birth:">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="pDOB" layoutX="219.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="301.18409729003906">
+      <Text fx:id="pDOB" layoutX="218.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="301.18409729003906">
          <font>
             <Font size="18.0" />
          </font>
@@ -73,45 +64,56 @@
             <Image url="@../icons/patient_icon.png" />
          </image>
       </ImageView>
-      <Text layoutX="59.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile No. :">
+      <Text layoutX="57.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile No. :">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="pMob" layoutX="219.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="301.18409729003906">
+      <Text fx:id="pMob" layoutX="217.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="301.18409729003906">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="58.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marital Status :">
+      <Text layoutX="57.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marital Status :">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="pMarital" layoutX="219.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="301.18409729003906">
+      <Text fx:id="pMarital" layoutX="218.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="301.18409729003906">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="58.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Religion :">
+      <Text layoutX="57.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Religion :">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="pReligion" layoutX="219.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="301.18409729003906">
+      <Text fx:id="pReligion" layoutX="218.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="301.18409729003906">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="58.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address :">
+      <Text layoutX="57.0" layoutY="489.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address :">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="pAddress" layoutX="218.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="301.18409729003906">
+      <Text fx:id="pAddress" layoutX="217.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="301.18409729003906">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
+      <Text fill="#1e3d59" layoutX="58.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Information" wrappingWidth="273.9838180541992">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="#1e3d59" layoutX="57.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Information" wrappingWidth="273.9838180541992">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Button fx:id="editInfos" layoutX="641.0" layoutY="506.0" mnemonicParsing="false" onMouseClicked="#editInfoAction" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #1e3d59;" text="new registration" textFill="WHITE" />
    </children>
 </AnchorPane>
