@@ -14,15 +14,15 @@
                 <Font name="Fira Mono" size="30.0" />
             </font>
         </Text>
-        <TextField fx:id="tf_email" layoutX="294.0" layoutY="200.0" prefHeight="35.0" prefWidth="411.0" promptText="Email address or phone number" />
-        <Button fx:id="btn_login" layoutX="301.0" layoutY="386.0" mnemonicParsing="false" onKeyPressed="#adminEnterActionKeyBoard" onMouseClicked="#adminEnterAction" prefHeight="28.0" prefWidth="103.0" style="-fx-background-color: #1e3d59;" text="Login" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+        <TextField fx:id="tf_email" layoutX="294.0" layoutY="200.0" prefHeight="40.0" prefWidth="411.0" promptText="Email address or phone number" style="-fx-background-color: transparent; -fx-border-color: #333D79FF; -fx-border-radius: 20;" />
+        <Button fx:id="btn_login" layoutX="301.0" layoutY="386.0" mnemonicParsing="false" onKeyPressed="#adminEnterActionKeyBoard" onMouseClicked="#adminEnterAction" prefHeight="40.0" prefWidth="104.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 20;" text="Login" textAlignment="CENTER" textFill="#0e0e3d" wrapText="true">
             <font>
                 <Font name="System Bold" size="13.0" />
             </font>
         </Button>
-        <Button fx:id="backToHome" layoutX="26.0" layoutY="54.0" mnemonicParsing="false" onMouseClicked="#backToHomeAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #333D79FF;" text="Back" textFill="WHITE">
+        <Button fx:id="backToHome" layoutX="26.0" layoutY="54.0" mnemonicParsing="false" onMouseClicked="#backToHomeAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: transparent; -fx-border-color: #333D79FF; -fx-border-radius: 20;" text="Back" textFill="#171f48">
             <font>
-                <Font name="System Bold Italic" size="14.0" />
+                <Font size="14.0" />
             </font>
         </Button>
       <Text fill="#145e67f7" layoutX="294.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail/Phone">
@@ -35,11 +35,11 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="btn_login1" layoutX="412.0" layoutY="386.0" mnemonicParsing="false" onAction="#signup" onKeyPressed="#adminEnterActionKeyBoard" onMouseClicked="#adminEnterAction" prefHeight="28.0" prefWidth="104.0" style="-fx-background-color: #1e3d59;" text="Sign up" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Button fx:id="btn_login1" layoutX="590.0" layoutY="386.0" mnemonicParsing="false" onAction="#signup" onKeyPressed="#adminEnterActionKeyBoard" onMouseClicked="#adminEnterAction" prefHeight="40.0" prefWidth="104.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 20;" text="Sign up" textAlignment="CENTER" textFill="#0e0e3d" wrapText="true">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <PasswordField fx:id="tf_pass" layoutX="294.0" layoutY="300.0" prefHeight="35.0" prefWidth="411.0" promptText="Password" />
+      <PasswordField fx:id="tf_pass" layoutX="294.0" layoutY="300.0" prefHeight="40.0" prefWidth="411.0" promptText="Password" style="-fx-background-color: trasnparent; -fx-border-color: #333D79FF; -fx-border-radius: 20;" />
     </children>
 </AnchorPane>

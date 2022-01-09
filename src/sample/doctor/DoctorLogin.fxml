@@ -7,36 +7,36 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #f5f0e1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.doctor.DoctorLogin">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f5f0e1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.doctor.DoctorLogin">
    <children>
-      <Button fx:id="backToHome" layoutX="26.0" layoutY="31.0" mnemonicParsing="false" onMouseClicked="#backToHomeAction" prefHeight="24.0" prefWidth="62.0" style="-fx-background-color: #12284a;" text="&lt;&lt; Home" textFill="WHITE">
+      <Button fx:id="backToHome" layoutX="68.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#backToHomeAction" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-border-color: #12284a; -fx-border-radius: 20;" text="Home">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Text fill="#5b919e" layoutX="291.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor Login">
+      <Text fill="#12284a" layoutX="371.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor Login">
          <font>
-            <Font size="35.0" />
+            <Font name="Fira Mono" size="35.0" />
          </font>
       </Text>
-      <TextField fx:id="doctorID" layoutX="163.0" layoutY="170.0" prefHeight="35.0" prefWidth="411.0" promptText="Enter email" />
-      <Button fx:id="doctorEnter" layoutX="163.0" layoutY="326.0" mnemonicParsing="false" onAction="#doctorEnterAction" prefHeight="28.0" prefWidth="103.0" style="-fx-background-color: #1e3d59;" text="Enter" textFill="WHITE">
+      <TextField fx:id="doctorEmail" layoutX="273.0" layoutY="197.0" prefHeight="47.0" prefWidth="440.0" promptText="Enter email" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 20;" />
+      <Button fx:id="doctorEnter" layoutX="269.0" layoutY="408.0" mnemonicParsing="false" onAction="#doctorEnterAction" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 20;" text="Enter" textFill="#1e3d59">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font size="16.0" />
          </font>
       </Button>
-      <PasswordField fx:id="doctorPassword" layoutX="163.0" layoutY="261.0" prefHeight="35.0" prefWidth="411.0" promptText="Enter Password" />
-      <Button fx:id="newReg" layoutX="291.0" layoutY="327.0" mnemonicParsing="false" onAction="#newRegAction" prefHeight="28.0" prefWidth="104.0" style="-fx-background-color: #1e3d59;" text="Sign up" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <PasswordField fx:id="doctorPassword" layoutX="271.0" layoutY="310.0" prefHeight="47.0" prefWidth="440.0" promptText="Enter Password" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 20;" />
+      <Button fx:id="newReg" layoutX="605.0" layoutY="411.0" mnemonicParsing="false" onAction="#newRegAction" prefHeight="28.0" prefWidth="104.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 20;" text="Sign up" textAlignment="CENTER" textFill="#1e3d59" wrapText="true">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font size="16.0" />
          </font>
       </Button>
-      <Text fill="#145e67f7" layoutX="163.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+      <Text fill="#1e3d59f7" layoutX="273.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="#145e67f7" layoutX="165.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+      <Text fill="#1e3d59f7" layoutX="273.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
             <Font size="18.0" />
          </font>
