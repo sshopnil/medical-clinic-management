@@ -5,13 +5,24 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import sample.FXMLSceneChanger;
 import sample.Main;
 import sample.logInOption;
 
+import javax.print.Doc;
+import javax.swing.*;
+import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class DoctorLogin {
+
+    doctor doctor;
+
     public Button newReg;
 
     void goto_dashBord()
@@ -21,7 +32,7 @@ public class DoctorLogin {
 
         root = changer.root;
         DoctorDashBoard controller = (DoctorDashBoard) changer.controller;
-        controller.defultActiveBtn();
+        controller.defultActiveBtn(doctor);
         Scene scene = new Scene(root);
         Main.primaryStage.setScene(scene);
 
@@ -34,7 +45,7 @@ public class DoctorLogin {
     private Button doctorEnter;
 
     @FXML
-    private TextField doctorID;
+    private TextField doctorEmail;
 
     @FXML
     private TextField doctorPassword;
@@ -43,7 +54,7 @@ public class DoctorLogin {
     @FXML
     void backToHomeAction(MouseEvent event) {
         Parent root = null;
-        FXMLSceneChanger changer = FXMLSceneChanger.load("loginOption_page.fxml");
+        FXMLSceneChanger changer = FXMLSceneChanger.load("logInOption_page.fxml");
 
         root = changer.root;
         logInOption controller = (logInOption) changer.controller;
@@ -55,7 +66,47 @@ public class DoctorLogin {
 
     @FXML
     void doctorEnterAction(ActionEvent event) {
-        goto_dashBord();
+        boolean valid = false;
+
+        ArrayList<doctor> loginList = getInformation();
+        for(doctor doctor: loginList)
+        {
+            if(doctor.email.equals(doctorEmail.getText()) && doctor.password.equals(doctorPassword.getText()))
+            {
+                this.doctor = doctor;
+                valid = true;
+                System.out.println(doctor.name+";;"+doctor.email+";;"+doctor.password);
+                break;
+            }
+
+        }
+
+        if (valid)
+        {
+            goto_dashBord();
+        }else
+            JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Please enter correct data");
+
+    }
+
+    ArrayList<doctor> getInformation()
+    {
+        ArrayList<doctor> doctorList = new ArrayList<doctor>();
+        File file = new File("src/sample/doctor/server/allinfo.txt");
+        try {
+            Scanner sc = new Scanner(file);
+            while (sc.hasNext()) {
+                String str = sc.nextLine();
+                String[] loginData = str.split(";;");
+                doctorList.add(new doctor(loginData[0],loginData[1],loginData[2],loginData[3],loginData[4],loginData[5],loginData[6]));
+            }//doctor(String name, String address, String phone, String email, String password, String birthdate, String gender)
+            sc.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return doctorList;
+
     }
 
 
@@ -68,4 +119,7 @@ public class DoctorLogin {
         Main.primaryStage.setScene(new Scene(root));
     }
 
+
+
 }
+

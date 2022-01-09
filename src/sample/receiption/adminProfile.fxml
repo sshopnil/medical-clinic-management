@@ -6,7 +6,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.receiption.ReceptionistDashBoard">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="497.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
@@ -19,17 +18,47 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="95.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name: ">
+      <Text layoutX="95.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="95.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name: ">
+      <Text layoutX="93.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="181.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="262.58740234375">
+      <Text layoutX="221.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="262.58740234375">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#1e3d59" layoutX="66.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Information">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text layoutX="93.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#1e3d59" layoutX="66.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Information">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text layoutX="97.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="95.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact No. :">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="94.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:">
          <font>
             <Font size="18.0" />
          </font>

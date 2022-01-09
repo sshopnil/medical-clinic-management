@@ -1,6 +1,9 @@
 package sample.doctor;
 
 
+import java.time.LocalDate;
+import java.time.Period;
+
 public class doctor {
 
     String  name;
@@ -10,6 +13,8 @@ public class doctor {
     String  password;
     String birthdate;
     String gender;
+    int age;
+    LocalDate bDate;
 
     doctor()
     {
@@ -27,13 +32,11 @@ public class doctor {
         this.gender = gender;
         this.birthdate = birthdate;
     }
-    public String toString()
-    {
-        return (name+";;"+ gender +";;"+ email +";;"+ password +";;"+ phone +";;"+ address +";;"+ birthdate);
 
-    }
+
     String getName()
     {
+
         return  name;
     }
 
@@ -45,25 +48,45 @@ public class doctor {
     String getPhone()
     {
         return phone;
+
     }
     String getEmail()
     {
+
+
         return email;
     }
     String getPassword()
     {
+
         return password;
     }
     String getBirthdate()
     {
+
         return birthdate;
     }
     String getGender()
     {
+
         return gender;
     }
 
+    public void generateAge()
+    {
+        String[] date = birthdate.split("-");
+        LocalDate today = LocalDate.now();
+
+        bDate = LocalDate.of(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
+
+        age = Period.between(bDate,today).getYears();
+    }
+
+    public String toString()
+    {
+        return (name+";;"+ address +";;"+ phone +";;"+ email +";;"+ password +";;"+ birthdate +";;"+ gender);
 
 
+    }
 
 }
