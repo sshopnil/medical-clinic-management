@@ -31,9 +31,11 @@ public class ReceptionistDashBoard
     public Button profile;
     public BorderPane adminSubscene;
     public SubScene mainSubScene;
+    public Button departments;
+    public Button timeSlots;
     Parent root;
     private int count = 0;
-    
+
     void defultActiveBtn()
     {
         quickView.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
@@ -69,7 +71,9 @@ public class ReceptionistDashBoard
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            organize.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+            timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+            departments.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
             defultActiveBtn();
         }
         else if(btn.equals(profile))
@@ -79,7 +83,13 @@ public class ReceptionistDashBoard
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            organize.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+            timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+            departments.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+
+            FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/adminProfile.fxml");
+            root = changer.root;
+            adminSubscene.setCenter(root);
         }
         else if (btn.equals(regPatient))
         {
@@ -88,7 +98,13 @@ public class ReceptionistDashBoard
             profile.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            organize.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+            timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+            departments.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+
+            FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/patientScene.fxml");
+            root = changer.root;
+            adminSubscene.setCenter(root);
         }
         else if (btn.equals(appointment))
         {
@@ -97,7 +113,13 @@ public class ReceptionistDashBoard
             profile.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            organize.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+            timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+            departments.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+
+            FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/appointmentScene.fxml");
+            root = changer.root;
+            adminSubscene.setCenter(root);
         }
         else if (btn.equals(report))
         {
@@ -106,9 +128,24 @@ public class ReceptionistDashBoard
             profile.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            organize.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+            timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+            departments.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+
+            FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/reportScene.fxml");
+            root = changer.root;
+            adminSubscene.setCenter(root);
         }
         else if (btn.equals(organize))
+        {
+            quickView.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            profile.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            departments.setStyle("-fx-background-color:  #FCF6F5FF; -fx-text-fill: #000000");
+        }
+        else if(btn.equals(doctors))
         {
             btn.setStyle("-fx-background-color: #FCF6F5FF; -fx-text-fill: #000000");
             quickView.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
@@ -116,6 +153,30 @@ public class ReceptionistDashBoard
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            timeSlots.setStyle("-fx-background-color:  #4c5159; -fx-text-fill: #ffffff");
+            departments.setStyle("-fx-background-color:  #4c5159; -fx-text-fill: #ffffff");
+        }
+        else if(btn.equals(timeSlots))
+        {
+            btn.setStyle("-fx-background-color: #FCF6F5FF; -fx-text-fill: #000000");
+            quickView.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            profile.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            doctors.setStyle("-fx-background-color:  #4c5159; -fx-text-fill: #ffffff");
+            departments.setStyle("-fx-background-color:  #4c5159; -fx-text-fill: #ffffff");
+        }
+        else if(btn.equals(departments))
+        {
+            btn.setStyle("-fx-background-color: #FCF6F5FF; -fx-text-fill: #000000");
+            quickView.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            profile.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            doctors.setStyle("-fx-background-color:  #4c5159; -fx-text-fill: #ffffff");
+            timeSlots.setStyle("-fx-background-color:  #4c5159; -fx-text-fill: #ffffff");
         }
     }
     public void quickViewAction(MouseEvent mouseEvent)
@@ -162,6 +223,10 @@ public class ReceptionistDashBoard
             organizeSubMenu.setVisible(false);
         }
         count++;
+    
+        FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/departmentScene.fxml");
+        root = changer.root;
+        adminSubscene.setCenter(root);
     }
     
     //logout button action
@@ -181,13 +246,25 @@ public class ReceptionistDashBoard
     
     public void departmentsAction(MouseEvent mouseEvent)
     {
+        changeColor(departments);
+        FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/departmentScene.fxml");
+        root = changer.root;
+        adminSubscene.setCenter(root);
     }
     
     public void timeSlotsAction(MouseEvent mouseEvent)
     {
+        changeColor(timeSlots);
+        FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/timeSlotsScene.fxml");
+        root = changer.root;
+        adminSubscene.setCenter(root);
     }
     
     public void doctorsAction(MouseEvent mouseEvent)
     {
+        changeColor(doctors);
+        FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/doctorsScene.fxml");
+        root = changer.root;
+        adminSubscene.setCenter(root);
     }
 }

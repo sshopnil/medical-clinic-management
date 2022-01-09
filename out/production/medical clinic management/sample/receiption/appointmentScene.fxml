@@ -7,9 +7,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.receiption.ReceptionistDashBoard">
+<AnchorPane prefHeight="600.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.receiption.ReceptionistDashBoard">
    <children>
-      <TreeTableView fx:id="patientTable" layoutX="-3.0" layoutY="193.0" prefHeight="342.0" prefWidth="705.0">
+      <TreeTableView fx:id="patientTable" layoutX="29.0" layoutY="145.0" prefHeight="342.0" prefWidth="692.0" style="-fx-background-color: trasnsparent; -fx-border-color: #1e3d59;">
         <columns>
           <TreeTableColumn prefWidth="75.0" text="SL no." />
           <TreeTableColumn fx:id="pname" prefWidth="224.56256866455078" text="Name" />
@@ -18,11 +18,11 @@
             <TreeTableColumn prefWidth="207.0185988068505" text="Appointed DOC" />
         </columns>
       </TreeTableView>
-      <Text fill="#1e3d59" layoutX="14.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointments:">
+      <Text fill="#1e3d59" layoutX="39.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointments:">
          <font>
-            <Font size="18.0" />
+            <Font size="22.0" />
          </font>
       </Text>
-      <Button layoutX="539.0" layoutY="549.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="151.0" style="-fx-background-color: #1e3d59;" text="Cancel Appointment" textFill="WHITE" />
+      <Button layoutX="536.0" layoutY="504.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="176.0" style="-fx-background-color: transparent; -fx-border-color: #ef3910; -fx-border-radius: 20;" text="Cancel Appointment" textFill="#ef3910" />
    </children>
 </AnchorPane>
