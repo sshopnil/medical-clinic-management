@@ -13,7 +13,7 @@
 
 <SplitPane dividerPositions="0.29366987179487175" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.receiption.ReceptionistDashBoard">
    <items>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="605.0" prefWidth="280.0" style="-fx-background-color: #f5f0e1;">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="605.0" prefWidth="290.0" style="-fx-background-color: #f5f0e1;">
          <children>
             <VBox layoutY="104.0" prefHeight="463.0" prefWidth="295.0" style="-fx-background-color: #1e3d59;">
                <children>
@@ -50,8 +50,8 @@
                   <VBox fx:id="organizeSubMenu" alignment="TOP_RIGHT" prefHeight="138.0" prefWidth="295.0" visible="false">
                      <children>
                         <Button fx:id="departments" mnemonicParsing="false" onMouseClicked="#departmentsAction" prefHeight="42.0" prefWidth="283.0" style="-fx-background-color: #4c5159;" text="Departments" textFill="WHITE" />
-                        <Button mnemonicParsing="false" onMouseClicked="#doctorsAction" prefHeight="42.0" prefWidth="283.0" style="-fx-background-color: #4c5159;" text="Doctors" textFill="WHITE" />
-                        <Button mnemonicParsing="false" onMouseClicked="#timeSlotsAction" prefHeight="42.0" prefWidth="283.0" style="-fx-background-color: #4c5159;" text="Time Slots" textFill="WHITE" />
+                        <Button fx:id="doctors" mnemonicParsing="false" onMouseClicked="#doctorsAction" prefHeight="42.0" prefWidth="283.0" style="-fx-background-color: #4c5159;" text="Doctors" textFill="WHITE" />
+                        <Button fx:id="timeSlots" mnemonicParsing="false" onMouseClicked="#timeSlotsAction" prefHeight="42.0" prefWidth="283.0" style="-fx-background-color: #4c5159;" text="Time Slots" textFill="WHITE" />
                      </children>
                   </VBox>
                </children>
@@ -59,7 +59,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </VBox>
-            <Text fill="#1e3d59" layoutX="35.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Dashboard" textAlignment="CENTER">
+            <Text fill="#1e3d59" layoutX="14.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Dashboard" textAlignment="CENTER">
                <font>
                   <Font name="Fira Mono" size="25.0" />
                </font>
@@ -77,7 +77,7 @@
                 <Region />
               </root>
             </SubScene>
-            <BorderPane fx:id="adminSubscene" layoutX="-9.0" layoutY="1.0" prefHeight="600.0" prefWidth="723.0" />
+            <BorderPane fx:id="adminSubscene" layoutX="-9.0" prefHeight="600.0" prefWidth="816.0" />
          </children></AnchorPane>
    </items>
 </SplitPane>
