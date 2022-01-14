@@ -47,7 +47,7 @@ public class regController
         private TextArea pAddress;
         @FXML
         private MenuButton patientRelation;
-        String patientID;
+        public String patientID;
         File file = new File("src/sample/patient/patientData/newUsers.txt");
         ThePatient user;
         
@@ -81,11 +81,14 @@ public class regController
                     {
                         try
                         {
-                            System.out.println("not generated now..");
-                            generateID();
-                            System.out.println("generated id..");
+                            System.out.println("havent done yet..");
                             Birthdate = DOB.getValue();
                             bDate = Birthdate.toString();
+                            
+//                            patientID = String.valueOf(fName.getText().trim().charAt(0) + Birthdate.getYear() + (int)(Math.random()*500));
+                            generateID();
+                            System.out.println("done son!");
+                            
                             String newPatient = patientID+";;"+fName.getText().trim() + ";;" + gender + ";;" + bDate + ";;"+ mobileNo.getText().trim() + ";;" + pAddress.getText().trim()+";;"+patientRelation.getText()+";;"+maritalStatus.getText()+";;"+religion.getText()+"\n";
             
                             FileWriter fw = new FileWriter(file, true);
@@ -109,6 +112,7 @@ public class regController
                 }
                 catch (Exception e)
                 {
+                    e.printStackTrace();
                     JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Please provide correct info!");
                 }
                 
