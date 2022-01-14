@@ -1,5 +1,7 @@
 package sample.patient;
 
+import javafx.stage.Stage;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
@@ -7,6 +9,7 @@ import java.util.Random;
 
 public class ThePatient implements Serializable
 {
+    public static Stage patientStage;
     public String name;
     public String gender;
     public String DateOfBirth;

@@ -7,12 +7,17 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import sample.FXMLSceneChanger;
 import sample.Main;
+import sample.ReaderThread;
+import sample.mainServer.NetworkUtil;
 
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.Socket;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -51,9 +56,12 @@ public class PatientLogin
                 PatientDashBoard pd = (PatientDashBoard) sceneChanger.controller;
 
                 Scene scene = new Scene(root);
-                Main.primaryStage.setScene(scene);
-
+                
+                ThePatient.patientStage = (Stage) patientEnter.getScene().getWindow();
+                ThePatient.patientStage.setScene(scene);
+                ThePatient.patientStage.setTitle("Patient DashBoard");
                 pd.defultActiveBtn(currentPatient);
+                ThePatient.patientStage.show();
             }
         public void patientEnterActionKeyBoard(KeyEvent keyEvent)
             {

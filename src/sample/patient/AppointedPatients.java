@@ -7,5 +7,4 @@ public class AppointedPatients
     public String aId;
     public String timeSlot;
     public String aDocName;
-    
 }
