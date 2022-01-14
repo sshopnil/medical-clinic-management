@@ -5,7 +5,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -14,10 +17,18 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import sample.FXMLSceneChanger;
 import sample.Main;
+import sample.ReaderThread;
+import sample.WriterThread;
+import sample.mainServer.NetworkUtil;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.MenuItem;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class PatientDashBoard
     {
@@ -37,9 +48,36 @@ public class PatientDashBoard
         public Text pReligion;
         public Text pAddress;
         public BorderPane workingSubScene;
+        public RadioButton feeGeneral;
+        public RadioButton feePrivate;
+        public RadioButton feeHomeVisit;
+        public CustomMenuItem customDepartment;
+        public MenuButton chooseDoc = new MenuButton();
+//        public CustomMenuItem customMenuDoc;
+        public Menu docMenu = new Menu("select your doctor..");
+        private ArrayList<MenuItem> docs = new ArrayList<MenuItem>();
+        private String docsFromServer;
         Parent root;
         ThePatient patient;
         
+        private int count = 0;
+        
+        void readDocData() throws IOException
+        {
+            Socket socket = new Socket("127.0.0.1", 5000);
+    
+            System.out.println("Patient Client Started--- ");
+            System.out.println(socket.getLocalAddress().getHostAddress());
+            NetworkUtil nc=new NetworkUtil(socket);
+    
+            nc.write("doclist");
+            docsFromServer = (String) nc.read();
+            docsFromServer = docsFromServer.trim();
+            System.out.println("Server: " + docsFromServer);
+            nc.write("exit");
+            socket.close();
+            System.out.println("Patient Client closed...");
+        }
         void defultActiveBtn(ThePatient thisPatient)
             {
                 myInfo.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
@@ -130,4 +168,54 @@ public class PatientDashBoard
             root = sceneChanger.root;
             Main.primaryStage.setScene(new Scene(root));
         }
+    
+        public void bookNowAction(MouseEvent mouseEvent)
+        {
+            String feetype = "";
+            if (feeGeneral.isSelected())
+            {
+                feetype = "general";
+            }
+            else if(feePrivate.isSelected())
+            {
+                feetype = "private";
+            }
+            else if(feeHomeVisit.isSelected())
+            {
+                feetype = "homevisit";
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Please provide fee-type");
+            }
+            
+        }
+    
+        public void doctorMenuBtnAction(MouseEvent mouseEvent)
+        {
+            //reading doctors data from the server
+            try
+            {
+                readDocData();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            String[] docts = docsFromServer.split(" ");
+//            Iterator itr = docs.iterator();
+            chooseDoc.getItems().clear();
+            int count = 0;
+            for(String str: docts)
+            {
+                chooseDoc.getItems().add(new javafx.scene.control.MenuItem(str));
+                chooseDoc.getItems().get(count).setOnAction(e ->{
+                    chooseDoc.setText(str);
+                });
+                System.out.println(str);
+                count++;
+            }
+        }
     }
+
+    

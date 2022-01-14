@@ -19,7 +19,7 @@
             <Font name="Fira Mono" size="29.0" />
          </font>
       </Text>
-      <Text layoutX="89.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Queries">
+      <Text layoutX="123.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient">
          <font>
             <Font size="18.0" />
          </font>
@@ -29,7 +29,7 @@
             <Font name="Century Gothic" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="82.0" layoutY="503.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Patients">
+      <Text layoutX="126.0" layoutY="505.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
          <font>
             <Font name="Century Gothic" size="18.0" />
          </font>
