@@ -1,2 +1,1 @@
-Shayanta Shopnil;;Male;;1999-10-20;;01591147771;;243/A/6 - East Nakhalpara, Tejgaon, Dhaka -1215;;Self;;Single;;Islam
-niggy;;Male;;2021-01-01;;01234567891;;niggy's home;;Sibling;;Married;;Islam
+null;;niggy;;Male;;2021-01-01;;1234567890;;dsad;;Self;;Single;;Islam

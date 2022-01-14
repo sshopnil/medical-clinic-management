@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.receiption.ReceptionistDashBoard">
    <children>
-      <TreeTableView fx:id="patientTable" layoutX="29.0" layoutY="145.0" prefHeight="342.0" prefWidth="692.0" style="-fx-background-color: trasnsparent; -fx-border-color: #1e3d59;">
+      <TreeTableView fx:id="patientTable" layoutX="29.0" layoutY="145.0" prefHeight="342.0" prefWidth="692.0" style="-fx-background-color: trasnsparent;">
         <columns>
           <TreeTableColumn prefWidth="75.0" text="SL no." />
           <TreeTableColumn fx:id="pname" prefWidth="224.56256866455078" text="Name" />

@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -24,10 +25,10 @@ import sample.mainServer.NetworkUtil;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.MenuItem;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.*;
 
 public class PatientDashBoard
@@ -51,17 +52,35 @@ public class PatientDashBoard
         public RadioButton feeGeneral;
         public RadioButton feePrivate;
         public RadioButton feeHomeVisit;
-        public CustomMenuItem customDepartment;
         public MenuButton chooseDoc = new MenuButton();
-//        public CustomMenuItem customMenuDoc;
-        public Menu docMenu = new Menu("select your doctor..");
-        private ArrayList<MenuItem> docs = new ArrayList<MenuItem>();
+        public MenuButton chooseSlot = new MenuButton();
+        public DatePicker appointmentDate;
+        public TextField appSubject;
+        public TextArea appDescription;
         private String docsFromServer;
+        public LocalDate AppDate;
+        private String slotFromServer;
         Parent root;
         ThePatient patient;
         
         private int count = 0;
         
+        void readSlot() throws IOException
+        {
+            Socket socket = new Socket("127.0.0.1", 5000);
+    
+            System.out.println("Patient Client Started--- ");
+            System.out.println(socket.getLocalAddress().getHostAddress());
+            NetworkUtil nc=new NetworkUtil(socket);
+    
+            nc.write("timeSlot");
+            slotFromServer = (String) nc.read();
+            slotFromServer = slotFromServer.trim();
+            System.out.println("Server: " + slotFromServer);
+            nc.write("exit");
+            socket.close();
+            System.out.println("Patient Client closed...");
+        }
         void readDocData() throws IOException
         {
             Socket socket = new Socket("127.0.0.1", 5000);
@@ -78,6 +97,7 @@ public class PatientDashBoard
             socket.close();
             System.out.println("Patient Client closed...");
         }
+        
         void defultActiveBtn(ThePatient thisPatient)
             {
                 myInfo.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
@@ -172,6 +192,13 @@ public class PatientDashBoard
         public void bookNowAction(MouseEvent mouseEvent)
         {
             String feetype = "";
+            String docAndDep = "";
+            String appDate = "";
+            AppDate = appointmentDate.getValue();
+            appDate = AppDate.toString();
+            
+            String slots = chooseSlot.getText();
+            docAndDep = chooseDoc.getText();
             if (feeGeneral.isSelected())
             {
                 feetype = "general";
@@ -188,7 +215,21 @@ public class PatientDashBoard
             {
                 JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Please provide fee-type");
             }
-            
+    
+            try
+            {
+                FileWriter fr = new FileWriter(new File("src/sample/mainServer/AppointmentData/appointedPatients.txt"), true);
+                BufferedWriter br = new BufferedWriter(fr);
+                String appInfo = patient.patientID + ";;" + patient.name + ";;" + appDate + ";;" + slots + ";;" + appSubject + ";;" + appDescription + ";;" + docAndDep + ";;" + feetype;
+                br.append(appInfo + "\n");
+                
+                br.close();
+                fr.close();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
         }
     
         public void doctorMenuBtnAction(MouseEvent mouseEvent)
@@ -211,6 +252,32 @@ public class PatientDashBoard
                 chooseDoc.getItems().add(new javafx.scene.control.MenuItem(str));
                 chooseDoc.getItems().get(count).setOnAction(e ->{
                     chooseDoc.setText(str);
+                });
+                System.out.println(str);
+                count++;
+            }
+        }
+        
+    
+        public void chooseSlotAction(MouseEvent mouseEvent)
+        {
+            try
+            {
+                readSlot();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            String[] timeslots = slotFromServer.split(";;");
+//            Iterator itr = docs.iterator();
+            chooseSlot.getItems().clear();
+            int count = 0;
+            for(String str: timeslots)
+            {
+                chooseSlot.getItems().add(new javafx.scene.control.MenuItem(str));
+                chooseSlot.getItems().get(count).setOnAction(e ->{
+                    chooseSlot.setText(str);
                 });
                 System.out.println(str);
                 count++;
