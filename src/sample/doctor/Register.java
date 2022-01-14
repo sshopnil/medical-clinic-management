@@ -9,12 +9,14 @@ import javafx.scene.input.MouseEvent;
 import sample.FXMLSceneChanger;
 import sample.Main;
 import sample.logInOption;
+import sample.mainServer.NetworkUtil;
 
 import javax.swing.*;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.Socket;
 import java.time.LocalDate;
 
 public class Register {
@@ -54,16 +56,27 @@ public class Register {
     void writeAllInfo ()
     {
         try{
-            FileWriter fr = new FileWriter("src/sample/doctor/server/allinfo.txt",true);
+            FileWriter fr = new FileWriter("src/sample/mainServer/DoctorsData/allinfo.txt",true);
             BufferedWriter br = new BufferedWriter(fr);
 
             doctor doctorData = new doctor(Name,Address,Phone,Email,Password,date.toString(),gender, deptStatus.getText());
 
             br.write(doctorData.toString());
             br.newLine();
-
-
-            System.out.println(doctorData.toString());
+//            Socket socket = new Socket("127.0.0.1", 5000);
+//
+//            System.out.println("Doctor Client Started--- ");
+//            System.out.println(socket.getLocalAddress().getHostAddress());
+//            NetworkUtil nc=new NetworkUtil(socket);
+//
+//            String msg = "newDoc$" + doctorData.toString();
+//            nc.write(msg);
+//
+//            msg = (String) nc.read();
+//            System.out.println("Server: " + msg);
+//            nc.write("exit");
+//            socket.close();
+//            System.out.println("Registry client closed..");
             JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Successful");
 
             backToLogin();
