@@ -47,7 +47,7 @@ public class regController
         private TextArea pAddress;
         @FXML
         private MenuButton patientRelation;
-        
+        String patientID;
         File file = new File("src/sample/patient/patientData/newUsers.txt");
         ThePatient user;
         
@@ -77,13 +77,16 @@ public class regController
     
                 try
                 {
-                    if (!(fName.getText().trim().equals("")) && (DOB.getValue() != null) && !(mobileNo.getText().trim().length() > 11))
+                    if (!(fName.getText().trim().equals("")) && (DOB.getValue() != null))
                     {
                         try
                         {
+                            System.out.println("not generated now..");
+                            generateID();
+                            System.out.println("generated id..");
                             Birthdate = DOB.getValue();
                             bDate = Birthdate.toString();
-                            String newPatient = fName.getText().trim() + ";;" + gender + ";;" + bDate + ";;"+ mobileNo.getText().trim() + ";;" + pAddress.getText().trim()+";;"+patientRelation.getText()+";;"+maritalStatus.getText()+";;"+religion.getText()+"\n";
+                            String newPatient = patientID+";;"+fName.getText().trim() + ";;" + gender + ";;" + bDate + ";;"+ mobileNo.getText().trim() + ";;" + pAddress.getText().trim()+";;"+patientRelation.getText()+";;"+maritalStatus.getText()+";;"+religion.getText()+"\n";
             
                             FileWriter fw = new FileWriter(file, true);
                             BufferedWriter bw = new BufferedWriter(fw);
@@ -208,5 +211,19 @@ public class regController
             {
                 religion.setText(relOther.getText());
             });
+        }
+        public void generateID()
+        {
+            String name = fName.getText().trim();
+            if (name.length() < 2)
+            {
+                patientID = name.toLowerCase()+ Birthdate.getYear()+ (int) (Math.random() * 500);
+                System.out.println(patientID);
+            }
+            else
+            {
+                patientID = name.charAt(0) + fName.getText().trim().toLowerCase() + Birthdate.getYear() + (int) (Math.random() * 500) +1;
+                System.out.println(patientID);
+            }
         }
     }

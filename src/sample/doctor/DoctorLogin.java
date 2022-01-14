@@ -92,7 +92,7 @@ public class DoctorLogin {
     ArrayList<doctor> getInformation()
     {
         ArrayList<doctor> doctorList = new ArrayList<doctor>();
-        File file = new File("src/sample/doctor/server/allinfo.txt");
+        File file = new File("src/sample/mainServer/DoctorsData/allinfo.txt");
         try {
             Scanner sc = new Scanner(file);
             while (sc.hasNext()) {
