@@ -27,17 +27,9 @@
       </RadioButton>
       <RadioButton fx:id="feePrivate" layoutX="305.0" layoutY="147.0" mnemonicParsing="false" text="Private" toggleGroup="$feeType" />
       <RadioButton fx:id="feeHomeVisit" layoutX="395.0" layoutY="148.0" mnemonicParsing="false" text="Home visit" toggleGroup="$feeType" />
-      <MenuButton layoutX="124.0" layoutY="326.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="167.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" text="Choose">
-         <items>
-            <CustomMenuItem fx:id="customDoctor" mnemonicParsing="false" text="Unspecified Action" />
-         </items>
-      </MenuButton>
+      <MenuButton fx:id="chooseDoc" layoutX="124.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#doctorMenuBtnAction" prefHeight="27.0" prefWidth="167.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" text="Choose" />
       <Text layoutX="122.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Doctor:" />
-      <MenuButton layoutX="124.0" layoutY="232.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="167.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" text="Choose">
-         <items>
-            <CustomMenuItem fx:id="customDepartment" mnemonicParsing="false" text="Unspecified Action" />
-         </items>
-      </MenuButton>
+      <MenuButton layoutX="124.0" layoutY="232.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="167.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" text="Choose" />
       <Text layoutX="120.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department:" />
       <MenuButton layoutX="397.0" layoutY="232.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" text="Choose">
          <items>
@@ -51,7 +43,7 @@
       <TextField layoutX="122.0" layoutY="426.0" style="-fx-border-color: #1e3d59; -fx-border-radius: 10; -fx-background-color: transparent;" />
       <Text layoutX="398.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
       <TextArea layoutX="398.0" layoutY="426.0" prefHeight="118.0" prefWidth="298.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" wrapText="true" />
-      <Button layoutX="125.0" layoutY="512.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #ff8969; -fx-border-radius: 20;" text="Book Now!" textFill="#ff8969">
+      <Button layoutX="125.0" layoutY="512.0" mnemonicParsing="false" onMouseClicked="#bookNowAction" style="-fx-background-color: transparent; -fx-border-color: #ff8969; -fx-border-radius: 20;" text="Book Now!" textFill="#ff8969">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

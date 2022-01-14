@@ -15,6 +15,7 @@ public class doctor {
     String gender;
     int age;
     LocalDate bDate;
+    String dept;
 
     doctor()
     {
@@ -22,7 +23,7 @@ public class doctor {
     }
 
 
-    doctor(String name, String address, String phone, String email, String password, String birthdate, String gender)
+    doctor(String name, String address, String phone, String email, String password, String birthdate, String gender, String dept)
     {
         this.name = name;
         this.address = address;
@@ -31,6 +32,7 @@ public class doctor {
         this.phone = phone;
         this.gender = gender;
         this.birthdate = birthdate;
+        this.dept = dept;
     }
 
 
@@ -84,7 +86,7 @@ public class doctor {
 
     public String toString()
     {
-        return (name+";;"+ address +";;"+ phone +";;"+ email +";;"+ password +";;"+ birthdate +";;"+ gender);
+        return (name+";;"+ address +";;"+ phone +";;"+ email +";;"+ password +";;"+ birthdate +";;"+ gender + ";;" + dept);
 
 
     }
