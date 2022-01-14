@@ -131,6 +131,4 @@ public class AdminLogin {
         Main.primaryStage.setScene(new Scene(root));
     }
 
-
-
 }

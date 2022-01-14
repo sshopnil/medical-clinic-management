@@ -1,11 +1,14 @@
 package sample.receiption;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TreeTableView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -15,7 +18,11 @@ import sample.FXMLSceneChanger;
 import sample.Main;
 import sample.SubSceneChanger;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
+import java.util.Iterator;
+import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public class ReceptionistDashBoard
 {
@@ -33,6 +40,14 @@ public class ReceptionistDashBoard
     public SubScene mainSubScene;
     public Button departments;
     public Button timeSlots;
+    public TextField hour;
+    public TextField minute;
+    public MenuItem selectAM;
+    public MenuItem selectPM;
+    public TableView<timeSlot> timeTable = new TableView<>();
+    public TableColumn <timeSlot, String>timeCol = new TableColumn<>();
+    public TableColumn <timeSlot, String>slotCol = new TableColumn<>();
+    public MenuButton amPmBtn;
     Parent root;
     private int count = 0;
 
@@ -258,6 +273,7 @@ public class ReceptionistDashBoard
         FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/timeSlotsScene.fxml");
         root = changer.root;
         adminSubscene.setCenter(root);
+        
     }
     
     public void doctorsAction(MouseEvent mouseEvent)
@@ -266,5 +282,95 @@ public class ReceptionistDashBoard
         FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/doctorsScene.fxml");
         root = changer.root;
         adminSubscene.setCenter(root);
+    }
+    
+    public void addTime(MouseEvent mouseEvent)
+    {
+        ObservableList<timeSlot> myTableData = FXCollections.observableArrayList(
+                new timeSlot(hour.getText(), minute.getText(), amPmBtn.getText())
+                );
+        timeCol.setCellValueFactory(new PropertyValueFactory<timeSlot, String>("time"));
+        slotCol.setCellValueFactory(new PropertyValueFactory<timeSlot, String>("slot"));
+        
+        timeTable.getItems().addAll(myTableData);
+    
+    
+        try
+        {
+            FileWriter fr = new FileWriter("src/sample/mainServer/AppointmentData/timeSlot.txt", true);
+            BufferedWriter br = new BufferedWriter(fr);
+            
+            br.append(hour.getText() + ":" + minute.getText() + ":" + amPmBtn.getText() + "\n");
+            br.close();
+            fr.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    public void removeTime(MouseEvent mouseEvent)
+    {
+        timeTable.getItems().removeAll(timeTable.getSelectionModel().getSelectedItems());
+        
+        ObservableList<timeSlot> updated = FXCollections.observableArrayList();
+        for (timeSlot ts: timeTable.getItems())
+        {
+            updated.add(ts);
+        }
+        
+        int i = 0;
+        try
+        {
+            FileWriter fr = new FileWriter("src/sample/mainServer/AppointmentData/timeSlot.txt");
+            BufferedWriter br = new BufferedWriter(fr);
+            
+            while (updated.size() > i)
+            {
+                br.write(updated.get(i).getTime()+":"+updated.get(i).getSlot()+"\n");
+                i++;
+            }
+            br.close();
+            fr.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    public void ampmClicked(MouseEvent mouseEvent)
+    {
+        selectAM.setOnAction(e ->
+                amPmBtn.setText(selectAM.getText()));
+        selectPM.setOnAction(e ->
+                amPmBtn.setText(selectPM.getText()));
+    }
+    
+    public void showSlots(MouseEvent mouseEvent)
+    {
+        Scanner scanner = null;
+        try
+        {
+            scanner = new Scanner(new File("src/sample/mainServer/AppointmentData/timeSlot.txt"));
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        ObservableList<timeSlot> slots = FXCollections.observableArrayList();
+        while (scanner.hasNext())
+        {
+            String str = scanner.nextLine().trim();
+            String[] divider = str.split(":");
+            slots.add(new timeSlot(divider[0], divider[1], divider[2]));
+        }
+        
+        timeCol.setCellValueFactory(new PropertyValueFactory<timeSlot, String>("time"));
+        slotCol.setCellValueFactory(new PropertyValueFactory<timeSlot, String>("slot"));
+    
+        timeTable.setItems(slots);
+        scanner.close();
     }
 }

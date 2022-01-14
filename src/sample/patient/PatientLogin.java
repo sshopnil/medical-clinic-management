@@ -83,7 +83,7 @@ public class PatientLogin
                 {
                     patient = scanner.nextLine();
                     String[] allInfo = patient.split(";;");
-                    patients.add(new ThePatient(allInfo[0], allInfo[1], allInfo[2], allInfo[3], allInfo[4], allInfo[5], allInfo[6], allInfo[7]));
+                    patients.add(new ThePatient(allInfo[0], allInfo[1], allInfo[2], allInfo[3], allInfo[4], allInfo[5], allInfo[6], allInfo[7], allInfo[8]));
                 }
                 scanner.close();
             }
@@ -131,7 +131,7 @@ public class PatientLogin
                 }
                 if (valid)
                 {
-                    currentPatient = new ThePatient(name, gender, dob, mobileNo, address, relWithPatient, maritalStatus, religion);
+                    currentPatient = new ThePatient(pID,name, gender, dob, mobileNo, address, relWithPatient, maritalStatus, religion);
                     gotoDashBoard();
                     PatientDashBoard controller = (PatientDashBoard) FXMLSceneChanger.controller;
                     controller.Pname.setText(name);
