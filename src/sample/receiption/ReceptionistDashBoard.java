@@ -30,7 +30,7 @@ public class ReceptionistDashBoard
     public Button appointment;
     public Button doctors;
     public Button regPatient;
-    public TreeTableView patientTable;
+    public TableView<AppointedPatient> patientTable;
     public Button organize;
     public VBox organizeSubMenu;
     public Button quickView;
@@ -48,6 +48,11 @@ public class ReceptionistDashBoard
     public TableColumn <timeSlot, String>timeCol = new TableColumn<>();
     public TableColumn <timeSlot, String>slotCol = new TableColumn<>();
     public MenuButton amPmBtn;
+    public TableColumn<AppointedPatient, String> appPID;
+    public TableColumn<AppointedPatient, String> appName;
+    public TableColumn<AppointedPatient, String> appTime;
+    public TableColumn<AppointedPatient, String> appDate;
+    public TableColumn<AppointedPatient, String> appDoc;
     Parent root;
     private int count = 0;
 
@@ -371,6 +376,89 @@ public class ReceptionistDashBoard
         slotCol.setCellValueFactory(new PropertyValueFactory<timeSlot, String>("slot"));
     
         timeTable.setItems(slots);
+        scanner.close();
+    }
+    
+    public void appCancelAction(MouseEvent mouseEvent)
+    {
+        patientTable.getItems().removeAll(patientTable.getSelectionModel().getSelectedItems());
+        Scanner scanner = null;
+        try
+        {
+            scanner = new Scanner(new File("src/sample/mainServer/AppointmentData/appointedPatients.txt"));
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        ObservableList<AppointedPatient> patients = FXCollections.observableArrayList();
+        while (scanner.hasNext())
+        {
+            String str = scanner.nextLine().trim();
+            String[] divider = str.split(";;");
+            patients.add(new AppointedPatient(divider[0], divider[1], divider[3], divider[2], divider[6], divider[4], divider[5], divider[7]));
+        }
+        scanner.close();
+    
+        ObservableList<AppointedPatient> update = FXCollections.observableArrayList();
+        int i = 0;
+        for (AppointedPatient ap: patientTable.getItems())
+        {
+            if (patients.get(i).id.equals(ap.id))
+            {
+                update.add(patients.get(i));
+            }
+            i++;
+        }
+    
+        i = 0;
+        try
+        {
+            FileWriter fr = new FileWriter("src/sample/mainServer/AppointmentData/appointedPatients.txt");
+            BufferedWriter br = new BufferedWriter(fr);
+        
+            while (update.size() > i)
+            {
+                String str = update.get(i).id + ";;" + update.get(i).name + ";;" + update.get(i).date + ";;" + update.get(i).time + ";;" + update.get(i).subject + ";;" + update.get(i).msg + ";;" + update.get(i).doctor + ";;" + update.get(i).payment;
+                br.write(str+"\n");
+                i++;
+            }
+            br.close();
+            fr.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    public void appRefreshAction(MouseEvent mouseEvent)
+    {
+        Scanner scanner = null;
+        try
+        {
+            scanner = new Scanner(new File("src/sample/mainServer/AppointmentData/appointedPatients.txt"));
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        ObservableList<AppointedPatient> patients = FXCollections.observableArrayList();
+        while (scanner.hasNext())
+        {
+            String str = scanner.nextLine().trim();
+            String[] divider = str.split(";;");
+            String[] docname = divider[6].split("--");
+            patients.add(new AppointedPatient(divider[0], divider[1], divider[3], divider[2], docname[0]));
+        }
+    
+        appPID.setCellValueFactory(new PropertyValueFactory<AppointedPatient, String>("id"));
+        appName.setCellValueFactory(new PropertyValueFactory<AppointedPatient, String>("name"));
+        appTime.setCellValueFactory(new PropertyValueFactory<AppointedPatient, String>("time"));
+        appDate.setCellValueFactory(new PropertyValueFactory<AppointedPatient, String>("date"));
+        appDoc.setCellValueFactory(new PropertyValueFactory<AppointedPatient, String>("doctor"));
+    
+        patientTable.setItems(patients);
         scanner.close();
     }
 }
