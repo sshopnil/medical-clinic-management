@@ -62,6 +62,8 @@ public class PatientDashBoard
         private String slotFromServer;
         Parent root;
         ThePatient patient;
+        String PID = "";
+        String name = "";
         
         private int count = 0;
         
@@ -108,7 +110,8 @@ public class PatientDashBoard
                 root = FXMLSceneChanger.root;
                 workingSubScene.setCenter(root);
                 patient = thisPatient;
-                
+                name = thisPatient.name;
+                PID = thisPatient.patientID;
                 //setting fields with controller
                 PatientDashBoard controller = (PatientDashBoard) FXMLSceneChanger.controller;
                 controller.Pname.setText(patient.name);
@@ -167,6 +170,8 @@ public class PatientDashBoard
     
                 root = FXMLSceneChanger.root;
                 workingSubScene.setCenter(root);
+    
+                System.out.println(patient.patientID);
             }
 
         public void returnHomeAction(MouseEvent mouseEvent)
@@ -218,9 +223,15 @@ public class PatientDashBoard
     
             try
             {
+                Scanner scanner = new Scanner(new File("src/sample/mainServer/AppointmentData/currentLoggedIn.txt"));
+                String[] inf = scanner.nextLine().split(";;");
+    
+                scanner.close();
+                
+                
                 FileWriter fr = new FileWriter(new File("src/sample/mainServer/AppointmentData/appointedPatients.txt"), true);
                 BufferedWriter br = new BufferedWriter(fr);
-                String appInfo = patient.patientID + ";;" + patient.name + ";;" + appDate + ";;" + slots + ";;" + appSubject + ";;" + appDescription + ";;" + docAndDep + ";;" + feetype;
+                String appInfo = inf[1] + ";;" + inf[0] + ";;" + appDate + ";;" + slots + ";;" + appSubject.getText() + ";;" + appDescription.getText() + ";;" + docAndDep + ";;" + feetype;
                 br.append(appInfo + "\n");
                 
                 br.close();
@@ -229,6 +240,15 @@ public class PatientDashBoard
             catch (IOException e)
             {
                 e.printStackTrace();
+            }
+            finally
+            {
+                JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Booked!!");
+                chooseSlot.setText("choose");
+                chooseDoc.setText("choose");
+                appSubject.setText("");
+                appDescription.setText("");
+                appointmentDate.setValue(null);
             }
         }
     
