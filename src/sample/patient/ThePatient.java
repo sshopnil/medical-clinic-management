@@ -10,18 +10,22 @@ import java.util.Random;
 public class ThePatient implements Serializable
 {
     public static Stage patientStage;
-    public String name;
-    public String gender;
-    public String DateOfBirth;
+    public String name= "";
+    public String gender= "";
+    public String DateOfBirth= "";
     public int age;
-    public String mobile;
-    public String patientID;
-    public String maritalStatus;
-    public String religion;
-    public String address;
-    public String relWithPatient;
+    public String mobile= "";
+    public String patientID = "";
+    public String maritalStatus= "";
+    public String religion= "";
+    public String address= "";
+    public String relWithPatient= "";
     LocalDate birthdate;
     
+    ThePatient()
+    {
+    
+    }
     ThePatient(String patientID, String name, String gender, String DateOfBirth, String mobile, String address, String relWithPatient, String maritalStatus, String religion)
     {
         this.patientID = patientID;
