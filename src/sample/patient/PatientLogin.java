@@ -14,9 +14,7 @@ import sample.ReaderThread;
 import sample.mainServer.NetworkUtil;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -61,6 +59,21 @@ public class PatientLogin
                 ThePatient.patientStage.setScene(scene);
                 ThePatient.patientStage.setTitle("Patient DashBoard");
                 pd.defultActiveBtn(currentPatient);
+                pd.patient = currentPatient;
+    
+                try
+                {
+                    FileWriter fr = new FileWriter("src/sample/mainServer/AppointmentData/currentLoggedIn.txt");
+                    BufferedWriter br = new BufferedWriter(fr);
+                    br.write(currentPatient.name+";;"+currentPatient.patientID);
+                    
+                    br.close();
+                    fr.close();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
                 ThePatient.patientStage.show();
             }
         public void patientEnterActionKeyBoard(KeyEvent keyEvent)
