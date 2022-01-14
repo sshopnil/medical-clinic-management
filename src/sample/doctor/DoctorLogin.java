@@ -98,7 +98,7 @@ public class DoctorLogin {
             while (sc.hasNext()) {
                 String str = sc.nextLine();
                 String[] loginData = str.split(";;");
-                doctorList.add(new doctor(loginData[0],loginData[1],loginData[2],loginData[3],loginData[4],loginData[5],loginData[6]));
+                doctorList.add(new doctor(loginData[0],loginData[1],loginData[2],loginData[3],loginData[4],loginData[5],loginData[6], loginData[7]));
             }//doctor(String name, String address, String phone, String email, String password, String birthdate, String gender)
             sc.close();
         } catch (Exception e) {

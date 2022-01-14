@@ -1,12 +1,11 @@
 package sample.doctor;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import sample.FXMLSceneChanger;
 import sample.Main;
 import sample.logInOption;
@@ -27,7 +26,11 @@ public class Register {
     public DatePicker birthdate;
     public RadioButton male_btn;
     public RadioButton female_btn;
-    String gender;
+    public String gender;
+    public MenuButton deptStatus;
+    public MenuItem ent;
+    public MenuItem medical;
+    public MenuItem derma;
     LocalDate date;
 
     String Name;
@@ -54,7 +57,7 @@ public class Register {
             FileWriter fr = new FileWriter("src/sample/doctor/server/allinfo.txt",true);
             BufferedWriter br = new BufferedWriter(fr);
 
-            doctor doctorData = new doctor(Name,Address,Phone,Email,Password,date.toString(),gender);
+            doctor doctorData = new doctor(Name,Address,Phone,Email,Password,date.toString(),gender, deptStatus.getText());
 
             br.write(doctorData.toString());
             br.newLine();
@@ -79,7 +82,7 @@ public class Register {
         try{
             FileWriter fr = new FileWriter("src/sample/doctor/server/loginInfo.txt",true);
             BufferedWriter br = new BufferedWriter(fr);
-            doctor data = new doctor(Name,Address,Phone,Email,Password,date.toString(),gender);
+            doctor data = new doctor(Name,Address,Phone,Email,Password,date.toString(),gender, deptStatus.getText());
             String str = data.getName()+";;"+data.getEmail()+";;"+data.password;
 
             br.write(str);
@@ -133,5 +136,18 @@ public class Register {
 
     public void backToLogin(ActionEvent actionEvent) {
         backToLogin();
+    }
+    
+    public void depAction(MouseEvent mouseEvent)
+    {
+        ent.setOnAction(e ->{
+            deptStatus.setText(ent.getText());
+        });
+        medical.setOnAction(e ->{
+            deptStatus.setText(medical.getText());
+        });
+        derma.setOnAction(e ->{
+            deptStatus.setText(derma.getText());
+        });
     }
 }
