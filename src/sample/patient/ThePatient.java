@@ -22,11 +22,132 @@ public class ThePatient implements Serializable
     public String relWithPatient= "";
     LocalDate birthdate;
     
+    public static Stage getPatientStage()
+    {
+        return patientStage;
+    }
+    
+    public static void setPatientStage(Stage patientStage)
+    {
+        ThePatient.patientStage = patientStage;
+    }
+    
+    public String getName()
+    {
+        return name;
+    }
+    
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+    
+    public String getGender()
+    {
+        return gender;
+    }
+    
+    public void setGender(String gender)
+    {
+        this.gender = gender;
+    }
+    
+    public String getDateOfBirth()
+    {
+        return DateOfBirth;
+    }
+    
+    public void setDateOfBirth(String dateOfBirth)
+    {
+        DateOfBirth = dateOfBirth;
+    }
+    
+    public int getAge()
+    {
+        return age;
+    }
+    
+    public void setAge(int age)
+    {
+        this.age = age;
+    }
+    
+    public String getMobile()
+    {
+        return mobile;
+    }
+    
+    public void setMobile(String mobile)
+    {
+        this.mobile = mobile;
+    }
+    
+    public String getPatientID()
+    {
+        return patientID;
+    }
+    
+    public void setPatientID(String patientID)
+    {
+        this.patientID = patientID;
+    }
+    
+    public String getMaritalStatus()
+    {
+        return maritalStatus;
+    }
+    
+    public void setMaritalStatus(String maritalStatus)
+    {
+        this.maritalStatus = maritalStatus;
+    }
+    
+    public String getReligion()
+    {
+        return religion;
+    }
+    
+    public void setReligion(String religion)
+    {
+        this.religion = religion;
+    }
+    
+    public String getAddress()
+    {
+        return address;
+    }
+    
+    public void setAddress(String address)
+    {
+        this.address = address;
+    }
+    
+    public String getRelWithPatient()
+    {
+        return relWithPatient;
+    }
+    
+    public void setRelWithPatient(String relWithPatient)
+    {
+        this.relWithPatient = relWithPatient;
+    }
+    
+    public LocalDate getBirthdate()
+    {
+        return birthdate;
+    }
+    
+    public void setBirthdate(LocalDate birthdate)
+    {
+        this.birthdate = birthdate;
+    }
+    
     ThePatient()
     {
     
     }
-    ThePatient(String patientID, String name, String gender, String DateOfBirth, String mobile, String address, String relWithPatient, String maritalStatus, String religion)
+    public ThePatient(String patientID, String name, String gender, String DateOfBirth, String mobile, String address
+            , String relWithPatient, String maritalStatus, String religion)
     {
         this.patientID = patientID;
         this.name = name;

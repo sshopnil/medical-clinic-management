@@ -1,5 +1,1 @@
 2346;;niggy2;;2022-01-17;;9:00:PM;;adsadsadasd;;dasdasdsad;;doctor--Dermatology;;private
-2346;;niggy2;;2022-01-17;;9:00:PM;;dsadsad;;dasdsadad;;doctor--Dermatology;;general
-null;;niggy;;2022-01-18;;5:00:PM;;dasdasd;;dasdsadsa;;doctor--Dermatology;;general
-null;;niggy;;2022-01-22;;5:00:PM;;dsadxzxz;;xzxzxzx;;1--ENT;;private
-sshayan20213841;;shayan;;2021-01-01;;2:00:PM;;dxzxzxz;;xzxzxzxxz;;doctor--Dermatology;;homevisit

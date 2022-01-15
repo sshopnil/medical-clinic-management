@@ -14,8 +14,7 @@ import sample.logInOption;
 
 import javax.print.Doc;
 import javax.swing.*;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -84,12 +83,27 @@ public class DoctorLogin {
         if (valid)
         {
             goto_dashBord();
-        }else
+            
+            try
+            {
+                FileWriter fr = new FileWriter(new File("src/sample/mainServer/DoctorsData/lastLoggedIn.txt"));
+                BufferedWriter br = new BufferedWriter(fr);
+                
+                br.write(doctor.name+";;"+doctor.dept);
+                br.close();
+                fr.close();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        else
             JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Please enter correct data");
 
     }
 
-    ArrayList<doctor> getInformation()
+    public ArrayList<doctor> getInformation()
     {
         ArrayList<doctor> doctorList = new ArrayList<doctor>();
         File file = new File("src/sample/mainServer/DoctorsData/allinfo.txt");
