@@ -61,9 +61,9 @@ public class AdminLogin {
                     String[] line = inline.split(";;");
 
                     Admin rAdmin = new Admin();
-                    rAdmin.setF_name(line[0]);
-                    rAdmin.setL_name(line[1]);
-                    rAdmin.setAemail(line[2]);
+                    rAdmin.setFirstName(line[0]);
+                    rAdmin.setLastName(line[1]);
+                    rAdmin.setEmail(line[2]);
                     rAdmin.setPass(line[3]);
                     admins.add(rAdmin);
                 }
@@ -86,21 +86,22 @@ public class AdminLogin {
    public void adminEnterAction(MouseEvent event) {
         performLogin();
     }
-
-
+    
+    
     public void performLogin(){
-
-        List<Admin> admins = getLogInfo();
+        
+        List<Admin> admins = Configuration.GetAdminList();
         String email = tf_email.getText().trim();
         String pass = tf_pass.getText();
         boolean isAuthenticated = false;
         for (Admin admin : admins) {
-            if (admin.getAemail().equals(email) && admin.getPass().equals(pass)){
+            if (admin.getEmail().equals(email) && admin.getPass().equals(pass)){
                 isAuthenticated = true;
+                Configuration.LOGGED_IN_USER = admin;
                 break;
             }
         }
-
+        
         if (isAuthenticated){
             gotoDashBoard();
         } else {

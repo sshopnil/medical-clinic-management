@@ -49,7 +49,6 @@
                   </Button>
                   <VBox fx:id="organizeSubMenu" alignment="TOP_RIGHT" prefHeight="138.0" prefWidth="295.0" visible="false">
                      <children>
-                        <Button fx:id="departments" mnemonicParsing="false" onMouseClicked="#departmentsAction" prefHeight="42.0" prefWidth="283.0" style="-fx-background-color: #4c5159;" text="Departments" textFill="WHITE" />
                         <Button fx:id="doctors" mnemonicParsing="false" onMouseClicked="#doctorsAction" prefHeight="42.0" prefWidth="283.0" style="-fx-background-color: #4c5159;" text="Doctors" textFill="WHITE" />
                         <Button fx:id="timeSlots" mnemonicParsing="false" onMouseClicked="#timeSlotsAction" prefHeight="42.0" prefWidth="283.0" style="-fx-background-color: #4c5159;" text="Time Slots" textFill="WHITE" />
                      </children>

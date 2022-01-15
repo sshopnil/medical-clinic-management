@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import sample.doctor.DoctorLogin;
 import sample.patient.PatientLogin;
 import sample.receiption.AdminLogin;
 
@@ -29,17 +30,20 @@ public class logInOption implements Initializable
         
         void analyzeChart()
         {
+            DoctorLogin doctorData = new DoctorLogin();
             PatientLogin patientData = new PatientLogin();
             AdminLogin admins = new AdminLogin();
+            int totalD = doctorData.getInformation().size();
             int totalP = patientData.getPatientInfo().size();
             int totalA = admins.getLogInfo().size();
             ObservableList<PieChart.Data> allData = FXCollections.observableArrayList(
                     new PieChart.Data("Registered Patients", totalP),
-                    new PieChart.Data("Registered Admins", totalA)
+                    new PieChart.Data("Registered Admins", totalA),
+                    new PieChart.Data("Registered Doctors", totalD)
                                                                                       );
             allData.forEach(data ->
                     data.nameProperty().bind(
-                            Bindings.concat(data.getName() + ": " + data.getPieValue())
+                            Bindings.concat(data.getName() + ": " + (int)data.getPieValue())
                            ));
             pieChart.setData(allData);
         }

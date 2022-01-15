@@ -23,7 +23,7 @@
                <children>
                   <Button fx:id="info" mnemonicParsing="false" onAction="#infoAction" prefHeight="47.0" prefWidth="171.0" style="-fx-background-color: #1e3d59;" text="Profile" textFill="WHITE" />
                   <Button fx:id="appointments" mnemonicParsing="false" onAction="#appointmentsAction" prefHeight="47.0" prefWidth="171.0" style="-fx-background-color: #1e3d59;" text="Appointments" textFill="WHITE" />
-                  <Button fx:id="finance" mnemonicParsing="false" onAction="#financeAction" prefHeight="47.0" prefWidth="171.0" style="-fx-background-color: #1e3d59;" text="Edit my info" textFill="WHITE" />
+                  <Button fx:id="finance" mnemonicParsing="false" onAction="#financeAction" prefHeight="47.0" prefWidth="171.0" style="-fx-background-color: #1e3d59;" text="Organize" textFill="WHITE" />
                </children>
             </VBox>
             <Button fx:id="returnHome" layoutY="541.0" mnemonicParsing="false" onAction="#backToHomeAction" prefHeight="56.0" prefWidth="170.0" style="-fx-background-color: #333D79FF;" text="Log out" textFill="WHITE">
