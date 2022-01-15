@@ -66,27 +66,25 @@ public class RegController {
         if(radio_2.isSelected()){
             r = "female";
         }
-
-
-
+    
+    
+    
         if ((!rtf_name.getText().trim().equals(""))
                 && (!rtf_name2.getText().trim().equals(""))
                 && (!rtf_email.getText().trim().equals(""))
                 && (!rtf_pass.getText().trim().equals(""))) {
             try {
-                FileWriter fw = new FileWriter("src/sample/receiption/adminauth.txt", true);
+                FileWriter fw = new FileWriter(Configuration.ADMIN_AUTH_FILE_PATH, true);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter out = new PrintWriter(bw);
-                String addNewPerson = rtf_name.getText().trim() + ";;" + rtf_name2.getText().trim() + ";;" + rtf_email.getText().trim() + ";;" + rtf_pass.getText() + ";;" + r;
-                rtf_name.setText("");
-                rtf_name2.setText("");
-                rtf_email.setText("");
-                rtf_pass.setText("");
+                String addNewPerson = Configuration.generateID() + ";;" +rtf_name.getText().trim() + ";;" + rtf_name2.getText().trim()
+                        + ";;" + rtf_email.getText().trim() + ";;"
+                        + rtf_pass.getText() + ";;" +  rtxt_date.getValue().toString() + ";;" + r;
                 out.println(addNewPerson);
                 out.close();
                 bw.close();
                 fw.close();
-
+            
                 goBack();
             } catch (IOException e) {
                 e.printStackTrace();

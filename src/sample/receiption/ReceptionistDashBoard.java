@@ -2,8 +2,8 @@ package sample.receiption;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+
+import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
@@ -11,17 +11,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
+
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import sample.FXMLSceneChanger;
 import sample.Main;
-import sample.SubSceneChanger;
+import sample.patient.ThePatient;
+
 
 import java.io.*;
-import java.net.URL;
-import java.util.Iterator;
-import java.util.ResourceBundle;
+
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class ReceptionistDashBoard
@@ -38,7 +38,6 @@ public class ReceptionistDashBoard
     public Button profile;
     public BorderPane adminSubscene;
     public SubScene mainSubScene;
-    public Button departments;
     public Button timeSlots;
     public TextField hour;
     public TextField minute;
@@ -53,6 +52,36 @@ public class ReceptionistDashBoard
     public TableColumn<AppointedPatient, String> appTime;
     public TableColumn<AppointedPatient, String> appDate;
     public TableColumn<AppointedPatient, String> appDoc;
+    @FXML
+    private Text ap_fname;
+    
+    @FXML
+    private Text ap_fname1;
+    
+    @FXML
+    private Text adminID;
+    
+    @FXML
+    private Text ap_email;
+    
+    @FXML
+    private Text ap_gender;
+    
+    @FXML
+    private Text ap_bdate;
+    
+    
+    @FXML
+    private TableView<ThePatient> tblView;
+    @FXML
+    private TableColumn<ThePatient, String> tblColPatientId;
+    @FXML
+    private TableColumn<ThePatient, LocalDate> tblColPatientDob;
+    @FXML
+    private TableColumn<ThePatient, String> tblColPatientContactNo;
+    @FXML
+    private TableColumn<ThePatient, String> tblColPatientAddress;
+    
     Parent root;
     private int count = 0;
 
@@ -93,7 +122,6 @@ public class ReceptionistDashBoard
             report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
             timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
-            departments.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
             defultActiveBtn();
         }
         else if(btn.equals(profile))
@@ -105,11 +133,19 @@ public class ReceptionistDashBoard
             report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
             timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
-            departments.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
-
-            FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/adminProfile.fxml");
-            root = changer.root;
+    
+            FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/a_profile.fxml");
+            root = FXMLSceneChanger.root;
             adminSubscene.setCenter(root);
+    
+            ReceptionistDashBoard controller = (ReceptionistDashBoard) FXMLSceneChanger.controller;
+            
+            controller.ap_fname.setText(Configuration.LOGGED_IN_USER.getFirstName());
+            controller.ap_fname1.setText(Configuration.LOGGED_IN_USER.getLastName());
+            controller.ap_email.setText(Configuration.LOGGED_IN_USER.getEmail());
+            controller.adminID.setText(Configuration.LOGGED_IN_USER.getID());
+            controller.ap_bdate.setText(Configuration.LOGGED_IN_USER.getDate());
+            controller.ap_gender.setText(Configuration.LOGGED_IN_USER.getGender());
         }
         else if (btn.equals(regPatient))
         {
@@ -120,7 +156,6 @@ public class ReceptionistDashBoard
             report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
             timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
-            departments.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
 
             FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/patientScene.fxml");
             root = changer.root;
@@ -135,7 +170,6 @@ public class ReceptionistDashBoard
             report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
             timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
-            departments.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
 
             FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/appointmentScene.fxml");
             root = changer.root;
@@ -150,7 +184,6 @@ public class ReceptionistDashBoard
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
             timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
-            departments.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
 
             FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/reportScene.fxml");
             root = changer.root;
@@ -163,7 +196,6 @@ public class ReceptionistDashBoard
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            departments.setStyle("-fx-background-color:  #FCF6F5FF; -fx-text-fill: #000000");
         }
         else if(btn.equals(doctors))
         {
@@ -174,7 +206,6 @@ public class ReceptionistDashBoard
             report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             timeSlots.setStyle("-fx-background-color:  #4c5159; -fx-text-fill: #ffffff");
-            departments.setStyle("-fx-background-color:  #4c5159; -fx-text-fill: #ffffff");
         }
         else if(btn.equals(timeSlots))
         {
@@ -185,18 +216,6 @@ public class ReceptionistDashBoard
             report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color:  #4c5159; -fx-text-fill: #ffffff");
-            departments.setStyle("-fx-background-color:  #4c5159; -fx-text-fill: #ffffff");
-        }
-        else if(btn.equals(departments))
-        {
-            btn.setStyle("-fx-background-color: #FCF6F5FF; -fx-text-fill: #000000");
-            quickView.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            profile.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            doctors.setStyle("-fx-background-color:  #4c5159; -fx-text-fill: #ffffff");
-            timeSlots.setStyle("-fx-background-color:  #4c5159; -fx-text-fill: #ffffff");
         }
     }
     public void quickViewAction(MouseEvent mouseEvent)
@@ -225,6 +244,15 @@ public class ReceptionistDashBoard
     public void regPatient(MouseEvent mouseEvent)
     {
         changeColor(regPatient);
+    
+        ReceptionistDashBoard controller = (ReceptionistDashBoard) FXMLSceneChanger.controller;
+        controller.tblColPatientId.setCellValueFactory(new PropertyValueFactory<>("patientID"));
+        controller.tblColPatientDob.setCellValueFactory(new PropertyValueFactory<>("DateOfBirth"));
+        controller.tblColPatientAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        controller.tblColPatientContactNo.setCellValueFactory(new PropertyValueFactory<>("mobile"));
+        ObservableList<ThePatient> list = FXCollections.observableList(Configuration.GetPatientList());
+        controller.tblView.setItems(list);
+        //controller.tblView.getColumns().addAll(controller.tblColPatientId, controller.tblColPatientDob, controller.tblColPatientAddress, controller.tblColPatientContactNo);
     }
     public void reportAction(MouseEvent mouseEvent)
     {
@@ -244,9 +272,10 @@ public class ReceptionistDashBoard
         }
         count++;
     
-        FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/departmentScene.fxml");
+        FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/doctorsScene.fxml");
         root = changer.root;
         adminSubscene.setCenter(root);
+        changeColor(doctors);
     }
     
     //logout button action
@@ -260,16 +289,6 @@ public class ReceptionistDashBoard
         Scene scene = new Scene(root);
 
         Main.primaryStage.setScene(scene);
-    }
-    
-    
-    
-    public void departmentsAction(MouseEvent mouseEvent)
-    {
-        changeColor(departments);
-        FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/departmentScene.fxml");
-        root = changer.root;
-        adminSubscene.setCenter(root);
     }
     
     public void timeSlotsAction(MouseEvent mouseEvent)
