@@ -1,5 +1,3 @@
-Test;;Name;;m@gmail.com;;testpass;;male
-Sabbir;;Hossain;;sabbir@gmail.com;;asdD12;;male
-
-Shayanta;;Shopnil;;niggy@gmail.com;;15231;;male
-admin;;admin;;admin;;admin;;male
+a981e048-0dac-4dca-a472-f8ee0a79b6a8;;Sabbir;;Hossain;;sabbir@gmail.com;;asd12;;2021-12-01;;Male
+930306;;s;;h;;sh;;as12;;2021-01-02;;Male
+485494;;a;;a;;a;;a;;2022-01-14;;Male
