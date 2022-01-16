@@ -26,11 +26,6 @@
                         <Font name="Century Gothic Bold" size="11.741006851196289" />
                      </font>
                   </Button>
-                  <Button fx:id="currentStatus" mnemonicParsing="false" onMouseClicked="#currentStatusAction" prefHeight="48.0" prefWidth="175.0" style="-fx-background-color: #1e3d59;" styleClass="sideBtn" stylesheets="@patientStyle.css" text="Print Report" textFill="WHITE">
-                     <font>
-                        <Font name="Century Gothic Bold" size="11.741006851196289" />
-                     </font>
-                  </Button>
                </children>
             </VBox>
             <Text fill="#1e3d59" fontSmoothingType="LCD" layoutX="-1.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Dashboard" textAlignment="CENTER" wrappingWidth="176.31667667925177">

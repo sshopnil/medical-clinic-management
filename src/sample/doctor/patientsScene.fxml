@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="600.0" maxWidth="810.0" prefHeight="600.0" prefWidth="810.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.doctor.DoctorDashBoard">
+   <children>
+      <Text fill="#1f0e47" layoutX="24.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointed Patients:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TableView fx:id="appointedTable" editable="true" layoutX="24.0" layoutY="85.0" prefHeight="338.0" prefWidth="766.0">
+        <columns>
+          <TableColumn fx:id="patID" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="patName" prefWidth="97.60003662109375" text="Name" />
+            <TableColumn fx:id="patTime" prefWidth="92.80003356933594" text="Rq. Time" />
+            <TableColumn fx:id="patDate" prefWidth="102.4000244140625" text="Rq. Date" />
+            <TableColumn fx:id="patSubject" prefWidth="84.79998779296875" text="Subject" />
+            <TableColumn fx:id="patDes" prefWidth="150.39996337890625" text="Description" />
+            <TableColumn fx:id="patType" prefWidth="75.0" text="Visit Type" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Text layoutX="37.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter by Date">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <DatePicker layoutX="34.0" layoutY="470.0" prefHeight="36.0" prefWidth="217.0" />
+      <Button layoutX="554.0" layoutY="464.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #1b5b20; -fx-border-radius: 20;" text="Visited" textFill="#1b5b20">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="675.0" layoutY="464.0" mnemonicParsing="false" onMouseClicked="#removeFromPatientAction" style="-fx-background-color: transparent; -fx-border-color: #d13b11; -fx-border-radius: 20;" text="Remove" textFill="#d13b11">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
