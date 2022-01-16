@@ -57,9 +57,11 @@ public class PatientDashBoard
         public DatePicker appointmentDate;
         public TextField appSubject;
         public TextArea appDescription;
+        public MenuButton chooseDate;
         private String docsFromServer;
         public LocalDate AppDate;
         private String slotFromServer;
+        private String dateFromServer;
         Parent root;
         ThePatient patient;
         String PID = "";
@@ -67,7 +69,11 @@ public class PatientDashBoard
         
         private int count = 0;
         
-        void readSlot() throws IOException
+        
+        //======================COMMUNICATION WITH SERVER STARTS FROM HERE ================================
+        //================================================================================================
+        
+        void readSlot(String docName) throws IOException
         {
             Socket socket = new Socket("127.0.0.1", 5000);
     
@@ -75,7 +81,7 @@ public class PatientDashBoard
             System.out.println(socket.getLocalAddress().getHostAddress());
             NetworkUtil nc=new NetworkUtil(socket);
     
-            nc.write("timeSlot");
+            nc.write("timeSlot" + " " + docName);
             slotFromServer = (String) nc.read();
             slotFromServer = slotFromServer.trim();
             System.out.println("Server: " + slotFromServer);
@@ -99,6 +105,27 @@ public class PatientDashBoard
             socket.close();
             System.out.println("Patient Client closed...");
         }
+        
+        void readAppDate(String docName) throws IOException
+        {
+            Socket socket = new Socket("127.0.0.1", 5000);
+    
+            System.out.println("Patient Client Started--- ");
+            System.out.println(socket.getLocalAddress().getHostAddress());
+            NetworkUtil nc=new NetworkUtil(socket);
+    
+            nc.write("dateSlot" + " " + docName);
+            dateFromServer = (String) nc.read();
+            dateFromServer = dateFromServer.trim();
+            System.out.println("Server: " + dateFromServer);
+            nc.write("exit");
+            socket.close();
+            System.out.println("Patient Client closed...");
+        }
+    
+        //======================COMMUNICATION WITH SERVER ENDS HERE ================================
+        //==========================================================================================
+        
         
         void defultActiveBtn(ThePatient thisPatient)
             {
@@ -199,9 +226,8 @@ public class PatientDashBoard
             String feetype = "";
             String docAndDep = "";
             String appDate = "";
-            AppDate = appointmentDate.getValue();
-            appDate = AppDate.toString();
             
+            appDate = chooseDate.getText();
             String slots = chooseSlot.getText();
             docAndDep = chooseDoc.getText();
             if (feeGeneral.isSelected())
@@ -220,38 +246,47 @@ public class PatientDashBoard
             {
                 JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Please provide fee-type");
             }
-    
-            try
+            
+            if (checkIfDoctorAvailable(docAndDep, slots, appDate))
             {
-                Scanner scanner = new Scanner(new File("src/sample/mainServer/AppointmentData/currentLoggedIn.txt"));
-                String[] inf = scanner.nextLine().split(";;");
-    
-                scanner.close();
-                
-                
-                FileWriter fr = new FileWriter(new File("src/sample/mainServer/AppointmentData/appointedPatients.txt"), true);
-                BufferedWriter br = new BufferedWriter(fr);
-                String appInfo = inf[1] + ";;" + inf[0] + ";;" + appDate + ";;" + slots + ";;" + appSubject.getText() + ";;" + appDescription.getText() + ";;" + docAndDep + ";;" + feetype;
-                br.append(appInfo + "\n");
-                
-                br.close();
-                fr.close();
+                try
+                {
+                    Scanner scanner = new Scanner(new File("src/sample/mainServer/AppointmentData/currentLoggedIn.txt"));
+                    String[] inf = scanner.nextLine().split(";;");
+        
+                    scanner.close();
+        
+                    
+                    FileWriter fr = new FileWriter(new File("src/sample/mainServer/AppointmentData/appointedPatients.txt"), true);
+                    BufferedWriter br = new BufferedWriter(fr);
+                    String appInfo = inf[1] + ";;" + inf[0] + ";;" + appDate + ";;" + slots + ";;" + appSubject.getText() + ";;" + appDescription.getText() + ";;" + docAndDep + ";;" + feetype;
+                    br.append(appInfo + "\n");
+        
+                    br.close();
+                    fr.close();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+                finally
+                {
+                    JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Booked!!");
+                    chooseSlot.setText("choose");
+                    chooseDoc.setText("choose");
+                    appSubject.setText("");
+                    appDescription.setText("");
+                }
             }
-            catch (IOException e)
+            else
             {
-                e.printStackTrace();
-            }
-            finally
-            {
-                JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Booked!!");
-                chooseSlot.setText("choose");
-                chooseDoc.setText("choose");
-                appSubject.setText("");
-                appDescription.setText("");
-                appointmentDate.setValue(null);
+                JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Doctor is not available");
             }
         }
     
+        //==============APPOINTMENT SELECTION MENU BUTTON ACTIONS START===========================
+        
+        
         public void doctorMenuBtnAction(MouseEvent mouseEvent)
         {
             //reading doctors data from the server
@@ -281,9 +316,10 @@ public class PatientDashBoard
     
         public void chooseSlotAction(MouseEvent mouseEvent)
         {
+            String docName = chooseDoc.getText();
             try
             {
-                readSlot();
+                readSlot(docName);
             }
             catch (IOException e)
             {
@@ -303,6 +339,121 @@ public class PatientDashBoard
                 count++;
             }
         }
+        public void chooseDateAction(MouseEvent mouseEvent)
+        {
+            String docName = chooseDoc.getText();
+            
+            try
+            {
+                readAppDate(docName);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+    
+            String[] dateslots = dateFromServer.split(";;");
+//            Iterator itr = docs.iterator();
+            chooseDate.getItems().clear();
+            int count = 0;
+            int i = 0;
+            for(String str: dateslots)
+            {
+                chooseDate.getItems().add(new javafx.scene.control.MenuItem(str));
+                chooseDate.getItems().get(count).setOnAction(e ->{
+                    chooseDate.setText(str);
+                });
+                System.out.println(str);
+                count++;
+            }
+        }
+    
+    
+        //==============APPOINTMENT SELECTION MENU BUTTON ACTIONS END===========================
+        
+        
+        
+        //====================CHECK IF THE DOCTOR IS AVAILABLE==================================
+        boolean checkIfDoctorAvailable(String doc, String time, String date)
+        {
+            String[]docName = doc.split("--");
+    
+            try
+            {
+                String path = "src/sample/mainServer/DoctorsData/DoctorsAppointmentInfo/" + docName[0] + "_" + docName[1] + ".txt";
+                Scanner scanner = new Scanner(new File(path));
+                while (scanner.hasNext())
+                {
+                    String[] docInfo = scanner.nextLine().split(";;");
+                    if (docInfo[2].equals(time) && docInfo[3].equals(date))
+                    {
+                        if (Integer.parseInt(docInfo[4]) > 0)
+                        {
+                            updateDocInfo(docInfo[0], docInfo[1], docInfo[2], docInfo[3]);
+                            System.out.println("is available");
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                scanner.close();
+            }
+            catch (FileNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+            return false;
+        }
+        
+        void updateDocInfo(String name, String dept, String time, String date)
+        {
+            try
+            {
+                String path = "src/sample/mainServer/DoctorsData/DoctorsAppointmentInfo/" + name + "_" + dept + ".txt";
+                ArrayList <String> allDocs = new ArrayList<>();
+                Scanner scanner = new Scanner(new File(path));
+                while (scanner.hasNext())
+                {
+                    allDocs.add(scanner.nextLine());
+                }
+                
+                scanner.close();
+                System.out.println("Updating...");
+                FileWriter fr = new FileWriter(new File(path));
+                BufferedWriter br = new BufferedWriter(fr);
+                
+                Iterator<String> iterator = allDocs.iterator();
+                
+                while (iterator.hasNext())
+                {
+                    String str1 = iterator.next();
+                    String[] str = str1.split(";;");
+                    if ((str[2].equals(time)) && (str[3].equals(date)))
+                    {
+                        int appLimit = Integer.parseInt(str[4]);
+                        appLimit--;
+                        System.out.println("updating limit");
+                        br.write(str[0]+";;" + str[1] + ";;" + str[2] + ";;" + str[3] + ";;"+ appLimit);
+                        br.newLine();
+                    }
+                    else
+                    {
+                        br.write(str1);
+                        br.newLine();
+                    }
+                }
+                br.close();
+                fr.close();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        //====================CHECK IF THE DOCTOR IS AVAILABLE ENDS==================================
     }
 
     

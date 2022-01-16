@@ -42,17 +42,11 @@ public class ClientThread implements Runnable
             
             String serverMsg = (String) cMsg;
             
+            String[] checkExtraInfo = serverMsg.split(" ");
             //reads doctor names
             if (serverMsg.contains("doclist"))
             {
-                serverMsg = "";
-                Set set = doctorsList.keySet();
-                Iterator itr = set.iterator();
-                while (itr.hasNext())
-                {
-                    String k = (String) itr.next();
-                    serverMsg += k + "--" + doctorsList.get(k).deptName + " ";
-                }
+                serverMsg = getDoctorInfo();
             }
             
             //read registered doctor departments
@@ -68,17 +62,47 @@ public class ClientThread implements Runnable
             }
             
             //reads available time slots given by admins
-            else if(serverMsg.contains("timeSlot"))
+            else if(checkExtraInfo[0].contains("timeSlot"))
             {
-                try
+                String docName = checkExtraInfo[1];
+                if (docName.contains("Choose"))
                 {
-                    serverMsg = readTimeSlot();
+                    serverMsg = serverMsg = "Please select your doctor first";
                 }
-                catch (FileNotFoundException e)
+                else
                 {
-                    e.printStackTrace();
+                    try
+                    {
+                        serverMsg = readTimeSlot(docName);
+                    }
+                    catch (FileNotFoundException e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
             }
+            
+            //reads available dates given by doctor
+            else if(checkExtraInfo[0].contains("dateSlot"))
+            {
+                String docName = checkExtraInfo[1];
+                if (docName.equals("Choose"))
+                {
+                    serverMsg = "Please select your doctor first";
+                }
+                else
+                {
+                    try
+                    {
+                        serverMsg = readDateSlot(docName);
+                    }
+                    catch (FileNotFoundException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            
             else if (serverMsg.contains("exit"))
             {
                 break;
@@ -94,6 +118,10 @@ public class ClientThread implements Runnable
             e.printStackTrace();
         }
     }
+    
+    //===============================READING FROM FILES START=========================================
+    
+    
     private void readDocData() throws FileNotFoundException
     {
         File file = new File("src/sample/mainServer/DoctorsData/allinfo.txt");
@@ -106,16 +134,46 @@ public class ClientThread implements Runnable
             doctorsList.put(information.name, information);
         }
     }
-    private String readTimeSlot() throws FileNotFoundException
+    private String readTimeSlot(String docName) throws FileNotFoundException
     {
         String slt = "";
-        Scanner scanner = new Scanner(new File("src/sample/mainServer/AppointmentData/timeSlot.txt"));
+        String[] docAndDept = docName.split("--");
+        String path = "src/sample/mainServer/DoctorsData/DoctorsAppointmentInfo/" + docAndDept[0] + "_" + docAndDept[1] + ".txt";
+        Scanner scanner = new Scanner(new File(path));
         while (scanner.hasNext())
         {
-            slt += scanner.nextLine() + ";;";
+            String[] tslot = scanner.nextLine().split(";;");
+            slt += tslot[2] + ";;";
         }
         scanner.close();
         return slt;
+    }
+    private String readDateSlot(String docName) throws FileNotFoundException
+    {
+        String slt = "";
+        String[] docAndDept = docName.split("--");
+        String path = "src/sample/mainServer/DoctorsData/DoctorsAppointmentInfo/" + docAndDept[0] + "_" + docAndDept[1] + ".txt";
+        Scanner scanner = new Scanner(new File(path));
+        while (scanner.hasNext())
+        {
+            String[] tslot = scanner.nextLine().split(";;");
+            slt += tslot[3] + ";;";
+        }
+        scanner.close();
+        return slt;
+    }
+    //===============================READING FROM FILES ENDS=========================================
+    private String getDoctorInfo()
+    {
+        String info = "";
+        Set set = doctorsList.keySet();
+        Iterator itr = set.iterator();
+        while (itr.hasNext())
+        {
+            String k = (String) itr.next();
+            info += k + "--" + doctorsList.get(k).deptName + " ";
+        }
+        return info;
     }
 }
 

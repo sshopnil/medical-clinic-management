@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.SubScene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -15,9 +14,7 @@ import javafx.scene.text.Text;
 import sample.FXMLSceneChanger;
 import sample.Main;
 import sample.logInOption;
-import sample.patient.ThePatient;
-import sample.receiption.AppointedPatient;
-import sample.receiption.Configuration;
+import sample.patient.AppointedPatients;
 
 import javax.swing.*;
 import java.io.*;
@@ -50,19 +47,26 @@ public class DoctorDashBoard
         public TableColumn<AppointmentInfo, String> tableTime;
         public TableColumn<AppointmentInfo, String> tableDate;
         public TableColumn<AppointmentInfo, String> tableLimit;
-        public TextField appHour;
-        public DatePicker appDate;
+//        public TextField appHour;
+//        public DatePicker appDate;
         public TextField appNo;
-        public TextField appMin;
-        public MenuItem am;
-        public MenuItem pm;
-        public MenuButton amPmBtn;
+        public MenuButton approvedBtn;
+        public TableView<MyPatients> appointedTable;
+        public TableColumn<MyPatients, String> patID;
+        public TableColumn<MyPatients, String> patName;
+        public TableColumn<MyPatients, String> patTime;
+        public TableColumn<MyPatients, String> patDate;
+        public TableColumn<MyPatients, String> patSubject;
+        public TableColumn<MyPatients, String> patDes;
+        public TableColumn<MyPatients, String> patType;
         String time = "";
         String date = "";
         String limit = "";
         private ArrayList<AppointmentInfo> appInfoList = new ArrayList<>();
+        private ArrayList<MyPatients> appointedPatients = new ArrayList<>();
         doctor doc;
-
+        File myFile = new File(getMyAppointmentPath());
+        
         DoctorDashBoard controller;
         void loadData(DoctorDashBoard controller)
         {
@@ -111,7 +115,7 @@ public class DoctorDashBoard
             }
             else if(btn.equals(appointments))
             {
-                FXMLSceneChanger changer = FXMLSceneChanger.load("doctor/appointmentsScene.fxml");
+                FXMLSceneChanger changer = FXMLSceneChanger.load("doctor/patientsScene.fxml");
                 root = changer.root;
                 workingSubScene.setCenter(root);
             }
@@ -153,8 +157,119 @@ public class DoctorDashBoard
         public void appointmentsAction(ActionEvent actionEvent) {
             ChangeColor(appointments);
             ChangeScene(appointments);
-
+    
+            DoctorDashBoard controller = (DoctorDashBoard) FXMLSceneChanger.controller;
+            controller.patID.setCellValueFactory(new PropertyValueFactory<>("id"));
+            controller.patName.setCellValueFactory(new PropertyValueFactory<>("name"));
+            controller.patTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+            controller.patDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+            controller.patSubject.setCellValueFactory(new PropertyValueFactory<>("sub"));
+            controller.patDes.setCellValueFactory(new PropertyValueFactory<>("des"));
+            controller.patType.setCellValueFactory(new PropertyValueFactory<>("type"));
+            //String id, String name, String sub, String des, String time, String date
+            
+            refreshPatientTable();
         }
+    
+        private void refreshPatientTable()
+        {
+            DoctorDashBoard controller = (DoctorDashBoard) FXMLSceneChanger.controller;
+            Scanner scanner = null;
+            appointedPatients = new ArrayList<>();
+            try {
+                //reading current doctor info
+                
+                Scanner scan = new Scanner(new File("src/sample/mainServer/DoctorsData/lastLoggedIn.txt"));
+                String[] docInfo = scan.nextLine().split(";;");
+    
+                scan.close();
+                
+                
+                //setting up the table
+                
+                scanner = new Scanner(new File("src/sample/mainServer/AppointmentData/appointedPatients.txt"));
+                String patient;
+                while (scanner.hasNext()) {
+                    patient = scanner.nextLine();
+                    String[] allInfo = patient.split(";;");
+                    String[] docName = allInfo[6].split("--");
+                    
+                    if (docName[0].contains(docInfo[0]))
+                    {
+                        appointedPatients.add(new MyPatients(allInfo[0], allInfo[1], allInfo[4], allInfo[5], allInfo[3], allInfo[2], allInfo[7]));
+                    }
+                }
+                scanner.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+    
+            ObservableList<MyPatients> list = FXCollections.observableList(appointedPatients);
+            controller.appointedTable.setItems(list);
+        }
+    
+        public void removeFromPatientAction(MouseEvent mouseEvent)
+        {
+            appointedTable.getItems().removeAll(appointedTable.getSelectionModel().getSelectedItems());
+            ObservableList<MyPatients> list = FXCollections.observableArrayList();
+            boolean doAppend = false;
+            for (MyPatients info: appointedTable.getItems())
+            {
+                list.add(new MyPatients(info.id, info.name, info.sub, info.des, info.time, info.date, info.type));
+            }
+            writeMyPatientAppointments(list);
+            //String id, String name, String sub, String des, String time, String date
+        }
+    
+        private void writeMyPatientAppointments(List<MyPatients> list)
+        {
+            try
+            {
+                Scanner scan = new Scanner(new File("src/sample/mainServer/DoctorsData/lastLoggedIn.txt"));
+                String[] docInfo = scan.nextLine().split(";;");
+    
+                scan.close();
+                
+                String path = "src/sample/mainServer/AppointmentData/appointedPatients.txt";
+                Scanner scanner = new Scanner(new File(path));
+                
+                int count = 0;
+                ArrayList<String> otherDocs = new ArrayList<>();
+                while (scanner.hasNext())
+                {
+                    String str = scanner.nextLine();
+                    String[] id = str.split(";;");
+                    String[] docName = id[6].split("--");
+                    
+                    if(!(docName[0].equals(docInfo[0])))
+                    {
+                        otherDocs.add(str);
+                    }
+                }
+                scanner.close();
+    
+                FileWriter fr = new FileWriter(path);
+                BufferedWriter br = new BufferedWriter(fr);
+                
+                Iterator<String> itr = otherDocs.iterator();
+                for (MyPatients patients: list)
+                {
+                    while (itr.hasNext())
+                    {
+                        br.write(itr.next() + "\n");
+                    }
+                    String info = patients.id + ";;" + patients.name + ";;" + patients.date + ";;" + patients.time + ";;" + patients.sub + ";;" + patients.des + ";;" + docInfo[0] + "--" + docInfo[1] + ";;" + patients.type;
+                    br.write(info+"\n");
+                }
+                br.close();
+                fr.close();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    
         public void financeAction(ActionEvent actionEvent) {
             ChangeColor(finance);
             ChangeScene(finance);
@@ -177,14 +292,56 @@ public class DoctorDashBoard
             Scene scene = new Scene(root);
             Main.primaryStage.setScene(scene);
         }
+        
+        
+        
+        
+        
+        //=============================setting up time starts============================================
+        //===============================================================================================
+        private String readSlot()
+        {
+            String allslots = "";
+            try
+            {
+                Scanner scanner = new Scanner(new File("src/sample/mainServer/AppointmentData/timeSlot.txt"));
+                while (scanner.hasNext())
+                {
+                    allslots += scanner.nextLine() + "\n";
+                }
+                scanner.close();
+            }
+            catch (FileNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+            return allslots;
+        }
+        
+        //derived time and dates from admin
+        public void approvedBtnAction(MouseEvent mouseEvent)
+        {
+            String[] timeSlots = readSlot().split("\n");
+            approvedBtn.getItems().clear();
+            
+            int count = 0;
     
+            for(String str: timeSlots)
+            {
+                approvedBtn.getItems().add(new javafx.scene.control.MenuItem(str));
+                approvedBtn.getItems().get(count).setOnAction(e ->{
+                    approvedBtn.setText(str);
+                });
+                count++;
+            }
+        }
         public void appSubmit(MouseEvent mouseEvent)
         {
             try
             {
-                time = appHour.getText() + ":" + appMin.getText() + " " + amPmBtn.getText();
-                LocalDate date1 = appDate.getValue();
-                date = date1.toString();
+                String[] str = approvedBtn.getText().split(";;");
+                time = str[0];
+                date = str[1];
                 limit = appNo.getText();
             }
             catch (Exception e)
@@ -213,8 +370,9 @@ public class DoctorDashBoard
             DoctorDashBoard controller = (DoctorDashBoard) FXMLSceneChanger.controller;
             Scanner scanner = null;
             appInfoList = new ArrayList<>();
+            
             try {
-                scanner = new Scanner(new File("src/sample/mainServer/DoctorsData/appLimit.txt"));
+                scanner = new Scanner(new File(getMyAppointmentPath()));
                 String patient;
                 while (scanner.hasNext()) {
                     patient = scanner.nextLine();
@@ -239,7 +397,8 @@ public class DoctorDashBoard
                 String[] docInfo = scanner.nextLine().split(";;");
                 
                 scanner.close();
-                fr = new FileWriter(new File("src/sample/mainServer/DoctorsData/appLimit.txt"), doAppend);
+                
+                fr = new FileWriter(new File(getMyAppointmentPath()), doAppend);
                 BufferedWriter br = new BufferedWriter(fr);
                 
                 br.write(docInfo[0]+";;" + docInfo[1] +";;"+ time + ";;" + date + ";;" + limit);
@@ -258,14 +417,19 @@ public class DoctorDashBoard
             FileWriter fr = null;
             try
             {
-                fr = new FileWriter(new File("src/sample/mainServer/DoctorsData/appLimit.txt"), doAppend);
+                Scanner scanner = new Scanner(new File("src/sample/mainServer/DoctorsData/lastLoggedIn.txt"));
+                String[] docInfo = scanner.nextLine().split(";;");
+    
+                scanner.close();
+                
+                fr = new FileWriter(new File(getMyAppointmentPath()), doAppend);
                 BufferedWriter br = new BufferedWriter(fr);
                 
                 Iterator<AppointmentInfo> itr = list.iterator();
                 while (itr.hasNext())
                 {
                     AppointmentInfo info = itr.next();
-                    br.write(info.getTime() + ";;" + info.getDate() + ";;" + info.getLimit());
+                    br.write(docInfo[0]+ ";;" + docInfo[1] + ";;" + info.getTime() + ";;" + info.getDate() + ";;" + info.getLimit());
                     br.newLine();
                 }
                 br.close();
@@ -277,12 +441,25 @@ public class DoctorDashBoard
             }
         }
     
-        public void amPmAction(MouseEvent mouseEvent)
+        
+        private String getMyAppointmentPath()
         {
-            am.setOnAction(e ->
-                    amPmBtn.setText(am.getText()));
-            pm.setOnAction(e->
-                    amPmBtn.setText(pm.getText()));
+            Scanner scanner = null;
+            try
+            {
+                scanner = new Scanner(new File("src/sample/mainServer/DoctorsData/lastLoggedIn.txt"));
+                String[] docInfo = scanner.nextLine().split(";;");
+    
+                scanner.close();
+                return "src/sample/mainServer/DoctorsData/DoctorsAppointmentInfo/" + docInfo[0] + "_" + docInfo[1] + ".txt";
+            }
+            catch (FileNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+            return null;
         }
+        //=============================setting up time ends============================================
+        //===============================================================================================
     }
     
