@@ -4,9 +4,9 @@ public class timeSlot
 {
     private String time;
     private String slot;
-    timeSlot(String hour, String minute, String slot)
+    timeSlot(String time, String slot)
     {
-        this.time = hour + ":" + minute;
+        this.time = time;
         this.slot = slot;
     }
     public String getTime()

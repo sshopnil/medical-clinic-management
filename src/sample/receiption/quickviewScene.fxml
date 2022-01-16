@@ -14,7 +14,7 @@
             <Font size="43.0" />
          </font>
       </Text>
-      <TilePane fx:id="tilePanel" layoutX="52.0" layoutY="198.0" prefHeight="206.0" prefWidth="644.0">
+      <TilePane fx:id="tilePanel" layoutX="42.0" layoutY="198.0" prefHeight="206.0" prefWidth="644.0">
          <children>
             <TitledPane animated="false" collapsible="false" style="-fx-background-color: #cdd180;" text="Active Time Slots">
                <content>
@@ -30,7 +30,7 @@
                   </AnchorPane>
                </content>
             </TitledPane>
-            <TitledPane animated="false" collapsible="false" style="-fx-background-color: #cdd180;" text="Total Appointments">
+            <TitledPane animated="false" collapsible="false" prefHeight="206.0" prefWidth="306.0" style="-fx-background-color: #cdd180;" text="Total Appointments">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #cdd180;">
                      <children>
@@ -43,20 +43,6 @@
                      </children>
                   </AnchorPane>
               </content>
-            </TitledPane>
-            <TitledPane animated="false" collapsible="false" style="-fx-background-color: #cdd180;" text="Total Departments">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #d1a080;">
-                     <children>
-                        <Button layoutY="155.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="202.0" style="-fx-background-color: #d1a080;" text="departments &gt;&gt;" />
-                        <Text fx:id="departmentCount" layoutX="15.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="167.1295280456543">
-                           <font>
-                              <Font size="65.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </AnchorPane>
-               </content>
             </TitledPane>
          </children>
       </TilePane>
