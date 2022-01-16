@@ -33,8 +33,7 @@ import java.util.*;
 
 public class PatientDashBoard
     {
-
-        public Button currentStatus;
+        
         public Button myInfo;
         public Button appointment;
         public AnchorPane patientDashBoardPane;
@@ -54,7 +53,6 @@ public class PatientDashBoard
         public RadioButton feeHomeVisit;
         public MenuButton chooseDoc = new MenuButton();
         public MenuButton chooseSlot = new MenuButton();
-        public DatePicker appointmentDate;
         public TextField appSubject;
         public TextArea appDescription;
         public MenuButton chooseDate;
@@ -158,7 +156,6 @@ public class PatientDashBoard
                     {
                         btn.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
                         appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-                        currentStatus.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
 
                         defultActiveBtn(patient);
                         
@@ -166,13 +163,6 @@ public class PatientDashBoard
                 else if (btn.equals(appointment))
                     {
                         btn.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
-                        myInfo.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-                        currentStatus.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-                    }
-                else if (btn.equals(currentStatus))
-                    {
-                        btn.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
-                        appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
                         myInfo.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
                     }
             }
@@ -189,17 +179,7 @@ public class PatientDashBoard
                 root = FXMLSceneChanger.root;
                 workingSubScene.setCenter(root);
             }
-
-        public void currentStatusAction(MouseEvent mouseEvent)
-            {
-                changeColor(currentStatus);
-                FXMLSceneChanger sceneChanger = FXMLSceneChanger.load("patient/currentStatus.fxml");
-    
-                root = FXMLSceneChanger.root;
-                workingSubScene.setCenter(root);
-    
-                System.out.println(patient.patientID);
-            }
+            
 
         public void returnHomeAction(MouseEvent mouseEvent)
             {
