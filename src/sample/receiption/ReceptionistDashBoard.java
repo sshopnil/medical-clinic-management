@@ -16,12 +16,19 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import sample.FXMLSceneChanger;
 import sample.Main;
+import sample.doctor.AppointmentInfo;
+import sample.mainServer.NetworkUtil;
 import sample.patient.ThePatient;
 
 
+import javax.swing.*;
 import java.io.*;
 
+import java.net.Socket;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 public class ReceptionistDashBoard
@@ -34,7 +41,6 @@ public class ReceptionistDashBoard
     public Button organize;
     public VBox organizeSubMenu;
     public Button quickView;
-    public Button report;
     public Button profile;
     public BorderPane adminSubscene;
     public SubScene mainSubScene;
@@ -52,6 +58,7 @@ public class ReceptionistDashBoard
     public TableColumn<AppointedPatient, String> appTime;
     public TableColumn<AppointedPatient, String> appDate;
     public TableColumn<AppointedPatient, String> appDoc;
+    public DatePicker dateToSet;
     @FXML
     private Text ap_fname;
     
@@ -84,7 +91,9 @@ public class ReceptionistDashBoard
     
     Parent root;
     private int count = 0;
-
+    private String quickViewFromServer;
+    
+    
     void defultActiveBtn()
     {
         quickView.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000");
@@ -104,10 +113,41 @@ public class ReceptionistDashBoard
         
         root = FXMLSceneChanger.root;
         quickViewController controller = (quickViewController) FXMLSceneChanger.controller;
-        controller.appointmentsCount.setText("00");
-        controller.timeSlotsCount.setText("00");
-        controller.departmentCount.setText("00");
+    
+        getQuickViewData();
+        String[] qData = quickViewFromServer.split(" ");
+        controller.appointmentsCount.setText(qData[0]);
+        controller.timeSlotsCount.setText(qData[1]);
         adminSubscene.setCenter(root);
+    }
+    void getQuickViewData()
+    {
+        try
+        {
+            Scanner scanner = new Scanner(new File("src/sample/mainServer/AppointmentData/appointedPatients.txt"));
+            int totalApp = 0;
+            
+            while (scanner.hasNext())
+            {
+                scanner.nextLine();
+                totalApp++;
+            }
+            scanner = new Scanner(new File("src/sample/mainServer/AppointmentData/timeSlot.txt"));
+            int totalSlot = 0;
+            
+            while (scanner.hasNext())
+            {
+                scanner.nextLine();
+                totalSlot++;
+            }
+            scanner.close();
+            quickViewFromServer = totalApp + " " + totalSlot;
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+    
     }
     void changeColor(Button btn)
     {
@@ -119,7 +159,6 @@ public class ReceptionistDashBoard
             profile.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
             timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
             defultActiveBtn();
@@ -130,7 +169,6 @@ public class ReceptionistDashBoard
             quickView.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
             timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
     
@@ -153,7 +191,6 @@ public class ReceptionistDashBoard
             quickView.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             profile.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
             timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
 
@@ -167,25 +204,10 @@ public class ReceptionistDashBoard
             quickView.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             profile.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
             timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
 
             FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/appointmentScene.fxml");
-            root = changer.root;
-            adminSubscene.setCenter(root);
-        }
-        else if (btn.equals(report))
-        {
-            btn.setStyle("-fx-background-color: #FCF6F5FF; -fx-text-fill: #000000");
-            quickView.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            profile.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
-            timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
-
-            FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/reportScene.fxml");
             root = changer.root;
             adminSubscene.setCenter(root);
         }
@@ -194,7 +216,6 @@ public class ReceptionistDashBoard
             quickView.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             profile.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
         }
         else if(btn.equals(doctors))
@@ -203,7 +224,6 @@ public class ReceptionistDashBoard
             quickView.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             profile.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             timeSlots.setStyle("-fx-background-color:  #4c5159; -fx-text-fill: #ffffff");
         }
@@ -213,7 +233,6 @@ public class ReceptionistDashBoard
             quickView.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             profile.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
-            report.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color:  #4c5159; -fx-text-fill: #ffffff");
         }
@@ -254,10 +273,6 @@ public class ReceptionistDashBoard
         controller.tblView.setItems(list);
         //controller.tblView.getColumns().addAll(controller.tblColPatientId, controller.tblColPatientDob, controller.tblColPatientAddress, controller.tblColPatientContactNo);
     }
-    public void reportAction(MouseEvent mouseEvent)
-    {
-        changeColor(report);
-    }
     
     public void organizeAction(MouseEvent mouseEvent)
     {
@@ -291,6 +306,7 @@ public class ReceptionistDashBoard
         Main.primaryStage.setScene(scene);
     }
     
+    //select a time slot for showing doctor
     public void timeSlotsAction(MouseEvent mouseEvent)
     {
         changeColor(timeSlots);
@@ -298,6 +314,10 @@ public class ReceptionistDashBoard
         root = changer.root;
         adminSubscene.setCenter(root);
         
+        ReceptionistDashBoard controller = (ReceptionistDashBoard) FXMLSceneChanger.controller;
+        controller.timeCol.setCellValueFactory(new PropertyValueFactory<timeSlot, String>("time"));
+        controller.slotCol.setCellValueFactory(new PropertyValueFactory<timeSlot, String>("slot"));
+        showSlots();
     }
     
     public void doctorsAction(MouseEvent mouseEvent)
@@ -308,23 +328,36 @@ public class ReceptionistDashBoard
         adminSubscene.setCenter(root);
     }
     
+    
+    //adding time to new slots
     public void addTime(MouseEvent mouseEvent)
     {
-        ObservableList<timeSlot> myTableData = FXCollections.observableArrayList(
-                new timeSlot(hour.getText(), minute.getText(), amPmBtn.getText())
-                );
-        timeCol.setCellValueFactory(new PropertyValueFactory<timeSlot, String>("time"));
-        slotCol.setCellValueFactory(new PropertyValueFactory<timeSlot, String>("slot"));
-        
-        timeTable.getItems().addAll(myTableData);
-    
-    
+        String time = "";
+        String date = "";
         try
         {
-            FileWriter fr = new FileWriter("src/sample/mainServer/AppointmentData/timeSlot.txt", true);
+            time = hour.getText() + ":" + minute.getText() + " " + amPmBtn.getText();
+            LocalDate date1 = dateToSet.getValue();
+            date = date1.toString();
+    
+            boolean doAppend = true;
+            writeSlot(time, date, doAppend);
+            showSlots();
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Please provide valid info");
+        }
+    }
+    
+    private void writeSlot(String time, String slot, boolean doAppend)
+    {
+        try
+        {
+            FileWriter fr = new FileWriter("src/sample/mainServer/AppointmentData/timeSlot.txt", doAppend);
             BufferedWriter br = new BufferedWriter(fr);
-            
-            br.append(hour.getText() + ":" + minute.getText() + ":" + amPmBtn.getText() + "\n");
+
+            br.write(time + ";;" + slot + "\n");
             br.close();
             fr.close();
         }
@@ -334,26 +367,34 @@ public class ReceptionistDashBoard
         }
     }
     
+    /*================================================
+    current working line
+    ==================================================
+     */
     public void removeTime(MouseEvent mouseEvent)
     {
         timeTable.getItems().removeAll(timeTable.getSelectionModel().getSelectedItems());
-        
-        ObservableList<timeSlot> updated = FXCollections.observableArrayList();
-        for (timeSlot ts: timeTable.getItems())
+        ObservableList<timeSlot> list = FXCollections.observableArrayList();
+        boolean doAppend = false;
+        for (timeSlot info: timeTable.getItems())
         {
-            updated.add(ts);
+            list.add(new timeSlot(info.getTime(), info.getSlot()));
         }
-        
-        int i = 0;
+        writeSlot(list, doAppend);
+    }
+    private void writeSlot(List<timeSlot> slotList, boolean doAppend)
+    {
         try
         {
-            FileWriter fr = new FileWriter("src/sample/mainServer/AppointmentData/timeSlot.txt");
+            FileWriter fr = new FileWriter("src/sample/mainServer/AppointmentData/timeSlot.txt", doAppend);
             BufferedWriter br = new BufferedWriter(fr);
+    
+            Iterator<timeSlot> itr = slotList.iterator();
             
-            while (updated.size() > i)
+            while (itr.hasNext())
             {
-                br.write(updated.get(i).getTime()+":"+updated.get(i).getSlot()+"\n");
-                i++;
+                timeSlot ts = itr.next();
+                br.write(ts.getTime() + ";;" + ts.getSlot() + "\n");
             }
             br.close();
             fr.close();
@@ -363,7 +404,6 @@ public class ReceptionistDashBoard
             e.printStackTrace();
         }
     }
-    
     public void ampmClicked(MouseEvent mouseEvent)
     {
         selectAM.setOnAction(e ->
@@ -372,9 +412,12 @@ public class ReceptionistDashBoard
                 amPmBtn.setText(selectPM.getText()));
     }
     
-    public void showSlots(MouseEvent mouseEvent)
+    public void showSlots()
     {
+        ReceptionistDashBoard controller = (ReceptionistDashBoard) FXMLSceneChanger.controller;
         Scanner scanner = null;
+    
+        ArrayList<timeSlot> list = new ArrayList<>();
         try
         {
             scanner = new Scanner(new File("src/sample/mainServer/AppointmentData/timeSlot.txt"));
@@ -383,19 +426,18 @@ public class ReceptionistDashBoard
         {
             e.printStackTrace();
         }
-        ObservableList<timeSlot> slots = FXCollections.observableArrayList();
         while (scanner.hasNext())
         {
             String str = scanner.nextLine().trim();
-            String[] divider = str.split(":");
-            slots.add(new timeSlot(divider[0], divider[1], divider[2]));
+            String[] divider = str.split(";;");
+            list.add(new timeSlot(divider[0], divider[1]));
         }
-        
-        timeCol.setCellValueFactory(new PropertyValueFactory<timeSlot, String>("time"));
-        slotCol.setCellValueFactory(new PropertyValueFactory<timeSlot, String>("slot"));
-    
-        timeTable.setItems(slots);
+//
+//        timeCol.setCellValueFactory(new PropertyValueFactory<timeSlot, String>("time"));
+//        slotCol.setCellValueFactory(new PropertyValueFactory<timeSlot, String>("slot"));
         scanner.close();
+        ObservableList<timeSlot> thisList = FXCollections.observableList(list);
+        controller.timeTable.setItems(thisList);
     }
     
     public void appCancelAction(MouseEvent mouseEvent)

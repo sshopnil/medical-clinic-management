@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
@@ -13,12 +12,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="822.0" style="-fx-background-color: #f5f0e1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.doctor.DoctorDashBoard">
    <children>
-      <Text fill="#1e3d59" layoutX="56.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Set appointment info">
+      <Text fill="#1e3d59" layoutX="44.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Approved slots:">
          <font>
             <Font size="30.0" />
          </font>
       </Text>
-      <Button layoutX="45.0" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#appSubmit" prefHeight="36.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: #19861b; -fx-border-radius: 40;" text="Submit" textFill="#19861b" />
+      <Button layoutX="528.0" layoutY="435.0" mnemonicParsing="false" onMouseClicked="#appSubmit" prefHeight="36.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: #19861b; -fx-border-radius: 40;" text="approve" textFill="#19861b" />
       <TableView fx:id="appTable" editable="true" layoutX="44.0" layoutY="129.0" prefHeight="262.0" prefWidth="733.0">
         <columns>
           <TableColumn fx:id="tableTime" prefWidth="75.0" text="Time" />
@@ -29,39 +28,26 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TextField fx:id="appHour" layoutX="45.0" layoutY="446.0" prefHeight="36.0" prefWidth="50.0" promptText="hour" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" />
-      <DatePicker fx:id="appDate" layoutX="307.0" layoutY="446.0" prefHeight="35.0" prefWidth="191.0" promptText="select a date" />
-      <TextField fx:id="appNo" layoutX="534.0" layoutY="446.0" prefHeight="36.0" prefWidth="171.0" promptText="No. of total appointment" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;">
+      <TextField fx:id="appNo" layoutX="315.0" layoutY="440.0" prefHeight="36.0" prefWidth="171.0" promptText="No. of total appointment" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;">
          <font>
             <Font size="12.0" />
          </font>
       </TextField>
-      <Button layoutX="185.0" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#appRemove" prefHeight="36.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: #ea5646; -fx-border-radius: 40;" text="Remove" textFill="#ea5646" />
-      <TextField fx:id="appMin" layoutX="127.0" layoutY="446.0" prefHeight="36.0" prefWidth="50.0" promptText="min" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" />
-      <Text layoutX="107.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" wrappingWidth="8.3798828125">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="44.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time (Hour: MInute):">
+      <Button layoutX="649.0" layoutY="435.0" mnemonicParsing="false" onMouseClicked="#appRemove" prefHeight="36.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: #ea5646; -fx-border-radius: 40;" text="Remove" textFill="#ea5646" />
+      <Text layoutX="44.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requested time &amp; dates:">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text layoutX="307.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick a Date:">
+      <Text layoutX="315.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. of Appointments:">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text layoutX="534.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. of Appointments:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <MenuButton fx:id="amPmBtn" layoutX="195.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#amPmAction" style="-fx-background-color: transparent; -fx-border-color: #1e3d59;" text="AM/PM">
+      <MenuButton fx:id="approvedBtn" layoutX="44.0" layoutY="440.0" mnemonicParsing="false" onMouseClicked="#approvedBtnAction" prefHeight="36.0" prefWidth="234.0" style="-fx-background-color: transparent; -fx-border-color: #0d1e43; -fx-border-radius: 20;" text="select" textFill="#0d1e43">
         <items>
-          <MenuItem fx:id="am" mnemonicParsing="false" text="AM" />
-          <MenuItem fx:id="pm" mnemonicParsing="false" text="PM" />
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
         </items>
       </MenuButton>
    </children>
