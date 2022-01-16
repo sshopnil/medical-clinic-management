@@ -14,7 +14,7 @@
             <Font size="43.0" />
          </font>
       </Text>
-      <TilePane fx:id="tilePanel" layoutX="86.0" layoutY="198.0" prefHeight="206.0" prefWidth="644.0">
+      <TilePane fx:id="tilePanel" layoutX="42.0" layoutY="198.0" prefHeight="206.0" prefWidth="644.0">
          <children>
             <TitledPane animated="false" collapsible="false" style="-fx-background-color: #cdd180;" text="Active Time Slots">
                <content>
