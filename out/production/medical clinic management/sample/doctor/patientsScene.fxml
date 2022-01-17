@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="600.0" maxWidth="810.0" prefHeight="600.0" prefWidth="810.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.doctor.DoctorDashBoard">
    <children>
       <Text fill="#1f0e47" layoutX="24.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointed Patients:">
@@ -16,7 +15,7 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <TableView fx:id="appointedTable" editable="true" layoutX="24.0" layoutY="85.0" prefHeight="338.0" prefWidth="766.0">
+      <TableView fx:id="appointedTable" editable="true" layoutX="24.0" layoutY="85.0" onMouseClicked="#tableItemAction" prefHeight="338.0" prefWidth="766.0">
         <columns>
           <TableColumn fx:id="patID" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="patName" prefWidth="97.60003662109375" text="Name" />
@@ -36,7 +35,7 @@
          </font>
       </Text>
       <DatePicker layoutX="34.0" layoutY="470.0" prefHeight="36.0" prefWidth="217.0" />
-      <Button layoutX="554.0" layoutY="464.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #1b5b20; -fx-border-radius: 20;" text="Visited" textFill="#1b5b20">
+      <Button layoutX="554.0" layoutY="464.0" mnemonicParsing="false" onMouseClicked="#patVisitedAction" style="-fx-background-color: transparent; -fx-border-color: #1b5b20; -fx-border-radius: 20;" text="Visited" textFill="#1b5b20">
          <font>
             <Font size="18.0" />
          </font>
@@ -46,5 +45,15 @@
             <Font size="18.0" />
          </font>
       </Button>
+      <Text fill="#df3838" layoutX="598.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text fx:id="patStatus" fill="#10ac18" layoutX="689.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
