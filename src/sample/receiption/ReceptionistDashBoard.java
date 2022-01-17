@@ -59,6 +59,11 @@ public class ReceptionistDashBoard
     public TableColumn<AppointedPatient, String> appDate;
     public TableColumn<AppointedPatient, String> appDoc;
     public DatePicker dateToSet;
+    public TableView<DuePayment> doctorTable;
+    public TableColumn<DuePayment, String> docName;
+    public TableColumn<DuePayment, String> docDept;
+    public TableColumn<DuePayment, String> docAmount;
+    
     @FXML
     private Text ap_fname;
     
@@ -291,6 +296,14 @@ public class ReceptionistDashBoard
         root = changer.root;
         adminSubscene.setCenter(root);
         changeColor(doctors);
+    
+        ReceptionistDashBoard controller = (ReceptionistDashBoard) FXMLSceneChanger.controller;
+    
+        controller.docName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        controller.docDept.setCellValueFactory(new PropertyValueFactory<>("dept"));
+        controller.docAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+    
+        showDoctors(controller);
     }
     
     //logout button action
@@ -326,6 +339,38 @@ public class ReceptionistDashBoard
         FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/doctorsScene.fxml");
         root = changer.root;
         adminSubscene.setCenter(root);
+        
+        ReceptionistDashBoard controller = (ReceptionistDashBoard) FXMLSceneChanger.controller;
+        
+        controller.docName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        controller.docDept.setCellValueFactory(new PropertyValueFactory<>("dept"));
+        controller.docAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        
+        showDoctors(controller);
+    }
+    
+    private void showDoctors(ReceptionistDashBoard controller)
+    {
+        ArrayList<DuePayment> myList = new ArrayList<>();
+    
+        try
+        {
+            Scanner scanner = new Scanner(new File("src/sample/mainServer/DoctorsData/Payments/allDocsDue.txt"));
+            
+            while (scanner.hasNext())
+            {
+                String[] info = scanner.nextLine().split(";;");
+                myList.add(new DuePayment(info[0], info[1], info[2]));
+            }
+            
+            ObservableList<DuePayment> allInfo = FXCollections.observableList(myList);
+            
+            controller.doctorTable.setItems(allInfo);
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
     }
     
     
