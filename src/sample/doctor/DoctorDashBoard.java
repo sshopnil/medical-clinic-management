@@ -59,6 +59,7 @@ public class DoctorDashBoard
         public TableColumn<MyPatients, String> patSubject;
         public TableColumn<MyPatients, String> patDes;
         public TableColumn<MyPatients, String> patType;
+        public Text patStatus;
         String time = "";
         String date = "";
         String limit = "";
@@ -169,6 +170,7 @@ public class DoctorDashBoard
             //String id, String name, String sub, String des, String time, String date
             
             refreshPatientTable();
+            controller.patStatus.setText("Waiting");
         }
     
         private void refreshPatientTable()
@@ -268,6 +270,105 @@ public class DoctorDashBoard
             {
                 e.printStackTrace();
             }
+        }
+    
+        public void patVisitedAction(MouseEvent mouseEvent)
+        {
+            MyPatients patient = appointedTable.getSelectionModel().getSelectedItem();
+    
+            Scanner scan = null;
+            try
+            {
+                scan = new Scanner(new File("src/sample/mainServer/DoctorsData/lastLoggedIn.txt"));
+                String[] docInfo = scan.nextLine().split(";;");
+    
+                scan.close();
+                
+                scan = new Scanner(new File("src/sample/mainServer/DoctorsData/Payments/allDocsDue.txt"));
+                boolean newPat = true;
+                
+                while (scan.hasNext())
+                {
+                    String[] patDetail = scan.nextLine().split(";;");
+    
+                    if(docInfo[0].equals(patDetail[0]) && patDetail[3].equals(patient.id) && patDetail[4].equals(patient.date) && patDetail[5].equals(patient.time))
+                    {
+                        newPat = false;
+                    }
+                }
+                scan.close();
+                
+                if (newPat)
+                {
+                    FileWriter fr = new FileWriter("src/sample/mainServer/DoctorsData/Payments/allDocsDue.txt", true);
+                    BufferedWriter br = new BufferedWriter(fr);
+    
+                    double amount = 0;
+                    switch (patient.type)
+                    {
+                        case "general":
+                            amount = 1000.00;
+                            break;
+                        case "private":
+                            amount = 1500.00;
+                            break;
+                        case "home visit":
+                            amount = 2500.00;
+                            break;
+                    }
+                    br.write(docInfo[0] + ";;" + docInfo[1] + ";;" + String.valueOf(amount) +";;" +patient.id + ";;" + patient.date + ";;" + patient.time + "\n");
+    
+    
+                    br.close();
+                    fr.close();
+                }
+                String ol = patient.type;
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    
+        public void tableItemAction(MouseEvent mouseEvent)
+        {
+            MyPatients patient = appointedTable.getSelectionModel().getSelectedItem();
+            DoctorDashBoard controller = (DoctorDashBoard) FXMLSceneChanger.controller;
+            
+            try
+            {
+                Scanner scan = new Scanner(new File("src/sample/mainServer/DoctorsData/lastLoggedIn.txt"));
+                String[] docInfo = scan.nextLine().split(";;");
+    
+                scan.close();
+                
+                scan = new Scanner(new File("src/sample/mainServer/DoctorsData/Payments/allDocsDue.txt"));
+                boolean newPat = true;
+    
+                while (scan.hasNext())
+                {
+                    String[] patDetail = scan.nextLine().split(";;");
+        
+                    if(patDetail[0].equals(docInfo[0]) && patDetail[3].equals(patient.id) && patDetail[4].equals(patient.date) && patDetail[5].equals(patient.time))
+                    {
+                        newPat = false;
+                    }
+                }
+                if (!newPat)
+                {
+                    controller.patStatus.setText("Visited");
+                }
+                else
+                {
+                    controller.patStatus.setText("Waiting");
+                }
+                scan.close();
+            }
+            catch (FileNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+    
         }
     
         public void financeAction(ActionEvent actionEvent) {
@@ -459,6 +560,7 @@ public class DoctorDashBoard
             }
             return null;
         }
+    
         //=============================setting up time ends============================================
         //===============================================================================================
     }
