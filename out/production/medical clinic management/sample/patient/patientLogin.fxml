@@ -30,12 +30,12 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Text fill="#145e67f7" layoutX="271.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name or ID">
+      <Text fill="#145e67f7" layoutX="271.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID:">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="#145e67f7" layoutX="271.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth:">
+      <Text fill="#145e67f7" layoutX="271.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Birth:">
          <font>
             <Font size="18.0" />
          </font>
