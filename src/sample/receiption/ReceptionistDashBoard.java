@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import sample.FXMLSceneChanger;
@@ -27,10 +28,7 @@ import java.io.*;
 
 import java.net.Socket;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ReceptionistDashBoard
 {
@@ -64,12 +62,21 @@ public class ReceptionistDashBoard
     public TableColumn<DuePayment, String> docName;
     public TableColumn<DuePayment, String> docDept;
     public TableColumn<DuePayment, String> docAmount;
+    public TableColumn<DuePayment, String> paidAmount;
     public Button regDoctors;
     public TableView<regDocs> regDocTable;
     public TableColumn<regDocs, String> regDocName;
     public TableColumn<regDocs, String> regDocDep;
     public TableColumn<regDocs, String> regDocMail;
     public TableColumn<regDocs, String> regDocPhone;
+    public TextField paymentField;
+    public MenuButton feetype;
+    public MenuItem feeRegular;
+    public MenuItem feePrivate;
+    public MenuItem feeHome;
+    public HBox feeBox;
+    public TextField feeAmountField;
+    public TextArea showFeeData;
     
     @FXML
     private Text ap_fname;
@@ -320,13 +327,13 @@ public class ReceptionistDashBoard
         root = changer.root;
         adminSubscene.setCenter(root);
         changeColor(doctors);
-    
+
         ReceptionistDashBoard controller = (ReceptionistDashBoard) FXMLSceneChanger.controller;
-    
+
         controller.docName.setCellValueFactory(new PropertyValueFactory<>("name"));
         controller.docDept.setCellValueFactory(new PropertyValueFactory<>("dept"));
         controller.docAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-    
+        controller.paidAmount.setCellValueFactory(new PropertyValueFactory<>("paid"));
         showDoctors(controller);
     }
     
@@ -348,7 +355,7 @@ public class ReceptionistDashBoard
     {
         changeColor(timeSlots);
         FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/timeSlotsScene.fxml");
-        root = changer.root;
+        root = FXMLSceneChanger.root;
         adminSubscene.setCenter(root);
         
         ReceptionistDashBoard controller = (ReceptionistDashBoard) FXMLSceneChanger.controller;
@@ -361,7 +368,7 @@ public class ReceptionistDashBoard
     {
         changeColor(doctors);
         FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/doctorsScene.fxml");
-        root = changer.root;
+        root = FXMLSceneChanger.root;
         adminSubscene.setCenter(root);
         
         ReceptionistDashBoard controller = (ReceptionistDashBoard) FXMLSceneChanger.controller;
@@ -369,6 +376,7 @@ public class ReceptionistDashBoard
         controller.docName.setCellValueFactory(new PropertyValueFactory<>("name"));
         controller.docDept.setCellValueFactory(new PropertyValueFactory<>("dept"));
         controller.docAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        controller.paidAmount.setCellValueFactory(new PropertyValueFactory<>("paid"));
         
         showDoctors(controller);
     }
@@ -376,16 +384,53 @@ public class ReceptionistDashBoard
     private void showDoctors(ReceptionistDashBoard controller)
     {
         ArrayList<DuePayment> myList = new ArrayList<>();
-    
+//        HashMap<String, String> allDocs = new HashMap<>();
+        ArrayList<String> allDocs = new ArrayList<>();
         try
         {
             Scanner scanner = new Scanner(new File("src/sample/mainServer/DoctorsData/Payments/allDocsDue.txt"));
             
             while (scanner.hasNext())
             {
-                String[] info = scanner.nextLine().split(";;");
-                myList.add(new DuePayment(info[0], info[1], info[2]));
+                String[] str = scanner.nextLine().split(";;");
+                allDocs.add(str[0] +";;"+ str[1]);
             }
+            scanner.close();
+            
+            scanner = new Scanner(new File("src/sample/mainServer/DoctorsData/Payments/visitFee.txt"));
+            String show = "";
+            while (scanner.hasNext())
+            {
+                String[] str = scanner.nextLine().split(";;");
+                show += str[0] + "----" + str[1] + "\n";
+            }
+            scanner.close();
+            controller.showFeeData.setText(show);
+            
+            
+//            Set<String> set = allDocs.keySet();
+            scanner = new Scanner(new File("src/sample/mainServer/DoctorsData/Payments/allDocsDue.txt"));
+            for (String doc: allDocs)
+            {
+                String[] dinfo = doc.split(";;");
+//                scanner = new Scanner(new File("src/sample/mainServer/DoctorsData/Payments/allDocsDue.txt"));
+//                String[] dinfo = doc.split(";;");
+//                double dueAmount = 0;
+//                double paidAmount = 0;
+//                while (scanner.hasNext())
+//                {
+//                    String[] info = scanner.nextLine().split(";;");
+//
+//                    if (info[0].equals(doc) && info[1].equals(allDocs.get(doc)))
+//                    {
+//                        dueAmount += Double.parseDouble(info[2]);
+//                        paidAmount += Double.parseDouble(info[3]);
+//                    }
+//                }
+                String[] info = scanner.nextLine().split(";;");
+                myList.add(new DuePayment(dinfo[0],info[4], info[2], info[3]));
+            }
+            scanner.close();
             
             ObservableList<DuePayment> allInfo = FXCollections.observableList(myList);
             
@@ -397,7 +442,140 @@ public class ReceptionistDashBoard
         }
     }
     
+    public void doctorsPayAction(MouseEvent mouseEvent)
+    {
+        DuePayment payment = doctorTable.getSelectionModel().getSelectedItem();
+
+        try
+        {
+//            System.out.println("entered try block!");
+            double amountToBePaid = Double.parseDouble(paymentField.getText());
+            double remAmount = Double.parseDouble(payment.amount);
+//            System.out.println("problem after change");
+            String filePath = "src/sample/mainServer/DoctorsData/Payments/allDocsDue.txt";
+
+            if (remAmount >= amountToBePaid)
+            {
+                remAmount -= amountToBePaid;
+
+                try
+                {
+                    String updateData = "";
+                    Scanner scanner = new Scanner(new File(filePath));
+                    ArrayList<String> othersData = new ArrayList<>();
+                    while (scanner.hasNext())
+                    {
+                        String str = scanner.nextLine();
+                        String[] temp = str.split(";;");
+
+                        if (payment.name.equals(temp[0]) && payment.dept.equals(temp[4]))
+                        {
+                            double totalPaid = Double.parseDouble(temp[3]);
+                            totalPaid += amountToBePaid;
+                            updateData = payment.name + ";;" + payment.dept + ";;" + remAmount + ";;" + totalPaid + ";;" + temp[4] + ";;" + temp[5] + ";;" + temp[6] + "\n";
+                            othersData.add(updateData);
+                            continue;
+                        }
+                        othersData.add(str + "\n");
+                    }
+                    scanner.close();
+                    
+                    FileWriter fr = new FileWriter(filePath);
+                    BufferedWriter br = new BufferedWriter(fr);
+                    
+//                    Set<String> keys = othersData.keySet();
+                    for (String str: othersData)
+                    {
+                        br.write(str);
+                    }
+                    br.close();
+                    fr.close();
+                    ReceptionistDashBoard controller = (ReceptionistDashBoard) FXMLSceneChanger.controller;
+                    showDoctors(controller);
+                    JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Payment successful!");
+                }
+                catch (FileNotFoundException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Pay lower than due!!");
+            }
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Select doctor / give valid info!");
+        }
+    }
     
+    public void docTableItemAction(MouseEvent mouseEvent)
+    {
+        DuePayment payment = doctorTable.getSelectionModel().getSelectedItem();
+        ReceptionistDashBoard controller = (ReceptionistDashBoard) FXMLSceneChanger.controller;
+        controller.paymentField.setText(payment.amount);
+    }
+    
+    public void feetypeAction(MouseEvent mouseEvent)
+    {
+        feeHome.setOnAction(e->
+                feetype.setText(feeHome.getText()));
+        feePrivate.setOnAction(e->
+                feetype.setText(feePrivate.getText()));
+        feeRegular.setOnAction(e->
+                feetype.setText(feeRegular.getText()));
+    }
+    
+    public void submitFeeAction(MouseEvent mouseEvent)
+    {
+        String Type = feetype.getText().toLowerCase() + ";;" + feeAmountField.getText();
+    
+        try
+        {
+            Scanner scanner = new Scanner(new File("src/sample/mainServer/DoctorsData/Payments/visitFee.txt"));
+            ArrayList<String> list = new ArrayList<>();
+            while (scanner.hasNext())
+            {
+                String str = scanner.nextLine();
+                String[] temp = str.split(";;");
+                if (temp[0].equals(feetype.getText().toLowerCase()))
+                {
+                    list.add(Type+"\n");
+                    continue;
+                }
+                list.add(str+"\n");
+            }
+            scanner.close();
+            String show = "";
+            for (String str: list)
+            {
+                String[] inf = str.split(";;");
+                show += inf[0] + "-----" + inf[1];
+            }
+            ReceptionistDashBoard controller = (ReceptionistDashBoard) FXMLSceneChanger.controller;
+            
+            controller.showFeeData.setText(show);
+            
+            FileWriter fr = new FileWriter("src/sample/mainServer/DoctorsData/Payments/visitFee.txt");
+            BufferedWriter br = new BufferedWriter(fr);
+            
+            for (String str: list)
+            {
+                br.write(str);
+            }
+            br.close();
+            fr.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    
+    }
+    
+    //=================================doctor payment option==============================================
+    //==========================================END=======================================================
     //adding time to new slots
     public void addTime(MouseEvent mouseEvent)
     {
