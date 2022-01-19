@@ -27,9 +27,9 @@
       <RadioButton fx:id="feeHomeVisit" layoutX="395.0" layoutY="148.0" mnemonicParsing="false" text="Home visit" toggleGroup="$feeType" />
       <MenuButton fx:id="chooseDoc" layoutX="83.0" layoutY="234.0" mnemonicParsing="false" onMouseClicked="#doctorMenuBtnAction" prefHeight="27.0" prefWidth="210.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" text="Choose" />
       <Text layoutX="84.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Doctor and department:" />
-      <MenuButton fx:id="chooseSlot" layoutX="397.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#chooseSlotAction" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" text="Choose" />
-      <Text layoutX="397.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available Slots:" />
-      <Text layoutX="398.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available Date:" />
+      <MenuButton fx:id="chooseSlot" layoutX="425.0" layoutY="327.0" mnemonicParsing="false" onMouseClicked="#chooseSlotAction" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" text="Choose" />
+      <Text layoutX="425.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available Time Slots:" />
+      <Text layoutX="426.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available Date:" />
       <Text layoutX="88.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:" />
       <TextField fx:id="appSubject" layoutX="85.0" layoutY="328.0" prefHeight="27.0" prefWidth="258.0" style="-fx-border-color: #1e3d59; -fx-border-radius: 10; -fx-background-color: transparent;" />
       <Text layoutX="85.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
@@ -39,6 +39,6 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <MenuButton fx:id="chooseDate" layoutX="397.0" layoutY="328.0" mnemonicParsing="false" onMouseClicked="#chooseDateAction" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" text="Choose" />
+      <MenuButton fx:id="chooseDate" layoutX="425.0" layoutY="234.0" mnemonicParsing="false" onMouseClicked="#chooseDateAction" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 10;" text="Choose" />
    </children>
 </AnchorPane>

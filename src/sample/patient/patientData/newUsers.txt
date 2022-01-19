@@ -1,4 +1,3 @@
-null;;niggy;;Male;;2021-01-01;;1234567890;;dsad;;Self;;Single;;Islam
-2346;;niggy2;;Male;;2021-01-01;;0123456789;;anywhereneardhaka;;Self;;Single;;Animist
-nnigg202141;;nigg;;Male;;2021-01-01;;0123456789;;anywherenearhell;;Self;;Single;;Animist
-sshayan20213841;;shayan;;Male;;2021-01-01;;0123456789;;anywhereindhaka;;Self;;Single;;Islam
+Sshayan20214221;;Shayan;;Male;;2021-01-01;;01234567891;;street;;Self;;Single;;Islam
+Ttanvir20211971;;Tanvir;;Male;;2021-01-01;;789456132587;;street;;Self;;Married;;Islam
+ssabbir2021461;;sabbir;;Male;;2021-01-01;;15789587910;;street;;Parent;;Married;;Animist
