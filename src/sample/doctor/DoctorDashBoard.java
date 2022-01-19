@@ -312,7 +312,7 @@ public class DoctorDashBoard
                         case "private":
                             amount = 1500.00;
                             break;
-                        case "home visit":
+                        case "homevisit":
                             amount = 2500.00;
                             break;
                     }
@@ -334,7 +334,6 @@ public class DoctorDashBoard
         {
             MyPatients patient = appointedTable.getSelectionModel().getSelectedItem();
             DoctorDashBoard controller = (DoctorDashBoard) FXMLSceneChanger.controller;
-            
             try
             {
                 Scanner scan = new Scanner(new File("src/sample/mainServer/DoctorsData/lastLoggedIn.txt"));

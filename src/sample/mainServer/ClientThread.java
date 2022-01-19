@@ -67,7 +67,7 @@ public class ClientThread implements Runnable
                 String docName = checkExtraInfo[1];
                 if (docName.contains("Choose"))
                 {
-                    serverMsg = serverMsg = "Please select your doctor first";
+                    serverMsg = "Please select your doctor first";
                 }
                 else
                 {
