@@ -5,3 +5,8 @@ doctor;;doctor;;doctor
 doctor;;doctor;;doctor
 doctor;;doctor;;doctor
 Kashem;;12;;12
+Lutfor Rahman;;lutfurrahman@ymail.com;;1234
+Syed Atiqul Haq;;syedatiqul@gmail.com;;1234
+Pro. Dr. M.U. Kabir Chowdhury;;drkabir@ymail.com;;1234
+Prof. Dr. Reza Bin Zahid;;drreza@gmail.com;;1234
+Dr. M.A. Matin;;drmatin@gmail.com;;1234

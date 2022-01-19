@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import sample.FXMLSceneChanger;
 import sample.Main;
 import sample.doctor.AppointmentInfo;
+import sample.doctor.DoctorDashBoard;
 import sample.mainServer.NetworkUtil;
 import sample.patient.ThePatient;
 
@@ -63,6 +64,12 @@ public class ReceptionistDashBoard
     public TableColumn<DuePayment, String> docName;
     public TableColumn<DuePayment, String> docDept;
     public TableColumn<DuePayment, String> docAmount;
+    public Button regDoctors;
+    public TableView<regDocs> regDocTable;
+    public TableColumn<regDocs, String> regDocName;
+    public TableColumn<regDocs, String> regDocDep;
+    public TableColumn<regDocs, String> regDocMail;
+    public TableColumn<regDocs, String> regDocPhone;
     
     @FXML
     private Text ap_fname;
@@ -166,7 +173,18 @@ public class ReceptionistDashBoard
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
             timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+            regDoctors.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             defultActiveBtn();
+        }
+        else if (btn.equals(regDoctors))
+        {
+            btn.setStyle("-fx-background-color: #FCF6F5FF; -fx-text-fill: #000000");
+            profile.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+            timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+            quickView.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
         }
         else if(btn.equals(profile))
         {
@@ -176,6 +194,7 @@ public class ReceptionistDashBoard
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
             timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+            regDoctors.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
     
             FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/a_profile.fxml");
             root = FXMLSceneChanger.root;
@@ -198,6 +217,7 @@ public class ReceptionistDashBoard
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
             timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+            regDoctors.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
 
             FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/patientScene.fxml");
             root = changer.root;
@@ -211,6 +231,7 @@ public class ReceptionistDashBoard
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
             timeSlots.setStyle("-fx-background-color: #4c5159; -fx-text-fill: #ffffff");
+            regDoctors.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
 
             FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/appointmentScene.fxml");
             root = changer.root;
@@ -222,6 +243,7 @@ public class ReceptionistDashBoard
             profile.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
+            regDoctors.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
         }
         else if(btn.equals(doctors))
         {
@@ -231,6 +253,7 @@ public class ReceptionistDashBoard
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             timeSlots.setStyle("-fx-background-color:  #4c5159; -fx-text-fill: #ffffff");
+            regDoctors.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
         }
         else if(btn.equals(timeSlots))
         {
@@ -240,6 +263,7 @@ public class ReceptionistDashBoard
             appointment.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             regPatient.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
             doctors.setStyle("-fx-background-color:  #4c5159; -fx-text-fill: #ffffff");
+            regDoctors.setStyle("-fx-background-color: #1e3d59; -fx-text-fill: #ffffff");
         }
     }
     public void quickViewAction(MouseEvent mouseEvent)
@@ -566,5 +590,128 @@ public class ReceptionistDashBoard
     
         patientTable.setItems(patients);
         scanner.close();
+    }
+    
+    //this action will remove only registered patients
+    public void patRegCancelledAction(MouseEvent mouseEvent)
+    {
+        ThePatient removedPat = tblView.getSelectionModel().getSelectedItem();
+        tblView.getItems().removeAll(tblView.getSelectionModel().getSelectedItems());
+        
+        ArrayList<String> allPat = new ArrayList<>();
+        
+        try
+        {
+            Scanner scanner = new Scanner(new File("src/sample/patient/patientData/newUsers.txt"));
+            
+            while (scanner.hasNext())
+            {
+                String str = scanner.nextLine();
+                String[] compare = str.split(";;");
+                
+                if (compare[0].equals(removedPat.patientID) && compare[1].equals(removedPat.name))
+                {
+                    continue;
+                }
+                allPat.add(str);
+            }
+            
+            FileWriter fr = new FileWriter("src/sample/patient/patientData/newUsers.txt");
+            BufferedWriter br = new BufferedWriter(fr);
+            
+            for (String str : allPat)
+            {
+                br.write(str + "\n");
+            }
+            br.close();
+            fr.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    
+    }
+    
+    //========================registered doctors==================================
+    //============================================================================
+    public void regDoctorsAction(MouseEvent mouseEvent)
+    {
+        changeColor(regDoctors);
+        FXMLSceneChanger changer = FXMLSceneChanger.load("receiption/regDoctorsScene.fxml");
+        root = changer.root;
+        adminSubscene.setCenter(root);
+    
+        ReceptionistDashBoard controller = (ReceptionistDashBoard) FXMLSceneChanger.controller;
+        controller.regDocName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        controller.regDocDep.setCellValueFactory(new PropertyValueFactory<>("dept"));
+        controller.regDocMail.setCellValueFactory(new PropertyValueFactory<>("mail"));
+        controller.regDocPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        
+        showRegDoctors(controller);
+    }
+    
+    private void showRegDoctors(ReceptionistDashBoard controller)
+    {
+        ArrayList<regDocs> allDocs = new ArrayList<>();
+        try
+        {
+            Scanner scanner = new Scanner(new File("src/sample/mainServer/DoctorsData/allinfo.txt"));
+            
+            while (scanner.hasNext())
+            {
+                String[] str = scanner.nextLine().split(";;");
+                allDocs.add(new regDocs(str[0], str[7], str[3], str[2]));
+            }
+            scanner.close();
+            
+            ObservableList<regDocs> list = FXCollections.observableArrayList(allDocs);
+            
+            controller.regDocTable.setItems(list);
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+    
+    }
+    public void regDocCancelledAction(MouseEvent mouseEvent)
+    {
+        regDocs removedDoc = regDocTable.getSelectionModel().getSelectedItem();
+        regDocTable.getItems().removeAll(regDocTable.getSelectionModel().getSelectedItems());
+        
+        ArrayList<String> updatedDocs = new ArrayList<>();
+    
+        try
+        {
+            Scanner scanner = new Scanner(new File("src/sample/mainServer/DoctorsData/allinfo.txt"));
+            
+            while (scanner.hasNext())
+            {
+                String str = scanner.nextLine();
+                String[] temp = str.split(";;");
+                
+                if (temp[0].equals(removedDoc.name) && temp[7].equals(removedDoc.dept))
+                {
+                    continue;
+                }
+                updatedDocs.add(str);
+            }
+            scanner.close();
+            
+            FileWriter fr = new FileWriter("src/sample/mainServer/DoctorsData/allinfo.txt");
+            BufferedWriter br = new BufferedWriter(fr);
+            
+            for (String str: updatedDocs)
+            {
+                br.write(str + "\n");
+            }
+            br.close();
+            fr.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

@@ -42,7 +42,7 @@ public class ClientThread implements Runnable
             
             String serverMsg = (String) cMsg;
             
-            String[] checkExtraInfo = serverMsg.split(" ");
+            String[] checkExtraInfo = serverMsg.split(";;");
             //reads doctor names
             if (serverMsg.contains("doclist"))
             {
@@ -52,33 +52,25 @@ public class ClientThread implements Runnable
             //read registered doctor departments
             else if(serverMsg.contains("docDepartment"))
             {
-                serverMsg = "";
-                Set set = doctorsList.keySet();
-                Iterator itr = set.iterator();
-                while (itr.hasNext())
-                {
-                    serverMsg += doctorsList.get(itr.next()).deptName + " ";
-                }
+                serverMsg = getDoctorInfo();
             }
             
             //reads available time slots given by admins
             else if(checkExtraInfo[0].contains("timeSlot"))
             {
                 String docName = checkExtraInfo[1];
+                String date = checkExtraInfo[2];
                 if (docName.contains("Choose"))
                 {
                     serverMsg = "Please select your doctor first";
                 }
+                else if(date.contains("Choose"))
+                {
+                    serverMsg = "Select date first";
+                }
                 else
                 {
-                    try
-                    {
-                        serverMsg = readTimeSlot(docName);
-                    }
-                    catch (FileNotFoundException e)
-                    {
-                        e.printStackTrace();
-                    }
+                    serverMsg = readTimeSlot(docName, date);
                 }
             }
             
@@ -92,14 +84,7 @@ public class ClientThread implements Runnable
                 }
                 else
                 {
-                    try
-                    {
-                        serverMsg = readDateSlot(docName);
-                    }
-                    catch (FileNotFoundException e)
-                    {
-                        e.printStackTrace();
-                    }
+                    serverMsg = readDateSlot(docName);
                 }
             }
             
@@ -131,35 +116,55 @@ public class ClientThread implements Runnable
         {
             String[] info = scanner.nextLine().split(";;");
             Information information = new Information(info[0], info[7], clientSocket);
+            System.out.println(information.name);
             doctorsList.put(information.name, information);
         }
     }
-    private String readTimeSlot(String docName) throws FileNotFoundException
+    private String readTimeSlot(String docName, String date)
     {
         String slt = "";
         String[] docAndDept = docName.split("--");
         String path = "src/sample/mainServer/DoctorsData/DoctorsAppointmentInfo/" + docAndDept[0] + "_" + docAndDept[1] + ".txt";
-        Scanner scanner = new Scanner(new File(path));
-        while (scanner.hasNext())
+        Scanner scanner = null;
+        try
         {
-            String[] tslot = scanner.nextLine().split(";;");
-            slt += tslot[2] + ";;";
+            scanner = new Scanner(new File(path));
+            while (scanner.hasNext())
+            {
+                String[] tslot = scanner.nextLine().split(";;");
+                if (tslot[3].equals(date))
+                {
+                    slt += tslot[2] + ";;";
+                }
+            }
+            scanner.close();
         }
-        scanner.close();
+        catch (Exception e)
+        {
+            slt = "No Slots available";
+        }
+        
         return slt;
     }
-    private String readDateSlot(String docName) throws FileNotFoundException
+    private String readDateSlot(String docName)
     {
         String slt = "";
         String[] docAndDept = docName.split("--");
         String path = "src/sample/mainServer/DoctorsData/DoctorsAppointmentInfo/" + docAndDept[0] + "_" + docAndDept[1] + ".txt";
-        Scanner scanner = new Scanner(new File(path));
-        while (scanner.hasNext())
+        try
         {
-            String[] tslot = scanner.nextLine().split(";;");
-            slt += tslot[3] + ";;";
+            Scanner scanner = new Scanner(new File(path));
+            while (scanner.hasNext())
+            {
+                String[] tslot = scanner.nextLine().split(";;");
+                slt += tslot[3] + ";;";
+            }
+            scanner.close();
         }
-        scanner.close();
+        catch (Exception e)
+        {
+            slt = "No Slots available";
+        }
         return slt;
     }
     //===============================READING FROM FILES ENDS=========================================
@@ -171,7 +176,8 @@ public class ClientThread implements Runnable
         while (itr.hasNext())
         {
             String k = (String) itr.next();
-            info += k + "--" + doctorsList.get(k).deptName + " ";
+            info += k + "--" + doctorsList.get(k).deptName + ";;";
+            System.out.println(info);
         }
         return info;
     }

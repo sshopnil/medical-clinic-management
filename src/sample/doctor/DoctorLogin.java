@@ -70,11 +70,11 @@ public class DoctorLogin {
         ArrayList<doctor> loginList = getInformation();
         for(doctor doctor: loginList)
         {
-            if(doctor.email.equals(doctorEmail.getText()) && doctor.password.equals(doctorPassword.getText()))
+            if(doctor.email.equals(doctorEmail.getText().trim()) && doctor.password.equals(doctorPassword.getText().trim()))
             {
                 this.doctor = doctor;
                 valid = true;
-                System.out.println(doctor.name+";;"+doctor.email+";;"+doctor.password);
+//                System.out.println(doctor.name+";;"+doctor.email+";;"+doctor.password);
                 break;
             }
 

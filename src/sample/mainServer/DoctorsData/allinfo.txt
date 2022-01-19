@@ -1,4 +1,5 @@
-1;;21223232;;121212;;21121212;;1;;2021-01-01;;Male;;ENT
-niggy;;48484;;1212121;;1;;1;;2021-01-01;;Male;;Medical
-doctor;;dasdasdas;;15151511;;doctor;;doctor;;2022-01-01;;Female;;Dermatology
-Kashem;;sasasasas;;02901920121212;;12;;12;;2021-01-14;;Male;;ENT
+Lutfor Rahman;;address of lutfur rahman;;0123456789;;lutfurrahman@ymail.com;;1234;;1960-01-01;;Male;;Medicine
+Syed Atiqul Haq;;address of syed atiqul;;0298935014;;syedatiqul@gmail.com;;1234;;1959-01-01;;Male;;Medicine
+Pro. Dr. M.U. Kabir Chowdhury;;address of dr kabir chowdhury;;028989898;;drkabir@ymail.com;;1234;;1961-01-05;;Male;;Dermatology
+Prof. Dr. Reza Bin Zahid;;address of dr reza;;0121212123;;drreza@gmail.com;;1234;;1956-10-03;;Male;;Dermatology
+Dr. M.A. Matin;;address of dr ma matin;;5215151515;;drmatin@gmail.com;;1234;;1969-01-03;;Male;;ENT
