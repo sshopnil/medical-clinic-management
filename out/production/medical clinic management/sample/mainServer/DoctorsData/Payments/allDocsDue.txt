@@ -1,1 +1,3 @@
-Lutfor Rahman;;Medicine;;1000.0;;ssabbir2021461;;2022-01-23;;5:00 PM
+Syed Atiqul Haq;;Medicine;;2350.0;;150.0;;ssabbir2021461;;2022-01-24;;10:00 AM
+Lutfor Rahman;;Medicine;;600.0;;1200.0;;Sshayan20214221;;2022-01-23;;5:00 PM
+Lutfor Rahman;;Medicine;;800.0;;0;;ssabbir2021461;;2022-01-23;;5:00 PM

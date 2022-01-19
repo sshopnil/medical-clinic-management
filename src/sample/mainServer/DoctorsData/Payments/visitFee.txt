@@ -1,0 +1,3 @@
+general;;800
+private;;1200
+homevisit;;2500
