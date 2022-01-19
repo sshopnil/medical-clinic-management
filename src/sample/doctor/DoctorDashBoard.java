@@ -291,12 +291,22 @@ public class DoctorDashBoard
                 {
                     String[] patDetail = scan.nextLine().split(";;");
     
-                    if(docInfo[0].equals(patDetail[0]) && patDetail[3].equals(patient.id) && patDetail[4].equals(patient.date) && patDetail[5].equals(patient.time))
+                    if(docInfo[0].equals(patDetail[0]) && patDetail[4].equals(patient.id) && patDetail[5].equals(patient.date) && patDetail[6].equals(patient.time))
                     {
                         newPat = false;
                     }
                 }
                 scan.close();
+                
+                scan = new Scanner(new File("src/sample/mainServer/DoctorsData/Payments/visitFee.txt"));
+                ArrayList <String> DynamicAmount = new ArrayList<>();
+                while (scan.hasNext())
+                {
+                    DynamicAmount.add(scan.nextLine());
+                }
+                
+                scan.close();
+                
                 
                 if (newPat)
                 {
@@ -304,19 +314,30 @@ public class DoctorDashBoard
                     BufferedWriter br = new BufferedWriter(fr);
     
                     double amount = 0;
-                    switch (patient.type)
+                    
+                    for (String str: DynamicAmount)
                     {
-                        case "general":
-                            amount = 1000.00;
+                        String[] type = str.split(";;");
+                        
+                        if (patient.type.equals(type[0]))
+                        {
+                            amount = Double.parseDouble(type[1]);
                             break;
-                        case "private":
-                            amount = 1500.00;
-                            break;
-                        case "homevisit":
-                            amount = 2500.00;
-                            break;
+                        }
                     }
-                    br.write(docInfo[0] + ";;" + docInfo[1] + ";;" + String.valueOf(amount) +";;" +patient.id + ";;" + patient.date + ";;" + patient.time + "\n");
+//                    switch (patient.type)
+//                    {
+//                        case "general":
+//                            amount = 1000.00;
+//                            break;
+//                        case "private":
+//                            amount = 1500.00;
+//                            break;
+//                        case "homevisit":
+//                            amount = 2500.00;
+//                            break;
+//                    }
+                    br.write(docInfo[0] + ";;" + docInfo[1] + ";;" + String.valueOf(amount) +";;" +"0" + ";;" +patient.id + ";;" + patient.date + ";;" + patient.time + "\n");
     
     
                     br.close();
@@ -348,7 +369,7 @@ public class DoctorDashBoard
                 {
                     String[] patDetail = scan.nextLine().split(";;");
         
-                    if(patDetail[0].equals(docInfo[0]) && patDetail[3].equals(patient.id) && patDetail[4].equals(patient.date) && patDetail[5].equals(patient.time))
+                    if(patDetail[0].equals(docInfo[0]) && patDetail[4].equals(patient.id) && patDetail[5].equals(patient.date) && patDetail[6].equals(patient.time))
                     {
                         newPat = false;
                     }
