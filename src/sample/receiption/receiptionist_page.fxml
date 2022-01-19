@@ -27,9 +27,14 @@
                         <Font name="Century Gothic Bold" size="11.741006851196289" />
                      </font>
                   </Button>
-                  <Button fx:id="regPatient" mnemonicParsing="false" onMouseClicked="#regPatient" prefHeight="48.0" prefWidth="294.0" style="-fx-background-color: #1e3d59;" text="Patients" textFill="WHITE">
+                  <Button fx:id="regPatient" mnemonicParsing="false" onMouseClicked="#regPatient" prefHeight="48.0" prefWidth="294.0" style="-fx-background-color: #1e3d59;" text="Registered Patients" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic Bold" size="11.741006851196289" />
+                     </font>
+                  </Button>
+                  <Button fx:id="regDoctors" mnemonicParsing="false" onMouseClicked="#regDoctorsAction" prefHeight="48.0" prefWidth="294.0" style="-fx-background-color: #1e3d59;" text="Registered Doctors" textFill="#fcfcfc">
+                     <font>
+                        <Font size="11.74" />
                      </font>
                   </Button>
                   <Button fx:id="appointment" mnemonicParsing="false" onMouseClicked="#appointmentAction" prefHeight="48.0" prefWidth="299.0" style="-fx-background-color: #1e3d59;" text="Booked Slot" textFill="WHITE">
@@ -53,7 +58,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </VBox>
-            <Text fill="#1e3d59" layoutX="14.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Dashboard" textAlignment="CENTER">
+            <Text fill="#1e3d59" layoutX="33.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Dashboard" textAlignment="CENTER">
                <font>
                   <Font name="Fira Mono" size="25.0" />
                </font>

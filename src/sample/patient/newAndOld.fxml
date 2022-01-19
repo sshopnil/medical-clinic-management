@@ -16,7 +16,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="backToHome" layoutX="61.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#backClicked" prefHeight="38.0" prefWidth="91.0" text="Back">
+      <Button fx:id="backToHome" layoutX="61.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#backClicked" prefHeight="38.0" prefWidth="91.0" style="-fx-background-color: transparent; -fx-border-color: #145e67f7; -fx-border-radius: 10; -fx-border-width: 2;" text="Back">
          <font>
             <Font size="16.0" />
          </font>

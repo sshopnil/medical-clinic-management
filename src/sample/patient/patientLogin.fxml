@@ -20,7 +20,7 @@
             <Font name="Century Gothic Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="backToHome" layoutX="20.0" layoutY="45.0" mnemonicParsing="false" onMouseClicked="#backToHomeAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #333D79FF;" text="Back" textFill="WHITE">
+      <Button fx:id="backToHome" layoutX="20.0" layoutY="45.0" mnemonicParsing="false" onMouseClicked="#backToHomeAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: transparent; -fx-border-color: #333D79FF; -fx-border-radius: 20;" text="Back" textFill="#333d79">
          <font>
             <Font size="14.0" />
          </font>

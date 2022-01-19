@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.receiption.ReceptionistDashBoard">
+   <children>
+      <Text fill="#1e3d59" layoutX="23.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registered Doctors">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TableView fx:id="regDocTable" editable="true" layoutX="24.0" layoutY="111.0" prefHeight="369.0" prefWidth="669.0">
+        <columns>
+          <TableColumn fx:id="regDocName" prefWidth="75.0" text="Doctor Name" />
+          <TableColumn fx:id="regDocDep" prefWidth="75.0" text="Department" />
+            <TableColumn fx:id="regDocMail" prefWidth="75.0" text="Email" />
+            <TableColumn fx:id="regDocPhone" prefWidth="75.0" text="Phone no." />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Button layoutX="37.0" layoutY="504.0" mnemonicParsing="false" onMouseClicked="#regDocCancelledAction" prefHeight="38.0" prefWidth="147.0" style="-fx-background-color: transparent; -fx-border-color: #df2d0e; -fx-border-radius: 20;" text="Cancel Registration" textFill="#df2d0e" />
+   </children>
+</AnchorPane>

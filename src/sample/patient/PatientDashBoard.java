@@ -80,15 +80,16 @@ public class PatientDashBoard
         //======================COMMUNICATION WITH SERVER STARTS FROM HERE ================================
         //================================================================================================
         
-        void readSlot(String docName) throws IOException
+        void readSlot(String docName, String date) throws IOException
         {
+//            System.out.println(docName);
             Socket socket = new Socket("127.0.0.1", 5000);
     
 //            System.out.println("Patient Client Started--- ");
             System.out.println(socket.getLocalAddress().getHostAddress());
             NetworkUtil nc=new NetworkUtil(socket);
     
-            nc.write("timeSlot" + " " + docName);
+            nc.write("timeSlot" + ";;" + docName + ";;" + date);
             slotFromServer = (String) nc.read();
             slotFromServer = slotFromServer.trim();
 //            System.out.println("Server: " + slotFromServer);
@@ -107,7 +108,7 @@ public class PatientDashBoard
             nc.write("doclist");
             docsFromServer = (String) nc.read();
             docsFromServer = docsFromServer.trim();
-//            System.out.println("Server: " + docsFromServer);
+            System.out.println("Server: " + docsFromServer);
             nc.write("exit");
             socket.close();
 //            System.out.println("Patient Client closed...");
@@ -115,13 +116,14 @@ public class PatientDashBoard
         
         void readAppDate(String docName) throws IOException
         {
+//            System.out.println(docName);
             Socket socket = new Socket("127.0.0.1", 5000);
-    
+            
 //            System.out.println("Patient Client Started--- ");
             System.out.println(socket.getLocalAddress().getHostAddress());
             NetworkUtil nc=new NetworkUtil(socket);
     
-            nc.write("dateSlot" + " " + docName);
+            nc.write("dateSlot" + ";;" + docName);
             dateFromServer = (String) nc.read();
             dateFromServer = dateFromServer.trim();
 //            System.out.println("Server: " + dateFromServer);
@@ -268,8 +270,9 @@ public class PatientDashBoard
                 finally
                 {
                     JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Booked!!");
-                    chooseSlot.setText("choose");
-                    chooseDoc.setText("choose");
+                    chooseSlot.setText("Choose");
+                    chooseDoc.setText("Choose");
+                    chooseDate.setText("Choose");
                     appSubject.setText("");
                     appDescription.setText("");
                 }
@@ -294,7 +297,7 @@ public class PatientDashBoard
             {
                 e.printStackTrace();
             }
-            String[] docts = docsFromServer.split(" ");
+            String[] docts = docsFromServer.split(";;");
 //            Iterator itr = docs.iterator();
             chooseDoc.getItems().clear();
             int count = 0;
@@ -304,7 +307,7 @@ public class PatientDashBoard
                 chooseDoc.getItems().get(count).setOnAction(e ->{
                     chooseDoc.setText(str);
                 });
-                System.out.println(str);
+//                System.out.println(str);
                 count++;
             }
         }
@@ -313,9 +316,10 @@ public class PatientDashBoard
         public void chooseSlotAction(MouseEvent mouseEvent)
         {
             String docName = chooseDoc.getText();
+            String dateSlot = chooseDate.getText();
             try
             {
-                readSlot(docName);
+                readSlot(docName, dateSlot);
             }
             catch (IOException e)
             {
@@ -331,7 +335,7 @@ public class PatientDashBoard
                 chooseSlot.getItems().get(count).setOnAction(e ->{
                     chooseSlot.setText(str);
                 });
-                System.out.println(str);
+//                System.out.println(str);
                 count++;
             }
         }

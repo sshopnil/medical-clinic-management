@@ -1,7 +1,2 @@
-2346;;niggy2;;2022-01-18;;9:00 PM;;dasdsada;;dasdada;;1--ENT;;general
-2346;;niggy2;;2022-01-18;;5:00 PM;;dasdad;;dasdsadsad;;niggy--Medical;;general
-2346;;niggy2;;2022-01-18;;9:00 PM;;dasdada;;dasdsada;;niggy--Medical;;general
-2346;;niggy2;;2022-01-18;;5:00 PM;;sasa;;sasasa;;doctor--Dermatology;;general
-2346;;niggy2;;2022-01-18;;9:00 PM;;hair loss;;dasdasodasod;;doctor--Dermatology;;general
-sshunity2021781;;shunity;;2022-01-18;;9:00 PM;;sizzling;;sdasdasdsadd;;Kashem--ENT;;homevisit
-sshunity2021781;;shunity;;2022-01-18;;9:00 PM;;coughing;;asdasdasdasd;;Kashem--ENT;;homevisit
+ssabbir2021461;;sabbir;;2022-01-23;;5:00 PM;;cough and fever;;fever 102 degree;;Lutfor Rahman--Medicine;;general
+ssabbir2021461;;sabbir;;2022-01-24;;10:00 AM;;jaundice patient;;home visit at the address 243/A/6 Nakhalpara;;Syed Atiqul Haq--Medicine;;homevisit
