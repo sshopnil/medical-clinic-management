@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="patientScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.receiption.ReceptionistDashBoard">
+<AnchorPane fx:id="patientScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.receiption.ReceptionistDashBoard">
     <children>
         <Text fill="#1e3d59" layoutX="29.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registered Patients">
             <font>
@@ -25,7 +25,6 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-        <Button layoutX="49.0" layoutY="510.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="105.0" style="-fx-background-color: transparent; -fx-border-color: #1e3d59; -fx-border-radius: 20;" text="Edit info" />
-        <Button layoutX="171.0" layoutY="510.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="174.0" style="-fx-background-color: transparent; -fx-border-color: #f41152; -fx-border-radius: 20;" text="Cancel Registration" textFill="#f41152" />
+        <Button layoutX="29.0" layoutY="505.0" mnemonicParsing="false" onMouseClicked="#patRegCancelledAction" prefHeight="42.0" prefWidth="174.0" style="-fx-background-color: transparent; -fx-border-color: #f41152; -fx-border-radius: 20;" text="Cancel Registration" textFill="#f41152" />
     </children>
 </AnchorPane>

@@ -1,3 +1,0 @@
-niggy;;Medical;;5:00 PM;;2022-01-18;;9
-niggy;;Medical;;9:00 PM;;2022-01-18;;3
-niggy;;Medical;;7:00 PM;;2022-01-18;;0
