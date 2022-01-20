@@ -27,12 +27,12 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="81.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age :">
+      <Text layoutX="81.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age :" visible="false">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="D_age" layoutX="252.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="D_age" layoutX="252.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false">
          <font>
             <Font size="18.0" />
          </font>
