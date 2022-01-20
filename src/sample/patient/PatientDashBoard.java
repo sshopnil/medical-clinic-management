@@ -1,5 +1,8 @@
 package sample.patient;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -34,8 +37,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
 
-public class PatientDashBoard
-    {
+public class PatientDashBoard extends Component
+{
         
         public Button myInfo;
         public Button appointment;
@@ -579,6 +582,66 @@ public class PatientDashBoard
             catch (IOException e)
             {
                 e.printStackTrace();
+            }
+        }
+    //==============================================generating pdf========================================================
+        //================================================================================================================
+        
+        public void generatePdfAction(MouseEvent mouseEvent)
+        {
+            AppHistoryClass tokenInfo = new AppHistoryClass();
+            try
+            {
+                tokenInfo = appHistoryTable.getSelectionModel().getSelectedItem();
+                String path = "";
+                JFileChooser f = new JFileChooser();
+    
+                f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+    
+                int x = f.showSaveDialog(this);
+    
+                if (x == JFileChooser.APPROVE_OPTION)
+                {
+                    path = f.getSelectedFile().getPath();
+                }
+                Document doc = new Document();
+                String[] str = getPatInfo().split(";;");
+                try
+                {
+                    PdfWriter.getInstance(doc, new FileOutputStream(path + str[1] + ".pdf"));
+        
+                    doc.open();
+    
+                    PdfPHeaderCell headerCell = new PdfPHeaderCell();
+                    
+                    headerCell.setName("Appointment Info");
+                    PdfPTable tbl = new PdfPTable(3);
+                    
+                    tbl.addCell("Patient ID");
+                    tbl.addCell("Doctor's Name");
+                    tbl.addCell("Slot");
+                    
+                    tbl.addCell(str[1]);
+                    tbl.addCell(tokenInfo.doctorname);
+                    tbl.addCell(tokenInfo.date + " at: " + tokenInfo.time);
+                    
+                    doc.add(headerCell);
+                    doc.add(tbl);
+                    System.out.println("added from the table");
+                }
+                catch (DocumentException e)
+                {
+                    e.printStackTrace();
+                }
+                catch (FileNotFoundException e)
+                {
+                    e.printStackTrace();
+                }
+                doc.close();
+            }
+            catch (Exception e)
+            {
+                JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),"Select an appointment from the table first!");
             }
         }
     }
